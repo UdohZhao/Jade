@@ -1,0 +1,142 @@
+{% extends "layouts.html" %}
+{% block content%}
+
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 商品管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 添加商品</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" id="goodsForm" action="/admin/goods/add/id/{{ data.id }}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="cname" value="{{ data.cname }}" placeholder="请输入商品名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">搜索关键字</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="keywords" value="{{ data.keywords }}" placeholder="请输入搜索关键字">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">商品封面图片</label>
+            <div class="col-sm-10">
+              <div id="previewOne" style="display: inline-block;">
+              {% if data.cover_path.0 is empty %}
+                <img id="imgheadOne" border="0" src="/apps/admin/views/news/img/photo_icon.png" width="150" height="150" onclick="$('#previewImgOne').click();">
+              {% else %}
+                <img id="imgheadOne" border="0" src="{{ data.cover_path.0 }}" width="150" height="150" onclick="delCp({{ data.id }},0,'{{ data.cover_path.0 }}');">
+                <input type="hidden" id="imgOne" value="{{ data.cover_path.0 }}">
+              {% endif %}
+              </div>
+              <div id="previewTwo" style="display: inline-block;margin-left: 15px;">
+              {% if data.cover_path.1 is empty %}
+                <img id="imgheadTwo" border="0" src="/apps/admin/views/news/img/photo_icon.png" width="150" height="150" onclick="$('#previewImgTwo').click();">
+              {% else %}
+                <img id="imgheadOne" border="0" src="{{ data.cover_path.1 }}" width="150" height="150" onclick="delCp({{ data.id }},1,'{{ data.cover_path.1 }}');">
+                <input type="hidden" id="imgTwo" value="{{ data.cover_path.1 }}">
+              {% endif %}
+              </div>
+              <div id="previewThree" style="display: inline-block;margin-left: 15px;">
+              {% if data.cover_path.2 is empty %}
+                <img id="imgheadThree" border="0" src="/apps/admin/views/news/img/photo_icon.png" width="150" height="150" onclick="$('#previewImgThree').click();">
+              {% else %}
+                <img id="imgheadOne" border="0" src="{{ data.cover_path.2 }}" width="150" height="150" onclick="delCp({{ data.id }},2,'{{ data.cover_path.2 }}');">
+                <input type="hidden" id="imgThree" value="{{ data.cover_path.2 }}">
+              {% endif %}
+              </div>
+              <input type="file" onchange="previewImage(this,'previewOne','imgheadOne','previewImgOne')" style="display: none;" id="previewImgOne" name="cover_path[]">
+              <input type="file" onchange="previewImage(this,'previewTwo','imgheadTwo','previewImgTwo')" style="display: none;" id="previewImgTwo" name="cover_path[]">
+              <input type="file" onchange="previewImage(this,'previewThree','imgheadThree','previewImgThree')" style="display: none;" id="previewImgThree" name="cover_path[]">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">商品规格</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="specification" value="{{ data.specification }}" placeholder="请输入商品规格以英文逗号分隔，例如：AAAA,BBBB,CCCC,DDDD">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">市场价</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="market_price" value="{{ data.market_price }}" placeholder="请输入商品市场价">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">促销价</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="promotion_price" value="{{ data.promotion_price }}" placeholder="请输入商品促销价">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">详情</label>
+            <div class="col-sm-10">
+              <!-- 加载编辑器的容器 -->
+              <script id="container" name="details" type="text/plain" style="height: 300px;">{% autoescape false %}{{ data.details }}{% endautoescape %}</script>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">库存</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="inventory" value="{{ data.inventory }}" placeholder="请输入商品库存">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">商品类型</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="gtype" value="0" {% if data is empty %}checked="checked"{% elseif data.gtype == 0 %}checked="checked"{% endif %}> 正常
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="gtype" value="1" {% if data.gtype == 1%}checked="checked"{% endif %}> 热点
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="type" value="0" {% if data is empty %}checked="checked"{% elseif data.type == 0 %}checked="checked"{% endif %}> 毛料
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type" value="1" {% if data.type == 1%}checked="checked"{% endif %}> 成品
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="status" value="0" {% if data is empty %}checked="checked"{% elseif data.status == 0 %}checked="checked"{% endif %}> 上架
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="status" value="1" {% if data.status == 1%}checked="checked"{% endif %}> 下架
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">提 交</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+
+{% endblock %}
+
+{% block footer %}
+<script src="/apps/admin/views/goods/js/add.js"></script>
+<script src="/public/ueditor/ueditor.config.js"></script>
+<script src="/public/ueditor/ueditor.all.js"></script>
+{% endblock %}

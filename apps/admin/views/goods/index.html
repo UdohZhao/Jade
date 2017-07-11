@@ -1,0 +1,97 @@
+{% extends "layouts.html" %}
+{% block content%}
+
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 商品管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 商品列表</h3>
+      </div>
+      <ul class="nav nav-pills" style="margin-left: 30px;">
+        <li role="presentation" {% if type == 0 %}class="active"{% endif %}><a href="/admin/goods/index/type/0">毛料</a></li>
+        <li role="presentation" {% if type == 1 %}class="active"{% endif %}><a href="/admin/goods/index/type/1">成品</a></li>
+      </ul>
+      <form action="/admin/goods/index/type/{{ type }}" method="post">
+        <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="search" placeholder="请输入关键字">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>商品名称</th>
+              <th>搜素关键字</th>
+              <th>规格</th>
+              <th>市场价</th>
+              <th>促销价</th>
+              <th>库存</th>
+              <th>商品类型</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if data %}
+          {% for k,v in data %}
+            <tr>
+              <td>
+              {% if v.status == 1 %}
+                <span class="text-danger">{下架}</span>
+              {% else %}
+                <span class="text-success">{上架}</span>
+              {% endif %}
+              </td>
+              <td>{{ v.cname }}</td>
+              <td>{{ v.keywords }}</td>
+              <td>{{ v.specification }}</td>
+              <td>{{ v.market_price }}</td>
+              <td>{{ v.promotion_price }}</td>
+              <td>{{ v.inventory }}</td>
+              <td>
+                {% if v.gtype == 1 %}
+                <span class="text-danger">{热点}</span>
+                {% else %}
+                <span class="text-success">{正常}</span>
+                {% endif %}
+              </td>
+              <td>
+                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">编辑</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+              </td>
+            </tr>
+          {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4">
+                <blockquote>
+                  <p>暂无数据 :(</p>
+                </blockquote>
+              </td>
+            </tr>
+          {% endif %}
+          </tbody>
+        </table>
+
+          {% autoescape false %}
+            {{ page }}
+          {% endautoescape %}
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+
+{% endblock %}
+
+{% block footer %}
+  <script src="/apps/admin/views/goods/js/index.js"></script>
+{% endblock %}
