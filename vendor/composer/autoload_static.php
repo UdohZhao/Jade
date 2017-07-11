@@ -33,6 +33,10 @@ class ComposerStaticInitdd49cabfcf34b28c15f9b941a71b039c
         array (
             'Medoo\\' => 6,
         ),
+        'G' => 
+        array (
+            'Gregwar\\Captcha\\' => 16,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -59,6 +63,10 @@ class ComposerStaticInitdd49cabfcf34b28c15f9b941a71b039c
         'Medoo\\' => 
         array (
             0 => __DIR__ . '/..' . '/catfan/medoo/src',
+        ),
+        'Gregwar\\Captcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gregwar/captcha',
         ),
     );
 

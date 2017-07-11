@@ -12,4 +12,5 @@ return array(
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Medoo\\' => array($vendorDir . '/catfan/medoo/src'),
+    'Gregwar\\Captcha\\' => array($vendorDir . '/gregwar/captcha'),
 );

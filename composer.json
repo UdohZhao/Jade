@@ -12,7 +12,8 @@
     "catfan/medoo": "*",
     "twig/twig": "*",
     "twbs/bootstrap": "*",
-    "components/jquery": "*"
+    "components/jquery": "*",
+    "gregwar/captcha": "1.*"
   },
   "repositories": {
     "packagist": {

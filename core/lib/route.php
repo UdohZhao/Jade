@@ -31,13 +31,13 @@ class route
       }
       unset($patharr[0]);
       // 参数
-      $count = bcadd(count($patharr), 2);
-      $i = 2;
+      $count = bcadd(count($patharr), 2, 0);
+      $i = 3;
       while ($i < $count) {
-        if (isset($patharr[bcadd($i, 1)])) {
-          $_GET[$patharr[$i]] = $patharr[bcadd($i, 1)];
+        if (isset($patharr[bcadd($i, 1, 0)])) {
+          $_GET[$patharr[$i]] = $patharr[bcadd($i, 1, 0)];
         }
-        $i = bcadd($i, 2);
+        $i = bcadd($i, 2, 0);
       }
     }else{
       $this->ctrl = conf::get('CTRL','route');

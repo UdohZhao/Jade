@@ -7,9 +7,10 @@ CREATE TABLE `admin_user`(
   `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>正常，1>冻结',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-# 用户表{id，手机号码，密码，时间，状态（正常，冻结）}
+# 用户表{id，关联客服用户表主键id，手机号码，密码，时间，状态（正常，冻结）}
 CREATE TABLE `user`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户表主键id',
+  `suid` int(11) UNSIGNED NOT NULL COMMENT '关联客服用户表主键id',
   `phone` char(11) NOT NULL COMMENT '手机号码',
   `password` char(32) NOT NULL COMMENT '密码',
   `ctime` char(10) NOT NULL COMMENT '时间',
@@ -26,16 +27,17 @@ CREATE TABLE `userinfo`(
   PRIMARY KEY (`id`),
   KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-# 新闻表{id，标题，封面图片路径，外部链接，内容，时间，类型（普通，外部链接）}
+# 新闻表{id，关联文章表主键id，标题，封面图片路径，内容，时间，类型（普通，链接付费章节）}
 CREATE TABLE `news`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '新闻表主键id',
+  `aid` int(11) UNSIGNED NOT NULL COMMENT '关联文章表主键id',
   `title` varchar(255) NOT NULL COMMENT '标题',
   `coverimg_path` varchar(255) NOT NULL COMMENT '封面图片路径',
-  `external_links` varchar(255) DEFAULT '' COMMENT '外部链接',
   `content` varchar(20000) DEFAULT '' COMMENT '内容',
   `ctime` char(10) NOT NULL COMMENT '时间',
-  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>普通，1>外部链接',
-  PRIMARY KEY (`id`)
+  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>普通，1>链接付费章节',
+  PRIMARY KEY (`id`),
+  KEY (`aid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 # 行业动态表{id，封面图片路径，标题，内容，时间}
 CREATE TABLE `industry_dynamics`(
@@ -54,7 +56,7 @@ CREATE TABLE `catalogue`(
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>毛料，1>成品',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-# 文章表{id，关联目录表主键id，标题，内容，阅读定价，时间}
+# 文章表{id，关联目录表主键id，标题，内容，阅读定价，时间，类型（付费阅读，工作号免费阅读）}
 CREATE TABLE `article`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文章表主键id',
   `cid` int(11) UNSIGNED NOT NULL COMMENT '目录表主键id',
@@ -62,21 +64,23 @@ CREATE TABLE `article`(
   `content` varchar(50000) NOT NULL COMMENT '内容',
   `price` decimal(14,2) UNSIGNED NOT NULL COMMENT '阅读定价',
   `ctime` char(10) NOT NULL COMMENT '时间',
+  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>付费阅读，1>工作号免费阅读',
   PRIMARY KEY (`id`),
   KEY (`cid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-# 阅读消费表{id，关联用户表主键id，关联文章表主键id，消费金额，时间}
+# 阅读消费表{id，关联用户表主键id，关联文章表主键id，消费金额，时间，类型（付费阅读，工作号免费阅读）}
 CREATE TABLE `read_expense`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '阅读消费表主键id',
   `uid` int(11) UNSIGNED NOT NULL COMMENT '关联用户表主键id',
   `aid` int(11) UNSIGNED NOT NULL COMMENT '关联文章表主键id',
   `money` decimal(14,2) UNSIGNED NOT NULL COMMENT '消费金额',
   `ctime` char(10) NOT NULL COMMENT '时间',
+  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>付费阅读，1>工作号免费阅读',
   PRIMARY KEY (`id`),
   KEY (`uid`),
   KEY (`aid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-# 商品表{id，名称，搜索关键字，封面图片路径（序列化数组），规格（序列化数组），市场价，促销价，详情，时间，商品类型（正常，热点），类型（毛料，成品），状态（上架，下架）}
+# 商品表{id，名称，搜索关键字，封面图片路径（序列化数组），规格（序列化数组），市场价，促销价，详情，库存，时间，商品类型（正常，热点），类型（毛料，成品），状态（上架，下架）}
 CREATE TABLE  `goods`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品表主键id',
   `cname` varchar(255) NOT NULL COMMENT '名称',
@@ -86,17 +90,19 @@ CREATE TABLE  `goods`(
   `market_price` decimal(14,2) UNSIGNED NOT NULL COMMENT '市场价',
   `promotion_price` decimal(14,2) UNSIGNED NOT NULL COMMENT '促销价',
   `details` varchar(50000) NOT NULL COMMENT '详情',
+  `inventory` smallint(9) UNSIGNED NOT NULL COMMENT '库存',
   `ctime` char(10) NOT NULL COMMENT '时间',
   `gtype` tinyint(1) UNSIGNED NOT NULL COMMENT '商品类型？0>正常，1>热点',
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>毛料，1>成品',
   `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>上架，1>下架',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-# 商品评价表{id，关联用户表主键id，关联商品表主键id，内容，时间，类型（好评，中评，差评）}
+# 商品评价表{id，关联用户表主键id，关联商品表主键id，商品规格，内容，时间，类型（好评，中评，差评）}
 CREATE TABLE `goods_estimate`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品评价表主键id',
   `uid` int(11) UNSIGNED NOT NULL COMMENT '关联用户表主键id',
   `gid` int(11) UNSIGNED NOT NULL COMMENT '关联商品表主键id',
+  `specification` varchar(255) NOT NULL COMMENT '商品规格',
   `content` varchar(255) NOT NULL COMMENT '内容',
   `ctime` char(10) NOT NULL COMMENT '时间',
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>好评，1>中评，2>差评',
@@ -109,7 +115,7 @@ CREATE TABLE `shop_cart`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '购物车表主键id',
   `uid` int(11) UNSIGNED NOT NULL COMMENT '关联用户表主键id',
   `gid` int(11) UNSIGNED NOT NULL COMMENT '关联商品表主键id',
-  `specification` varchar(50) NOT NULL COMMENT '规格',
+  `specification` varchar(255) NOT NULL COMMENT '规格',
   `quantity` tinyint(3) UNSIGNED NOT NULL COMMENT '数量',
   `ctime` char(10) NOT NULL COMMENT '时间',
   PRIMARY KEY (`id`),
@@ -148,8 +154,36 @@ CREATE TABLE `indent`(
   PRIMARY KEY (`id`),
   KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
+# 客服用户表{id，父级id，工作号，姓名，收入金额，时间，状态（正常，冻结）}
+CREATE TABLE `service_user`(
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '客服用户表主键id',
+  `pid` int(11) UNSIGNED NOT NULL COMMENT '父级id',
+  `jobnumber` varchar(25) NOT NULL COMMENT '工作号',
+  `cname` varchar(25) NOT NULL COMMENT '姓名',
+  `income` decimal(14,2) UNSIGNED NOT NULL COMMENT '收入金额',
+  `ctime` char(10) NOT NULL COMMENT '时间',
+  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>正常，1>冻结',
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+# 站点配置表{id，版权所有，提成百分比，充值百分比，状态（开启站点，关闭站点）}
+CREATE TABLE `website_config`(
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '站点配置表主键id',
+  `copyright` varchar(255) NOT NULL COMMENT '版权所有',
+  `royalties` tinyint(3) UNSIGNED NOT NULL COMMENT '提成百分比',
+  `pay` tinyint(3) UNSIGNED NOT NULL COMMENT '充值百分比',
+  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>开启站点，1>关闭站点',
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+# 充值记录表{id，关联用户表主键id，金额，时间，类型（正常充值，工作号优惠充值）}
+CREATE TABLE `pay_record`(
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '充值记录表主键id',
+  `uid` int(11) UNSIGNED NOT NULL COMMENT '关联用户表主键id',
+  `money` decimal(14,2) UNSIGNED NOT NULL COMMENT '金额',
+  `ctime` char(10) NOT NULL COMMENT '时间',
+  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>正常充值，1>工作号优惠充值',
+  PRIMARY KEY (`id`),
+  KEY (`uid`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 

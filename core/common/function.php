@@ -1,4 +1,5 @@
 <?php
+use vendor\fileupload\fileupload;
 /**
  * 浏览器友好的变量输出
  * @param mixed $var 变量
@@ -32,4 +33,59 @@ function see($var, $echo=true, $label=null, $strict=true) {
         return $output;
 }
 
+/**
+ * 是否是AJAx提交的
+ * @return bool
+ */
+function isAjax(){
+    if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/**
+ * 是否是GET提交的
+ * @return bool
+ */
+function isGet(){
+    return $_SERVER['REQUEST_METHOD'] == 'GET' ? true : false;
+}
+
+/**
+ * 是否是POST提交
+ * @return bool
+ */
+function isPost() {
+    return $_SERVER['REQUEST_METHOD'] == 'POST' ? true : false;
+}
+
+// PHP无敌加密
+function enPassword($password){
+    return md5(crypt($password,substr($password,0,2)));
+}
+
+// 上传文件
+function upFiles($file){
+    // 文件上传
+    $up = new FileUpload();
+    $res = array();
+    if ($up->upload($file)) {
+      $res['error'] = 0;
+      // 多文件上传?
+      if (is_array($up->getFileName())) {
+        foreach ($up->getFileName() AS $k => $v) {
+          $res['cover_path'][] = '/admin/uploads/'.$v;
+        }
+        //$res['cover_path'] = serialize($res['cover_path']);
+      } else {
+        $res['cover_path'][] = $up->getFileName();
+      }
+    } else {
+      $res['error'] = 1;
+      $res['msg'] = $up->getErrorMsg();
+    }
+    return $res;
+}
 

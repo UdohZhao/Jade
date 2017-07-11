@@ -1,5 +1,11 @@
 <?php
 namespace core;
+// 开启session
+session_start();
+// 定义常用常量
+define('IS_GET', isGet());
+define('IS_POST', isPost());
+define('IS_AJAX', isAjax());
 /**
 * 框架核心类
 */
