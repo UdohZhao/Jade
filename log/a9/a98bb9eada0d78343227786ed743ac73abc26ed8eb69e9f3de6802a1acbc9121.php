@@ -265,6 +265,21 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
             <li class=\"site-menu-item has-sub active open\">
               <a href=\"javascript:void(0)\" data-slug=\"layout\">
                 <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">客服管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/serviceUser/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加客服</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
                 <span class=\"site-menu-title\">Layouts</span>
                 <span class=\"site-menu-arrow\"></span>
               </a>
@@ -285,9 +300,9 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
 
 
   ";
-        // line 256
+        // line 271
         $this->displayBlock('content', $context, $blocks);
-        // line 259
+        // line 274
         echo "
 
     <!-- Footer -->
@@ -336,9 +351,9 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 306
+        // line 321
         $this->displayBlock('footer', $context, $blocks);
-        // line 309
+        // line 324
         echo "
   <script>
     (function(document, window, \$) {
@@ -366,18 +381,18 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
   ";
     }
 
-    // line 256
+    // line 271
     public function block_content($context, array $blocks = array())
     {
-        // line 257
+        // line 272
         echo "
   ";
     }
 
-    // line 306
+    // line 321
     public function block_footer($context, array $blocks = array())
     {
-        // line 307
+        // line 322
         echo "
   ";
     }
@@ -394,7 +409,7 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
 
     public function getDebugInfo()
     {
-        return array (  381 => 307,  378 => 306,  373 => 257,  370 => 256,  365 => 37,  362 => 36,  342 => 309,  340 => 306,  291 => 259,  289 => 256,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  396 => 322,  393 => 321,  388 => 272,  385 => 271,  380 => 37,  377 => 36,  357 => 324,  355 => 321,  306 => 274,  304 => 271,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -628,6 +643,21 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
                   <a class=\"animsition-link\" href=\"/admin/goods/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">商品列表</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">客服管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/serviceUser/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加客服</span>
                   </a>
                 </li>
               </ul>
