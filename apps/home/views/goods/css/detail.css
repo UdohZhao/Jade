@@ -1,0 +1,29 @@
+.product_name span{
+  line-height: 40px;
+  font-weight: bolder;
+}
+.weui-cells{
+  margin: 0;
+}
+.product_price{
+  color: #e51c23;
+  font-size: 14px;
+  font-weight: bold;
+}
+.free_freight{
+  color: #ccc;
+  font-size: 14px;
+}
+.shop_name{
+  margin-left: 10px;
+}
+.weui-navbar__item.weui-bar__item--on{
+  background-color: #11a820;
+  color: #fff;
+}
+h4>span{
+  float: right;
+  color: #e51c23;
+  font-size: 14px;
+  font-weight: bold;
+}

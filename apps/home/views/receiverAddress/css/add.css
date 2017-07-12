@@ -1,0 +1,78 @@
+.bigBox{
+  background-color: #ededed;
+}
+.addressMsgs .weui-cells_form{
+  margin-top: 0;
+  font-size: 14px;
+}
+.weui-label{
+  margin-bottom: 0;
+}
+.addChioce{
+  font-size: 14px;
+}
+.defaultAddress{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  position: absolute;
+  top: -7px;
+  left: -15px;
+}
+.defaultAddress svg{
+  position: absolute;
+  top: 0;
+  left: -1px;
+  font-size: 14px;
+  display: none;
+  color: #fff;
+}
+.actioned{
+  border: 2px solid #fd8853;
+  background-color: #fd8853;
+  color: #fff;
+}
+.saveBtn{
+  margin: 0;
+  margin-top: 20px;
+}
+.saveBtn .weui-btn{
+  line-height: 40px;
+}
+.weui-picker-modal{
+  height: auto;
+}
+.weui-picker-modal .picker-items{
+  text-align: center;
+  font-size: 14px;
+  height: auto;
+}
+.weui-picker-modal .picker-items-col{
+  max-height: 250px;
+}
+.toolbar .toolbar-inner{
+  height: 40px;
+}
+.toolbar .title{
+  font-size: 16px;
+  line-height: 40px;
+}
+.toolbar .picker-button{
+  height: auto;
+  line-height: 40px;
+  font-size: 14px;
+  right: -38px;
+}
+h1{
+  margin: 0;
+}
+.default-address{
+  float: right;
+}
+.weui-btn_primary{
+  background-color: #e51c23;
+}
+.weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before{
+  color: #e51c23;
+}

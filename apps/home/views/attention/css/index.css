@@ -1,0 +1,17 @@
+.attention_box{
+  padding-top: 20%;
+}
+.attention_word{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.attention_word span{
+  line-height: 100px;
+}
+.attention_QRcode{
+  text-align: right;
+  padding-top: 10px;
+}
+.attention_fingerprint img,.attention_QRcode img{
+  width: 80%;
+}

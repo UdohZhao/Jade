@@ -1,0 +1,15 @@
+.wool_top_img{
+  height: 165px;
+  background-image: url("/apps/home/views/catalogue/img/毛料.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.wool_table{
+  padding-bottom: 20px;
+}
+.wool_table .wool_table_title span{
+  line-height: 60px;
+}
+.wool_table .weui-cells{
+  margin: 0;
+}

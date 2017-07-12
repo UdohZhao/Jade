@@ -1,0 +1,90 @@
+.bigBox{
+  background-color: #ededed;
+}
+.shop_name{
+  margin-left: 10px;
+}
+.weui-cells{
+  margin: 0;
+}
+.wait_time .weui-cell__bd{
+  margin-left: 10px;
+}
+.wait_time .weui-cell__bd span{
+  font-size: 12px;
+  color: #bbb;
+}
+/*.wait_time .weui-cell__hd svg{
+  width: 30px;
+  height: 60px;
+}*/
+.receipt_address .receipt_people span{
+  float: right;
+}
+.receipt_address .address_details{
+  color: #bbb;
+  font-size: 12px;
+  margin-left: 27px;
+}
+.order_msg{
+  width: 100%;
+}
+.order_msg .weui-cell__bd{
+  width: 70%;
+}
+.order_msg .weui-cell__hd img{
+  width: 80px;
+  height: 60px;
+}
+.order_msg .order_name{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.order_msg .order_money{
+  font-size: 14px;
+  color: #e51c23;
+}
+.order_msg .order_money .number{
+  float: right;
+}
+.leave_message,.total,.delivery{
+  font-size: 14px;
+}
+.total .weui-cell__ft{
+  color: #e51c23;
+}
+.leave_message .weui-cell__bd{
+  margin-left: 10px;
+}
+.leave_message .weui-cell__bd textarea{
+  resize: none;
+  height: 60px;
+  width: 100%;
+  padding: 3px 3px;
+}
+.go_pay{
+  width: 100%;
+  height: 46px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #f8f8f8;
+  margin: 0;
+  border-top: 1px solid #bbb;
+}
+.go_pay .go_pay_msg{
+  color: #e51c23;
+  text-align: right;
+}
+.go_pay .go_pay_msg a{
+  line-height: 46px;
+  background-color: #e51c23;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  width: 80px;
+}
+i{
+  font-style: normal;
+}

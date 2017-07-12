@@ -1,0 +1,63 @@
+.bigBox{
+  background-color: #ededed;
+}
+.myorder_box .weui-cells{
+  margin-top: 10px;
+}
+.myorder_box .order_number{
+  font-size: 12px;
+  color: #ccc;
+}
+.myorder_box .order_state{
+  color: #e51c23;
+  font-size: 14px;
+}
+.weui-cells{
+  margin: 0;
+}
+.myorder_box img{
+  width: 80px;
+  height: 60px;
+}
+.myorder_box .order_name{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.myorder_box .order_money{
+  font-size: 14px;
+  color: #e51c23;
+}
+.myorder_box .order_money span{
+  float: right;
+}
+.myorder_box .weui-cell{
+  width: 100%;
+}
+.myorder_box .weui-cell .weui-cell__bd{
+  width: 70%;
+}
+.total_money{
+  color: #e51c23;
+  font-size: 14px;
+}
+.myorder_box .button{
+  display: inline-block;
+  text-align: center;
+  background-color: #e51c23;
+  color: #fff;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  width: 100px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.myorder_box .order_cancel{
+  background-color: #ccc;
+}
+.shop_name{
+  margin-left: 10px;
+}

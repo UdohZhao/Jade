@@ -1,0 +1,38 @@
+.news_title_time{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.news_title_time .news_title{
+  line-height: 30px;
+}
+.news_title_time .news_time{
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  text-align: right;
+}
+.news_content{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.news_content p{
+  text-indent: 2em;
+  text-align: justify;
+  font-size: 14px;
+}
+.news_content .dropload-down{
+  width: 100%;
+}
+.pay_read a{
+  display: block;
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 20px auto;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  color: #aaa;
+}

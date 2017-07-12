@@ -1,0 +1,55 @@
+.bigBox{
+  background-color: #ededed;
+}
+.weui-cells{
+  margin: 0;
+}
+.shop_name{
+  margin-left: 10px;
+}
+.myself_avatar_box{
+  background-image: url("/apps/home/views/index/img/QQ截图20170627164651.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-top: 20px;
+}
+.myself_avatar_box .myself_avatar{
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+.myself_avatar_box .myself_avatar img{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.myself_avatar_box .myself_welcome{
+  padding-left: 15px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 30px;
+}
+.myself_class{
+  background-color: #fff;
+}
+.myself_class .weui-grid{
+  width: 25%;
+  padding: 10px 10px;
+}
+.myself_class svg{
+  width: 28px;
+  height: 28px;
+}
+.myself_bottom{
+  margin-top: 10px;
+}
+.myself_bottom .bottom_list{
+  font-size: 14px;
+  margin-left: 10px;
+}
+.weui-badge{
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+}

@@ -172,6 +172,7 @@ CREATE TABLE `website_config`(
   `royalties` tinyint(3) UNSIGNED NOT NULL COMMENT '提成百分比',
   `pay` tinyint(3) UNSIGNED NOT NULL COMMENT '充值百分比',
   `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>开启站点，1>关闭站点',
+  `ctime` char(10) NOT NULL COMMENT '时间',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 # 充值记录表{id，关联用户表主键id，金额，时间，类型（正常充值，工作号优惠充值）}
@@ -183,6 +184,15 @@ CREATE TABLE `pay_record`(
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>正常充值，1>工作号优惠充值',
   PRIMARY KEY (`id`),
   KEY (`uid`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+# 客服打款记录{id，关联客服用户表主键id，金额，时间}
+CREATE TABLE `remittance_record`(
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '充值记录表主键id',
+  `suid` int(11) UNSIGNED NOT NULL COMMENT '关联客服用户表主键id',
+  `money` decimal(14,2) UNSIGNED NOT NULL COMMENT '金额',
+  `ctime` char(10) NOT NULL COMMENT '时间',
+  PRIMARY KEY (`id`),
+  KEY (`suid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

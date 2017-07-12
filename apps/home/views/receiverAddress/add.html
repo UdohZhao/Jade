@@ -1,0 +1,60 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/receiverAddress/css/add.css">
+{% endblock %}
+
+{% block content %}
+<div class="row addressMsgs">
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">收货人</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="text" name="cname" placeholder="请输入收货人姓名">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="tel" name="phone" placeholder="请输入手机号码">
+      </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="name" class="weui-label">选择地区</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" id="start" type="text" name="district" value="重庆 重庆市 九龙坡区">
+        </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">详细地址</label></div>
+      <div class="weui-cell__bd">
+        <input id='city-picker' class="weui-input" type="text" name="address" placeholder="如街道，楼层，门牌号等">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">邮政编码</label></div>
+      <div class="weui-cell__bd">
+        <input id='city-picker' class="weui-input" type="number" pattern="[0-9]*" name="postalcode" placeholder="邮政编码(选填)">
+      </div>
+    </div>
+  </div>
+  <div class="weui-cells weui-cells_checkbox">
+    <label class="weui-cell weui-check__label" for="s11">
+      <div class="weui-cell__hd">
+        <input type="checkbox" class="weui-check" name="status" id="s11" value="1">
+        <i class="weui-icon-checked"></i>
+      </div>
+      <div class="weui-cell__bd">
+        <div class="default-address">设为默认收货地址</div>
+      </div>
+    </label>
+  </div>
+</div>
+<div class="row saveBtn">
+  <a href="javascript:;" class="weui-btn weui-btn_primary btn-save">保存</a>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="/apps/home/views/receiverAddress/js/add.js"></script>
+{% endblock %}

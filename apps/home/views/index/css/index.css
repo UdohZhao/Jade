@@ -1,0 +1,36 @@
+p{
+  margin: 0;
+}
+.weui-bar__item--on svg{
+  color: #04BE02;
+}
+.weui-footer_fixed-bottom{
+  bottom: 0;
+}
+.weui-footer_fixed-bottom .icon{
+  width: 33.33%;
+  height: 24px;
+}
+.homepage .weui-grid{
+  width: 20%;
+  padding: 20px 2px;
+}
+.homepage .weui-footer, .weui-grid__label{
+  font-size:12px;
+}
+.homepage .weui-grid:after,.homepage .weui-grid:before{
+  border: none;
+}
+.home_menu svg{
+  width: 28px;
+  height: 28px;
+}
+.news_box{
+  border-bottom: 1px solid #ccc;
+}
+.news_box span{
+  line-height: 40px;
+}
+.swiper-container{
+  height: 200px;
+}

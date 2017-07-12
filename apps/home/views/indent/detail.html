@@ -1,0 +1,91 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/indent/css/detail.css">
+{% endblock %}
+
+{% block content %}
+<div class="row wait_time">
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <svg class="icon categorie-icon" aria-hidden="true">
+              <use xlink:href="#icon-shouye"></use>
+          </svg>
+      </div>
+      <div class="weui-cell__bd">
+        <p>等待买家付款</p>
+        <span>请于44分55秒内付款，超时订单将自动关闭</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row order_details">
+  <div class="weui-cells">
+    <a href="javascript:;" class="weui-cell receipt_address">
+      <div class="weui-cell__hd">
+      </div>
+      <div class="weui-cell__bd">
+        <p class="receipt_people">
+          <svg class="icon categorie-icon" aria-hidden="true">
+              <use xlink:href="#icon-shouye"></use>
+          </svg>
+          收货人：赵四
+          <span>18423031898</span>
+        </p>
+        <span class="address_details">收货地址：重庆市九龙坡区袁家岗小时代5层</span>
+      </div>
+    </a>
+    <a class="weui-cell weui-cell_access order_msg" href="javascript:;">
+      <div class="weui-cell__hd">
+        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
+      </div>
+      <div class="weui-cell__bd">
+        <p class="order_name">宝中皇 满绿翡翠套装 宝中皇 满绿翡翠套装</p>
+        <p class="order_money">￥<span class="each_money">29800.00</span><i class="number">x<span>2</span></i></p>
+      </div>
+    </a>
+    <a class="weui-cell weui-cell_access order_msg" href="javascript:;">
+      <div class="weui-cell__hd">
+        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
+      </div>
+      <div class="weui-cell__bd">
+        <p class="order_name">宝中皇 满绿翡翠套装 宝中皇 满绿翡翠套装</p>
+        <p class="order_money">￥<span class="each_money">29800.60</span><i class="number">x<span>1</span></i></p>
+      </div>
+    </a>
+    <div class="weui-cell delivery">
+      <div class="weui-cell__bd">
+        <p>配送方式</p>
+      </div>
+      <div class="weui-cell__ft">免运费，快递发货</div>
+    </div>
+    <div class="weui-cell leave_message">
+      <div class="weui-cell__hd">
+        <p>买家留言</p>
+      </div>
+      <div class="weui-cell__bd">
+      <input class="weui-input" type="text" placeholder="要是能重来，我要选李白" readonly="readonly">
+      </div>
+    </div>
+    <div class="weui-cell total">
+      <div class="weui-cell__bd">
+        <p>合计</p>
+      </div>
+      <div class="weui-cell__ft">￥<span class="all_money">29800.00</span></div>
+    </div>
+  </div>
+</div>
+<div style="height: 56px;"></div>
+<div class="row go_pay">
+    <div class="go_pay_msg">
+    合计：￥<span class="all_money">29800.00</span>
+    <a>去支付</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<!-- 滚动加载js -->
+<script src="/apps/home/views/indent/js/detail.js"></script>
+{% endblock %}

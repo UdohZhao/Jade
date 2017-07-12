@@ -89,7 +89,7 @@ class __TwigTemplate_d693bfd1dd970ffbd4c2d8089ec4ead38037dd98db1f1de8a45f5f513c5
     public function block_footer($context, array $blocks = array())
     {
         // line 49
-        echo "  <script src=\"/apps/admin/views/adminUser/js/add.js\"></script>
+        echo "<script src=\"/apps/admin/views/adminUser/js/add.js\"></script>
 ";
     }
 
@@ -158,7 +158,7 @@ class __TwigTemplate_d693bfd1dd970ffbd4c2d8089ec4ead38037dd98db1f1de8a45f5f513c5
 {% endblock %}
 
 {% block footer %}
-  <script src=\"/apps/admin/views/adminUser/js/add.js\"></script>
+<script src=\"/apps/admin/views/adminUser/js/add.js\"></script>
 {% endblock %}
 
 

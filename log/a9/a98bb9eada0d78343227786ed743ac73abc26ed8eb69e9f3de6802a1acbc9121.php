@@ -275,6 +275,27 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
                     <span class=\"site-menu-title\">添加客服</span>
                   </a>
                 </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/serviceUser/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">客服列表</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">站点管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/websiteConfig/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">站点配置</span>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class=\"site-menu-item has-sub active open\">
@@ -300,9 +321,9 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
 
 
   ";
-        // line 271
+        // line 292
         $this->displayBlock('content', $context, $blocks);
-        // line 274
+        // line 295
         echo "
 
     <!-- Footer -->
@@ -351,9 +372,9 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 321
+        // line 342
         $this->displayBlock('footer', $context, $blocks);
-        // line 324
+        // line 345
         echo "
   <script>
     (function(document, window, \$) {
@@ -381,18 +402,18 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
   ";
     }
 
-    // line 271
+    // line 292
     public function block_content($context, array $blocks = array())
     {
-        // line 272
+        // line 293
         echo "
   ";
     }
 
-    // line 321
+    // line 342
     public function block_footer($context, array $blocks = array())
     {
-        // line 322
+        // line 343
         echo "
   ";
     }
@@ -409,7 +430,7 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
 
     public function getDebugInfo()
     {
-        return array (  396 => 322,  393 => 321,  388 => 272,  385 => 271,  380 => 37,  377 => 36,  357 => 324,  355 => 321,  306 => 274,  304 => 271,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  417 => 343,  414 => 342,  409 => 293,  406 => 292,  401 => 37,  398 => 36,  378 => 345,  376 => 342,  327 => 295,  325 => 292,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -658,6 +679,27 @@ class __TwigTemplate_400e1aa63cf865e4468398046ef7b042d5d109ffcc22f74776e0e1e998c
                   <a class=\"animsition-link\" href=\"/admin/serviceUser/add\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">添加客服</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/serviceUser/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">客服列表</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">站点管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/websiteConfig/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">站点配置</span>
                   </a>
                 </li>
               </ul>

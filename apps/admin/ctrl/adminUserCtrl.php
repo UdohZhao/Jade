@@ -4,9 +4,11 @@ use core\lib\conf;
 use apps\admin\model\adminUser;
 use vendor\page\Page;
 class adminUserCtrl extends baseCtrl{
+  public $db;
   public $id;
   // 构造方法
   public function _auto(){
+    $this->db = new adminUser();
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
   }
 
@@ -16,8 +18,7 @@ class adminUserCtrl extends baseCtrl{
     if (IS_GET === true) {
       // id
       if ($this->id) {
-        $model = new adminUser();
-        $res = $model->getInfo($this->id);
+        $res = $this->db->getInfo($this->id);
         // assign
         $this->assign('data',$res);
       }
@@ -26,19 +27,17 @@ class adminUserCtrl extends baseCtrl{
     }
     // Ajax
     if (IS_AJAX === true) {
-      // model
-      $model = new adminUser();
       // id
       if ($this->id) {
         // 修改后的密码
         $password = enPassword(htmlspecialchars($_POST['password']));
         // save
-        $res = $model->save($this->id,$password);
+        $res = $this->db->save($this->id,$password);
       } else {
         // data
         $data = $this->getData();
         // add
-        $res = $model->add($data);
+        $res = $this->db->add($data);
       }
       // if
       if ($res) {
@@ -67,14 +66,12 @@ class adminUserCtrl extends baseCtrl{
   public function index(){
     // search
     $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
-    // model
-    $model = new adminUser();
-    $cou = $model->cou();
+    $cou = $this->db->cou();
     // 数据分页
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
     // 结果集
-    $data = $model->sel($search,bcsub($p->currPage,1,0),$p->subPages);
+    $data = $this->db->sel($search,bcsub($p->currPage,1,0),$p->subPages);
     // assign
     $this->assign('data',$data);
     $this->assign('page',$p->showPages(1));
@@ -90,9 +87,7 @@ class adminUserCtrl extends baseCtrl{
       // 获取数据
       $id = $_POST['id'];
       $status = $_POST['status'];
-      // model
-      $model = new adminUser();
-      $res = $model->flag($id,$status);
+      $res = $this->db->flag($id,$status);
       // if
       if ($res) {
         echo json_encode(true);
@@ -108,9 +103,7 @@ class adminUserCtrl extends baseCtrl{
   public function del(){
     // Ajax
     if (IS_AJAX === true) {
-      // model
-      $model = new adminUser();
-      $res = $model->del($this->id);
+      $res = $this->db->del($this->id);
       // if
       if ($res) {
         echo json_encode(true);

@@ -1,0 +1,105 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/mySelf/css/index.css">
+{% endblock %}
+
+{% block content %}
+<!-- 头像start -->
+<div class="row myself_avatar_box">
+  <div class="myself_avatar">
+    <img src="/apps/home/views/index/img/QQ截图20170627164708.png">
+  </div>
+  <div class="myself_welcome">
+    <span>欢迎您，赵四</span>
+  </div>
+</div>
+<!-- 头像end -->
+<!-- 分类start -->
+<div class="row myself_class">
+  <div class="weui-grids">
+    <a href="/indent/index" class="weui-grid js_grid">
+      <span class="weui-badge" style="position: absolute;top: 6px;right: 1em;">8</span>
+      <div class="weui-grid__icon">
+        <svg class="icon categorie-icon" aria-hidden="true">
+            <use xlink:href="#icon-daifukuan2"></use>
+          </svg>
+      </div>
+      <p class="weui-grid__label">
+        待付款
+      </p>
+    </a>
+    <a href="/indent/index" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <svg class="icon categorie-icon" aria-hidden="true">
+            <use xlink:href="#icon-daishouhuo1"></use>
+          </svg>
+      </div>
+      <p class="weui-grid__label">
+        待收货
+      </p>
+    </a>
+    <a href="/indent/index" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <svg class="icon categorie-icon" aria-hidden="true">
+            <use xlink:href="#icon-daipingjia1"></use>
+          </svg>
+      </div>
+      <p class="weui-grid__label">
+        待评价
+      </p>
+    </a>
+    <a href="/indent/index" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <svg class="icon categorie-icon" aria-hidden="true">
+            <use xlink:href="#icon-shouhoufuwu1"></use>
+          </svg>
+      </div>
+      <p class="weui-grid__label">
+        售后服务
+      </p>
+    </a>
+  </div>
+</div>
+<!-- 分类end -->
+<div class="row myself_bottom">
+  <div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="/indent/index">
+      <div class="weui-cell__hd">
+      <svg class="icon categorie-icon" aria-hidden="true">
+              <use xlink:href="#icon-aiguifanfile2"></use>
+          </svg>
+      </div>
+      <div class="weui-cell__bd">
+        <p class="bottom_list">我的订单</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+    <a class="weui-cell weui-cell_access" href="/shopCart/index">
+      <div class="weui-cell__hd">
+      <svg class="icon categorie-icon" aria-hidden="true">
+              <use xlink:href="#icon-gwc"></use>
+          </svg>
+      </div>
+      <div class="weui-cell__bd">
+        <p class="bottom_list">我的购物车</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+    <a class="weui-cell weui-cell_access" href="/receiverAddress/index">
+      <div class="weui-cell__hd">
+      <svg class="icon categorie-icon" aria-hidden="true">
+              <use xlink:href="#icon-shouhuodizhi"></use>
+          </svg>
+      </div>
+      <div class="weui-cell__bd">
+        <p class="bottom_list">我的收货地址</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/attention/css/index.css">
+{% endblock %}
+
+{% block content %}
+<div class="row attention_box">
+  <div class="col-sm-12 col-xs-12 attention_word">
+    <span>请长按指纹识别图中二维码</span>
+  </div>
+  <div class="col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-sm-6 col-xs-6 attention_QRcode">
+        <img src="/apps/home/views/attention/img/二维码.png">
+      </div>
+      <div class="col-sm-6 col-xs-6 attention_fingerprint">
+        <img src="/apps/home/views/attention/img/指纹.png">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

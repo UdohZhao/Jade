@@ -1,0 +1,63 @@
+.product_box,.wool_box{
+  text-align: center;
+  border:1px solid #aaa;
+  padding: 5px 0;
+  margin:15px 0;
+  display: block;
+}
+.wool_box svg,.product_box svg{
+  width: 28px;
+  height: 28px;
+}
+.wool_box p,.product_box p{
+  font-size: 14px;
+}
+.allproduct span{
+  line-height: 40px;
+}
+.product_list{
+  height: 150px;
+  margin-bottom: 15px;
+}
+.product_list img{
+  width: 100%;
+  height: 100%;
+}
+.product_content{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+}
+.product_list .product_title_bcg{
+  position: absolute;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  height: 25px;
+  background-color: rgba(0,0,0,.5);
+}
+.product_list .product_title{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 25px;
+  text-align: center;
+  width: 100%;
+}
+.product_list .product_title span{
+  line-height: 25px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+.weui-footer_fixed-bottom .icon{
+  width: 33.33%;
+  height: 24px;
+}
+.weui-footer_fixed-bottom{
+  bottom: 0;
+}
+.weui-tabbar__item.weui-bar__item--on svg{
+  color: #04BE02;
+}

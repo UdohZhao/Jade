@@ -3,8 +3,8 @@ namespace apps\admin\ctrl;
 use core\lib\conf;
 use Gregwar\Captcha\CaptchaBuilder;
 use apps\admin\model\adminUser;
-class loginCtrl extends \core\icunji
-{
+class loginCtrl extends \core\icunji{
+  public $db;
   public $username;
   // 构造方法
   public function _initialize(){
@@ -13,6 +13,7 @@ class loginCtrl extends \core\icunji
       header('Location:/admin/index/index');
       die;
     }
+    $this->db = new adminUser();
     // 网站名称
     $this->assign('websiteName',conf::get('WEBSITE_NAME','admin'));
     // 记住用户名
@@ -39,8 +40,7 @@ class loginCtrl extends \core\icunji
         setcookie('username',$data['username'],time()-3600);
       }
       // 核对用户名和密码
-      $model = new adminUser();
-      $res = $model->getOne($data);
+      $res = $this->db->getOne($data);
       if ($res === false) {
         echo json_encode(false);
         die;
@@ -82,7 +82,9 @@ class loginCtrl extends \core\icunji
       // 获取用户输入的验证码
       $code = $_POST['code'];
       if ($code == $_SESSION['verifyCode']) {
+        unset($_SESSION['verifyCode']);
         echo 'true';
+        die;
       } else {
         echo 'false';
       }
