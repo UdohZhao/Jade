@@ -1,6 +1,0 @@
-2017-07-12 09:45:16?"ctrl:login\/action:verifyImg"
-2017-07-12 09:45:21?"ctrl:login\/action:verifyImg"
-2017-07-12 09:48:36?"ctrl:login\/action:verifyImg"
-2017-07-12 09:48:51?"ctrl:index\/action:index"
-2017-07-12 09:50:47?"ctrl:index\/action:index"
-2017-07-12 09:53:07?"ctrl:index\/action:index"
