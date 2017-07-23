@@ -8,12 +8,26 @@
 <div class="row wool_top_img"></div>
 <div class="row wool_table">
   <div class="col-sm-12 col-xs-12 wool_table_title">
+    {% if type=='0'  %}
     <span>毛料目录</span>
+    {% else %}
+    <span>成品目录</span>
+    {% endif %}
+
   </div>
   <div class="col-sm-12 col-xs-12">
     <div class="row">
       <div class="weui-cells">
-        <a class="weui-cell weui-cell_access" href="/article/index">
+        {% for value in cataInfo %}
+        <a class="weui-cell weui-cell_access" href="/article/index/id/{{value.id}}">
+          <div class="weui-cell__bd">
+            <p>{{value.title}}</p>
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+        </a>
+        {% endfor %}
+        <!--<a class="weui-cell weui-cell_access" href="/article/index">
           <div class="weui-cell__bd">
             <p>目录1</p>
           </div>
@@ -54,7 +68,7 @@
           </div>
           <div class="weui-cell__ft">
           </div>
-        </a>
+        </a>-->
       </div>
     </div>
   </div>

@@ -27,7 +27,7 @@
         <!-- 轮播end -->
         <!-- 分类strat -->
         <div class="col-sm-6 col-xs-6">
-          <a href="/goods/index" class="wool_box">
+          <a href="/goods/index?type=0" class="wool_box">
             <div class="wool_box_img">
               <svg class="icon categorie-icon" aria-hidden="true">
                         <use xlink:href="#icon-cailiao"></use>
@@ -37,7 +37,7 @@
           </a>
         </div>
         <div class="col-sm-6 col-xs-6">
-          <a href="/goods/index" class="product_box">
+          <a href="/goods/index?type=1" class="product_box">
             <div class="product_box_img">
               <svg class="icon categorie-icon" aria-hidden="true">
                         <use xlink:href="#icon-chengpin"></use>
@@ -49,10 +49,10 @@
         <!-- 分类end -->
         <!-- 搜索栏start -->
         <div class="weui-search-bar" id="searchBar">
-          <form class="weui-search-bar__form">
+          <form class="weui-search-bar__form" action="/shop/index" method="post">
             <div class="weui-search-bar__box">
-              <i class="weui-icon-search"></i>
-              <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+              <i class="weui-icon-search"><button type="submit">搜索</button></i>
+              <input type="search" name="keyword" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
               <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
             </div>
             <label class="weui-search-bar__label" id="searchText">
@@ -70,7 +70,19 @@
         <div class="col-sm-12 col-xs-12 product_list_box">
           <div class="row">
             <!-- 商品列表start -->
+            {% for value in goodInfo %}
             <div class="col-sm-6 col-xs-6 product_list">
+              <a href="/goods/detail?id={{value.id}}" class="product_content">
+                <img src="{{value.cover_path['0']}}">
+                <div class="product_title_bcg">
+                </div>
+                <div class="product_title">
+                  <span>{{value.cname}}</span>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+            <!--<div class="col-sm-6 col-xs-6 product_list">
               <a href="/goods/detail" class="product_content">
                 <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
                 <div class="product_title_bcg">
@@ -99,17 +111,7 @@
                   <span>和田碧玉手镯</span>
                 </div>
               </a>
-            </div>
-            <div class="col-sm-6 col-xs-6 product_list">
-              <a href="/goods/detail" class="product_content">
-                <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
-                <div class="product_title_bcg">
-                </div>
-                <div class="product_title">
-                  <span>和田碧玉手镯</span>
-                </div>
-              </a>
-            </div>
+            </div>-->
             <!-- 商品列表end -->
           </div>
         </div>

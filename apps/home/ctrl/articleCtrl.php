@@ -1,6 +1,6 @@
 <?php
 namespace apps\home\ctrl;
-use apps\home\model\demoModel;
+use apps\home\model\article;
 class articleCtrl extends baseCtrl{
   // 构造方法
   public function _auto(){
@@ -12,6 +12,9 @@ class articleCtrl extends baseCtrl{
     // Get
     if (IS_GET === true) {
       // display
+        $id=isset($_GET['id'])?$_GET['id']:'';
+        $model=new article();
+        $this->assign('articleInfo',$model->sel($id));
       $this->display('article','index.html');
       die;
     }
@@ -22,6 +25,10 @@ class articleCtrl extends baseCtrl{
     // Get
     if (IS_GET === true) {
       // display
+        $model=new article();
+        $id=isset($_GET['id'])?$_GET['id']:'';
+        $this->assign('detailInfo',$model->selDetail($id));
+
       $this->display('article','detail.html');
       die;
     }

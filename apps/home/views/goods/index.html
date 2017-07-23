@@ -7,12 +7,30 @@
 {% block content %}
 <div class="row">
   <div class="col-sm-12 col-xs-12 allproduct">
-    <span>毛料专区</span>
+    <span>
+      {% if type==0 %}
+      毛料专区
+      {% else %}
+      成品专区
+      {% endif %}
+    </span>
   </div>
   <div class="col-sm-12 col-xs-12 product_list_box khfxWarp">
     <div class="row khfxPane">
       <!-- 商品列表start -->
+      {% for value in goodsInfo %}
       <div class="col-sm-6 col-xs-6 product_list">
+        <a href="/goods/detail?id={{value.id}}" class="product_content">
+          <img src="{{value.cover_path['0']}}">
+          <div class="product_title_bcg">
+          </div>
+          <div class="product_title">
+            <span>{{value.cname}}</span>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+      <!--<div class="col-sm-6 col-xs-6 product_list">
         <a href="__APP__/Productdetails/index" class="product_content">
           <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
           <div class="product_title_bcg">
@@ -41,17 +59,7 @@
             <span>和田碧玉手镯</span>
           </div>
         </a>
-      </div>
-      <div class="col-sm-6 col-xs-6 product_list">
-        <a href="__APP__/Productdetails/index" class="product_content">
-          <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
-          <div class="product_title_bcg">
-          </div>
-          <div class="product_title">
-            <span>和田碧玉手镯</span>
-          </div>
-        </a>
-      </div>
+      </div>-->
       <!-- 商品列表end -->
     </div>
   </div>
