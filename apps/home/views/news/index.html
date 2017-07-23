@@ -121,4 +121,22 @@
 {% block footer %}
 <!-- 滚动加载内容js -->
 <script type="text/javascript" src="/apps/home/views/news/js/index.js"></script>
+<script>
+  var page=0;//定义当前初始页数
+  var data='';
+  function newData(){
+    $.ajax({
+      url:'/news/index',
+      data:'page='+page,
+      type:'post',
+      cache:false,
+      async:false,//ajax数据同步
+      dataType:'json',
+      success:function(re){
+        data=re;
+      }
+    })
+    return data;
+  }
+</script>
 {% endblock %}

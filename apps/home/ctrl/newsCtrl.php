@@ -12,14 +12,16 @@ class newsCtrl extends baseCtrl{
   // 新闻页面
   public function index(){
     // Get
+      $model=new news();
     if (IS_GET === true) {
       // display
-        $model=new news();
         $info=$model->sel();
         $this->assign('newsInfo',$info);
       $this->display('news','index.html');
       die;
     }
+      $page=intval($_POST['page'])+1;
+      echo json_encode($model->moreData($page));
   }
 
   // 新闻详细页面
