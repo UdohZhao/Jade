@@ -1,13 +1,11 @@
 <?php
 namespace apps\home\ctrl;
-use apps\home\model\demoModel;
 use apps\home\model\index;
-
-class indexCtrl extends baseCtrl{
+class indexCtrl extends \core\icunji{
   // 构造方
     public $openid;
     private $db;
-  public function _auto(){
+  public function _initialize(){
       $this->db=$this->selOpenid();
       $_GET['openid']='openid';//模拟openid
       $this->openid=isset($_GET['openid'])?$_GET['openid']:'';
@@ -23,7 +21,11 @@ class indexCtrl extends baseCtrl{
     // Get
       $userInfo=$this->db->sel($this->openid);
       if($userInfo){
-          $_SESSION['uid']=$userInfo['id'];
+          //记录当前微信用户的id
+          $_SESSION['userinfo']['wuid']=$userInfo['id'];
+          //关联的客服id
+          $_SESSION['userinfo']['suid']=$userInfo['suid'];
+
       }
 
     if (IS_GET === true) {

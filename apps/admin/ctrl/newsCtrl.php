@@ -88,8 +88,10 @@ class newsCtrl extends baseCtrl{
     // type
     if ($data['type'] == 0) {
       $data['content'] = $_POST['content'];
+        $data['aid'] = 0;
     } else {
       $data['aid'] = $_POST['aid'];
+        $data['content'] = '';
     }
     $data['ctime'] = time();
     return $data;

@@ -1,9 +1,11 @@
 <?php
-use core\lib\model;
-class db extends model{
+class db{
+    private  $conn;
     public static $instance=null;
-    private function _auto(){
-
+    private function __construct(){
+        $mysqli = new mysqli('112.74.46.113', 'iego', 'iego', 'jade');
+        mysqli_query($mysqli,'set names utf8');
+        $this->conn=$mysqli;
     }
     public static function getInstance(){
         if(is_null(self::$instance)){
@@ -19,8 +21,9 @@ class db extends model{
           $sql="SELECT id,suid,nickname,sex,province,city,country
                 ,headimgurl,privilege,unionid 
               FROM wechat_user WHERE openid=$openid";
-          return $this->query($sql)->fetch();
+          return mysqli_query($this->conn,$sql)->fetch_assoc();
       }
+
 
 }
 $db = db::getInstance();
