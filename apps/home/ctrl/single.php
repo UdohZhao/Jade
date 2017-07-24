@@ -1,15 +1,9 @@
 <?php
 use core\lib\model;
 class db extends model{
-    public $conn;
-    public static $sql;
     public static $instance=null;
     private function _auto(){
-        $this->conn = mysql_connect('112.74.46.113','iego','iego');
-        if(!mysql_select_db('jade',$this->conn)){
-            return false;
-        };
-        mysql_query('set names utf8',$this->conn);
+
     }
     public static function getInstance(){
         if(is_null(self::$instance)){
@@ -17,6 +11,7 @@ class db extends model{
         }
         return self::$instance;
     }
+    private function __clone() {}  //覆盖__clone()方法，禁止克隆
     /**
      * 查询数据库
      */
