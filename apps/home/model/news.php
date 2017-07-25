@@ -11,6 +11,10 @@ class news extends model{
         //遍历获取内容处理
         foreach($info as $k=>$v){
             //标识第一次出现的位置
+            if($v['aid']){
+                $article=$this->get('article',['content'],['id'=>$v['aid']]);
+                $v['content']=$article['content'];
+            }
             $seat=strpos($v['content'],"{{昆明玉投商贸}}");
             //截取标识出现位置之后的所有字符串
             $needStr=substr($v['content'],$seat);
@@ -46,6 +50,11 @@ class news extends model{
     function moreData($page){
         $info = $this->select($this->table,['id','aid','title','content','coverimg_path','type'],['ORDER'=>['id'=>'DESC'],'LIMIT'=>[$page*10,10]]);
         foreach($info as $k=>$v){
+
+            if($v['aid']){
+                $article=$this->get('article',['content'],['id'=>$v['aid']]);
+                $v['content']=$article['content'];
+            }
             //去掉编辑器自带的所有html标签属性
             $str = trim($v['content']);
             $str= preg_replace("/<([a-zA-Z]+)[^>]*>/","",$str);

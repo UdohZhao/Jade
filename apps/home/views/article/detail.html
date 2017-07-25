@@ -15,25 +15,73 @@
 </div>
 <div class="row news_content khfxWarp">
   <div class="col-sm-12 col-xs-12 khfxPane">
-    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; list-style: none; color: rgb(79, 93, 65); font-family: -webkit-standard; font-size: 14px; white-space: normal; text-size-adjust: auto; text-indent: 37px; text-align: justify;">
-      <span style="font-family: 仿宋; font-size: 19px;">
         {% autoescape false %}
           {{detailInfo.content}}
         {% endautoescape %}
-      </span>
-    </p>
-
-
   </div>
 </div>
+{% if detailInfo.needMoney == true and detailInfo.needJobCode is not defined %}
+<div class="row pay_read" id="payForRead">
+  <div class="col-sm-12 col-xs-12">
+    <a>付费阅读--{{detailInfo.price}}元</a>
+  </div>
+</div>
+{% elseif detailInfo.needJobCode == true or  detailInfo.needMoney == true %}
+<div class="row pay_read" id="codeForRead1">
+  <div class="col-sm-12 col-xs-12">
+    <a>邀请码免费阅读</a>
+  </div>
+</div>
+<div class="row pay_read" id="codeForRead2">
+  <div class="col-sm-12 col-xs-12">
+    <a>付费阅读--{{detailInfo.price}}元</a>
+  </div>
+</div>
+{% elseif detailInfo.needMoney == false %}
 <div class="row pay_read">
   <div class="col-sm-12 col-xs-12">
-    <a href="#">付费阅读</a>
+    <a href="#">到底啦</a>
   </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block footer %}
 <!-- 滚动加载内容js -->
 <script type="text/javascript" src="/apps/home/views/article/js/detail.js"></script>
+<script>
+//付费函数
+var data='';
+function payFor(needData){
+  $.ajax({
+    url:'/article/payMoney',
+    data:needData,
+    dataType:'json',
+    type:'post',
+    cache:false,
+    async:false,//ajax数据同步
+    success:function(re){
+      data=re;
+    }
+  })
+  return data;
+}
+$(function(){
+  //付费阅读
+  $('#payForRead').click(function(){
+    var needData="aid={{detailInfo.id}}&money={{detailInfo.price}}";
+    var article=payFor(needData);
+    if(article.status==true){
+      appendArticle(article.content);
+      $(this).css('display','none')
+    }else{
+      $.toast(article.content);
+    }
+  })
+  //邀请码阅读
+  $('#codeForRead1').click(function(){
+
+  })
+})
+</script>
 {% endblock %}
