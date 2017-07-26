@@ -40,6 +40,30 @@
         </div>
         <div class="weui-cell">
           <div class="weui-cell__bd">
+            <p class="free_freight">商品规格</p>
+          </div>
+          <div class="weui-cell__ft">
+            <input type="text" id='picker' placeholder="请选择商品规格" />
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">商品数量</p>
+          </div>
+          <div class="weui-cell__ft product_number">
+            <div class="number_chioce">
+              <svg class="icon categorie-icon jian" aria-hidden="true">
+                  <use xlink:href="#icon-xinwen"></use>
+              </svg>
+              <svg class="icon categorie-icon jia" aria-hidden="true">
+                  <use xlink:href="#icon-xinwen"></use>
+              </svg>
+              <input id="input_number" readonly="readonly" type="number" name="" value="1">
+            </div>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
             <p class="free_freight">免运费</p>
           </div>
           <div class="weui-cell__ft"></div>
@@ -130,4 +154,13 @@
     </div>
   </div>
 </div>
+<div class="row bottom_button">
+  <button id="addtocart">加入购物车</button>
+  <button id="buynow">立即购买</button>
+  <div style="clear: both;"></div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="/apps/home/views/goods/js/details.js"></script>
 {% endblock %}
