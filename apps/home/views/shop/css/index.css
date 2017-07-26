@@ -61,3 +61,18 @@
 .weui-tabbar__item.weui-bar__item--on svg{
   color: #04BE02;
 }
+.weui-search-bar__box{
+  position: relative;
+}
+.search_button{
+  background-color: transparent;
+  border:none;
+  position: absolute;
+  top: 4px;
+  right:0;
+  font-size: 14px;
+  height: 1.42857143em;
+  line-height: 1.42857143em;
+  border-left: 1px solid #ccc;
+  padding: 0 10px;
+}
