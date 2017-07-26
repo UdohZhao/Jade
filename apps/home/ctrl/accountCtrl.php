@@ -33,9 +33,9 @@ class accountCtrl extends baseCtrl{
       $info=$model->recharge($this->wuid,$money,$this->suid);
       if($info){
           if($info['msg'] == 'first'){
-              echo json_encode(array('status'=>true,'msg'=>'首次充值,系统已自动使用邀请码优惠'.$info['divide'].'%'));
+              echo json_encode(array('status'=>true,'money'=>$info['money'],'msg'=>'首次充值,系统已自动使用邀请码优惠'.$info['divide'].'%'));
           }else{
-              echo json_encode(array('status'=>true,'msg'=>'充值成功'));
+              echo json_encode(array('status'=>true,'money'=>$info['money'],'msg'=>'充值成功'));
           }
       }else{
           echo json_encode(array('status'=>false,'msg'=>'充值失败'));

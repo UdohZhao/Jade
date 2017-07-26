@@ -10,7 +10,7 @@
     <span>账户余额：</span>
   </div>
   <div class="col-sm-12 col-xs-12 account_balance">
-    <i>￥<span class="balance_money">{{moneyInfo.remaining}}</span></i>
+    <i>￥<span class="balance_money" id='lastMoney'>{{moneyInfo.remaining}}</span></i>
   </div>
 </div>
 <div class="row account_chioce">
@@ -85,6 +85,9 @@
       type:'post',
       success:function(re){
         $.toast(re.msg)
+        if(re.status==true){
+          $('#lastMoney').html(re.money);
+        }
       }
     })
   })
