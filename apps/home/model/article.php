@@ -134,4 +134,28 @@ class article extends model{
             return false;
         }
     }
+
+    //使用邀请码查询
+    /*@param suid 该用户关联的客服用户id
+    @param wuid 微信用户id
+    @param aid 文章id
+     * */
+    public function useCode($suid,$wuid,$aid){
+        //判断客服用户id的工作号
+        //查询该工作号是否已被该用户使用过
+        $info=$this->get('read_expense',['id','wuid','ctime','aid','type'],['wuid'=>$wuid,'type'=>1]);
+        if($info){
+            //若查询到,则不能再次使用
+            return  intval(2); //不能使用两次
+        }
+        if($suid){
+            //记录工作码阅读记录
+            $res=$this->insert('read_expense',['wuid'=>$wuid,'aid'=>$aid,'money'=>0,'ctime'=>time(),'type'=>1]);
+            if($res){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 }

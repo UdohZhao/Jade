@@ -49,26 +49,45 @@ class articleCtrl extends baseCtrl{
         if($model->userMoney($money,$this->wuid,$id)){
             //支付扣除成功,请求文章所有信息
             $article=$model->selDetail($id,$this->wuid,$this->suid);
-            //匹配到标识下面的部分追加数据
+            //标识下面的部分追加数据
             //去掉字符串两边的空白;
             $string = trim($article['content']);
             $seat=strpos($string,"{{昆明玉投商贸}}");
             //截取标识出现位置之后的所有字符串
             $needStr=substr($string,$seat+strlen('{{昆明玉投商贸}}'));
-            $regex="/.*?<p .*? style=\".*?\">.*?<\/p>/";
-            preg_match_all($regex,$needStr,$match);
-            //获取所有匹配结果集[0]
-            $getArr=$match[0];
-            //需要的字符串
-            $getStr='';
-            foreach($getArr as $v){
-                $getStr.=$v;
-            }
-            echo json_encode(array('content'=>$getStr,'status'=>true));
+            echo json_encode(array('content'=>$needStr,'status'=>true));
         }else{
             //不足够支付
             echo json_encode(array('content'=>'哎呀,账户余额不足','status'=>false));
         }
     }
 
+    //使用邀请码阅读
+    public function useCode(){
+        //文章id
+        $id=$_POST['aid'];
+        $model=new article();
+        $status=$model->useCode($this->suid,$this->wuid,$id);
+        if($status===true){
+            //邀请码使用成功,请求文章所有信息
+            $article=$model->selDetail($id,$this->wuid,$this->suid);
+            //匹配到标识下面的部分追加数据
+            //去掉字符串两边的空白;
+            $string = trim($article['content']);
+            $seat=strpos($string,"{{昆明玉投商贸}}");
+            //截取标识出现位置之后的所有字符串
+            $needStr=substr($string,$seat+strlen('{{昆明玉投商贸}}'));
+            /*$regex="/.*?<p .*? style=\".*?\">.*?<\/p>/";
+            preg_match_all($regex,$needStr,$match);
+            //获取所有匹配结果集[0]
+            $getArr=$match[0];*/
+            echo json_encode(array('content'=>$needStr,'status'=>true));
+        }elseif($status===false){
+            //不足够支付
+            echo json_encode(array('content'=>'哎呀,账户余额不足','status'=>false));
+        }elseif($status===intval(2)){
+            //邀请码不能重复使用
+            echo json_encode(array('content'=>'邀请码只能用一次,请付费阅读','status'=>false));
+        }
+    }
 }

@@ -1,7 +1,8 @@
 
-function appendArticle(data) {
+function appendArticle(datas) {
+    $(function(){
     var arr=new Array();
-    arr.push(data);
+    arr.push(datas);
     var itemIndex = 0;
     var tabLoadEndArray = [false, false, false];
     var tabLenghtArray = [arr.length];
@@ -43,6 +44,7 @@ function appendArticle(data) {
                 me.resetload();
             }, 500);
         }
+    });
     });
 }
 

@@ -40,7 +40,7 @@
 {% elseif detailInfo.needMoney == false %}
 <div class="row pay_read">
   <div class="col-sm-12 col-xs-12">
-    <a href="#">到底啦</a>
+    <a>到底啦</a>
   </div>
 </div>
 {% endif %}
@@ -52,9 +52,9 @@
 <script>
 //付费函数
 var data='';
-function payFor(needData){
+function payFor(needData,urlAction){
   $.ajax({
-    url:'/article/payMoney',
+    url:'/article/'+urlAction,
     data:needData,
     dataType:'json',
     type:'post',
@@ -70,7 +70,8 @@ $(function(){
   //付费阅读
   $('#payForRead').click(function(){
     var needData="aid={{detailInfo.id}}&money={{detailInfo.price}}";
-    var article=payFor(needData);
+    var action='payMoney';
+    var article=payFor(needData,action);
     if(article.status==true){
       appendArticle(article.content);
       $(this).css('display','none')
@@ -80,7 +81,30 @@ $(function(){
   })
   //邀请码阅读
   $('#codeForRead1').click(function(){
-
+    var needData="aid={{detailInfo.id}}";
+    var action='useCode';
+    var article=payFor(needData,action);
+    if(article.status==true){
+      appendArticle(article.content);
+      $(this).css('display','none')
+      $('#codeForRead2').css('display','none')
+    }else{
+      $.toast(article.content);
+    }
+  })
+  //付费
+  $('#codeForRead2').click(function(){
+    var needData="aid={{detailInfo.id}}&money={{detailInfo.price}}";
+    var action='payMoney';
+    var article=payFor(needData,action);
+    if(article.status==true){
+      alert(article.content);
+      appendArticle(article.content);
+      $(this).css('display','none')
+      $('#codeForRead1').css('display','none')
+    }else{
+      $.toast(article.content);
+    }
   })
 })
 </script>
