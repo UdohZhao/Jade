@@ -21,7 +21,7 @@ class shopCtrl extends baseCtrl{
     }
     $keyword  =  trim($_POST['keyword']);
       if($keyword){
-          $this->assign('keywordInfo',$model->AllGood($keyword));
+          $this->assign('goodInfo',$model->AllGood($keyword));
       }
       $this->display('shop','index.html');
   }

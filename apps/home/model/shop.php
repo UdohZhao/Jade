@@ -11,7 +11,7 @@ class shop extends model{
                 $info[$k]['cover_path']=unserialize($v['cover_path']);
             }
         }else{
-           $info=$this->select($this->table,['id','cname','cover_path'],["keywords[~]"=>$keyword]);
+           $info=$this->select($this->table,['id','cname','cover_path'],["keywords[~]"=>$keyword,'status'=>0]);
             foreach($info as $k=>$v){
                 $info[$k]['cover_path']=unserialize($v['cover_path']);
             }
