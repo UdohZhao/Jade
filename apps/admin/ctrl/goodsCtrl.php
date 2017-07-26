@@ -54,9 +54,9 @@ class goodsCtrl extends baseCtrl{
       $data = $this->getData($res['cover_path']);
       // id
       if ($this->id) {
-        $res = $model->save($this->id,$data);
+        $res = $this->db->save($this->id,$data);
       } else {
-        $res = $model->add($data);
+        $res = $this->db->add($data);
       }
       // res
       if ($res) {
