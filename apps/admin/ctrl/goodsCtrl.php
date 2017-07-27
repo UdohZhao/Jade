@@ -21,6 +21,7 @@ class goodsCtrl extends baseCtrl{
         // data
         $res = $this->db->getInfo($this->id);
         $res['cover_path'] = unserialize($res['cover_path']);
+        $res['specification'] = implode(',', unserialize($res['specification']));
         // assign
         $this->assign('data',$res);
       }
@@ -101,6 +102,9 @@ class goodsCtrl extends baseCtrl{
     $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
     // res
     $res = $this->db->sel($type,$search,bcsub($p->currPage,1,0),$p->subPages);
+     foreach($res as $k=>$v){
+          $res[$k]['specification'] = implode(',', unserialize($v['specification']));
+      }
     // assign
     $this->assign('type',$type);
     $this->assign('data',$res);
