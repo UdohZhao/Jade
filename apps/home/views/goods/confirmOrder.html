@@ -31,18 +31,19 @@
       昆明玉投商贸
     </p>
   </div>
-  
+  {% for value in shopCart %}
   <div class="col-sm-12 col-xs-12 shopping_list">
     <div class="left_img">
-      <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
+      <img src="{{value.cover_path[0]}}">
     </div>
     <div class="right_content">
-      <p>宝中皇 满绿翡翠套装宝翡翠套装宝宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-      <p class="specification">规格：白色大号</p>
-      <p class="money">￥<span class="each_money">20.63</span><i>x<span class="each_number">1</span></i></p>
+      <p>{{value.cname}}</p>
+      <p class="specification">规格：{{value.specification}}</p>
+      <p class="money">￥<span class="each_money">{{value.promotion_price}}</span><i>x<span class="each_number">{{value.quantity}}</span></i></p>
     </div>
     <div style="clear: both;"></div>
   </div>
+  {% endfor %}
   <div class="col-sm-12 col-xs-12">
     <div class="row">
       <div class="weui-cells">
