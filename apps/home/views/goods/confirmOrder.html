@@ -1,0 +1,35 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/goods/css/confirmOrder.css">
+{% endblock %}
+
+{% block content %}
+<div class="row address">
+  <div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell__hd">
+        <svg class="icon categorie-icon" aria-hidden="true">
+            <use xlink:href="#icon-shouhuodizhi"></use>
+        </svg>
+      </div>
+      <div class="weui-cell__bd" style="padding-left: 10px;">
+        <p class="peopleName">收货人：某某某<span class="phoneNum">18875027595</span></p>
+        <p class="addressdetails">收货地址：重庆市九龙坡区袁家岗小时代5层</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+  </div>
+</div>
+<div class="row product_detail">
+  <div class="col-sm-12 col-xs-12">
+    <p class="product_top">
+      <svg class="icon categorie-icon" aria-hidden="true">
+          <use xlink:href="#icon-dianpu"></use>
+      </svg>
+      昆明玉投商贸
+    </p>
+  </div>
+</div>
+{% endblock %}

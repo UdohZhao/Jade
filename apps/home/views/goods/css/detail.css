@@ -73,12 +73,15 @@ h4>span{
   left: 0;
   margin: 0;
 }
-.bottom_button button{
+.bottom_button a{
   width:50%;
   float: left;
   height: 40px;
   border: none;
   color: #fff;
+  display: block;
+  line-height: 40px;
+  text-align: center;
 }
 #addtocart{
   background-color: #fe5600;

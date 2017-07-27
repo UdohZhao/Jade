@@ -48,4 +48,15 @@ class goodsCtrl extends baseCtrl{
     }
   }
 
+  // 订单确认
+  public function confirmOrder(){
+    // Get
+    if (IS_GET === true) {
+      // display
+      $this->display('goods','confirmOrder.html');
+      die;
+    }
+  }
+
+
 }

@@ -1,0 +1,26 @@
+.address .weui-cells{
+	margin-top:0;
+}
+.address .weui-cells:after{
+	border-bottom: none;
+}
+.bigBox{
+	background-color: #f8f8f8;
+}
+.peopleName{
+	line-height: 35px;
+}
+.phoneNum{
+	float: right;
+}
+.addressdetails{
+	font-size: 12px;
+	color: #999;
+}
+.product_detail{
+	background-color: #fff;
+	margin-top:10px;
+}
+.product_top{
+	line-height: 30px;
+}
