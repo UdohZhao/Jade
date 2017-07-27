@@ -24,17 +24,19 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-12" id="list">
+    {% for value in shopCart %}
     <div class="row shopping_list">
       <div class="shopping_left">
         <input type="checkbox" name="ids">
       </div>
       <a href="../goods/detail" class="shopping_center">
         <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
+          <img src="{{value.cover_path[0]}}">
         </div>
         <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
+          <p>{{value.cname}}</p>
+          <p>{{value.specification}}</p>
+          <p class="money">￥<span class="each_money">{{value.promotion_price}}</span><i>x<span class="each_number">{{value.quantity}}</span></i></p>
         </div>
       </a>
       <div class="shopping_right">
@@ -43,7 +45,8 @@
       </div>
       <div style="clear: both;"></div>
     </div>
-    <div class="row shopping_list">
+    {% endfor %}
+    <!--<div class="row shopping_list">
       <div class="shopping_left">
         <input type="checkbox" name="ids">
       </div>
@@ -137,7 +140,7 @@
         <p>除</p>
       </div>
       <div style="clear: both;"></div>
-    </div>
+    </div>-->
   </div>
 </div>
 <div class="row">
