@@ -25,7 +25,10 @@ class indexCtrl extends \core\icunji{
           $_SESSION['userinfo']['wuid']=$userInfo['id'];
           //关联的客服id
           $_SESSION['userinfo']['suid']=$userInfo['suid'];
-
+          //当前微信用户姓名
+          $_SESSION['userinfo']['name']=$userInfo['nickname'];
+          //当前微信用户头像
+          $_SESSION['userinfo']['headpath']=$userInfo['headimgurl'];
       }
 
     if (IS_GET === true) {
