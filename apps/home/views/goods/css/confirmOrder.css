@@ -84,7 +84,7 @@
 .product_number{
   position: relative;
 }
-#input_number{
+.input_number{
   width: 36px;
   position: absolute;
   left: 50%;
