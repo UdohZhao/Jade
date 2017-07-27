@@ -1,8 +1,11 @@
-.address .weui-cells{
+.weui-cells{
 	margin-top:0;
 }
-.address .weui-cells:after{
+.weui-cells:after{
 	border-bottom: none;
+}
+.weui-cells:before{
+  border-top:none;
 }
 .bigBox{
 	background-color: #f8f8f8;
@@ -22,5 +25,118 @@
 	margin-top:10px;
 }
 .product_top{
-	line-height: 30px;
+	line-height: 40px;
+}
+.shopping_list{
+  padding: 10px 0;
+  background-color: #f8f8f8;
+  padding: 10px 15px;
+  height: 120px;
+}
+.left_img{
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+.right_content{
+  float: left;
+  width:70%;
+  padding-left: 10px;
+  height: 100%;
+  padding-bottom: 20px;
+  position: relative;
+  height: 100%;
+}
+.left_img img{
+  width: 100%;
+  height: 100%;
+}
+.right_content p{
+  font-size:12px;
+}
+.right_content .money{
+  color: #e51c23;
+  font-size: 14px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+}
+.right_content .money i{
+  font-style: normal;
+  float: right;
+  margin-right: 15px;
+  color: #aaa;
+}
+.specification{
+  color: #999;
+  margin:10px 0;
+}
+.product_number{
+  position: relative;
+}
+#input_number{
+  width: 36px;
+  position: absolute;
+  left: 50%;
+  top:0;
+  margin-left: -18px;
+  height: 100%;
+  border: none;
+  text-align: center;
+}
+.number_chioce{
+  width: 100px;
+  padding: 2px 7px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  text-align: left;
+}
+.jia{
+  float: right;
+  margin-top: 4px;
+}
+.leaveMsg{
+  border: none;
+}
+i{
+  color: #e51c23;
+  font-style: normal;
+}
+.bottom_msg{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin:0;
+  text-align: right;
+  left: 0;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+.bottom_msg p{
+  height: 40px;
+  line-height: 40px;
+  color: #e51c23;
+}
+.bottom_msg span{
+  margin-right: 15px;
+}
+.bottom_msg a{
+  display: inline-block;
+  height: 100%;
+  padding: 0 10px;
+  color: #fff;
+  background-color: #e51c23;
+}
+.product_detail .weui-cells p,.product_detail .weui-cells input,.product_detail .weui-cells .weui-cell__ft{
+  font-size:14px;
+}
+.left_msg{
+  width:30%;
+}
+.right_input{
+  width:70%;
+}
+.right_input input{
+  width:100%;
 }

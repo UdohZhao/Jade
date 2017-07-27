@@ -31,5 +31,65 @@
       昆明玉投商贸
     </p>
   </div>
+  <div class="col-sm-12 col-xs-12 shopping_list">
+    <div class="left_img">
+      <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
+    </div>
+    <div class="right_content">
+      <p>宝中皇 满绿翡翠套装宝翡翠套装宝宝中皇 满绿翡翠套装宝翡翠套装宝</p>
+      <p class="specification">规格：白色大号</p>
+      <p class="money">￥<span class="each_money">20.63</span><i>x<span class="each_number">1</span></i></p>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+  <div class="col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">商品数量</p>
+          </div>
+          <div class="weui-cell__ft product_number">
+            <div class="number_chioce">
+              <svg class="icon categorie-icon jian" aria-hidden="true">
+                  <use xlink:href="#icon-jian-copy"></use>
+              </svg>
+              <svg class="icon categorie-icon jia" aria-hidden="true">
+                  <use xlink:href="#icon-jia"></use>
+              </svg>
+              <input id="input_number" readonly="readonly" type="number" name="" value="1">
+            </div>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">配送方式</p>
+          </div>
+          <div class="weui-cell__ft">免运费</div>
+        </div>
+        <div class="weui-cell">
+          <div class="left_msg">
+            <p class="free_freight">买家留言：</p>
+          </div>
+          <div class="right_input">
+            <input class="leaveMsg" type="text" name="" placeholder="买家留言">
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+          </div>
+          <div class="weui-cell__ft">
+            共<span class="pro_num">1</span>件商品  合计：<i>￥<span class="all_money"></span></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="row bottom_msg">
+  <p>合计：￥<span class="allmoney_bottom"></span><a>提交订单</a></p>
+</div>
+{% endblock %}
+{% block footer %}
+<script src="/apps/home/views/goods/js/confirmOrder.js"></script>
 {% endblock %}
