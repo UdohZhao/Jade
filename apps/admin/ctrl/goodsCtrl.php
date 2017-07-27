@@ -77,6 +77,7 @@ class goodsCtrl extends baseCtrl{
     $data['keywords'] = htmlspecialchars($_POST['keywords']);
     $data['cover_path'] = serialize($coverPath);
     $data['specification'] = htmlspecialchars($_POST['specification']);
+    $data['specification']  = serialize(explode(',',$data['specification']));
     $data['market_price'] = $_POST['market_price'];
     $data['promotion_price'] = $_POST['promotion_price'];
     $data['details'] = $_POST['details'];
