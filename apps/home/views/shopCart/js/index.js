@@ -71,24 +71,24 @@ $(function(){
             }
             var diffX = e.changedTouches[0].pageX - lastXForMobile;
             if (diffX < -100) {
-                $(lastLeftObj).find(".shopping_center").css("width","80%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","10%");
+                $(pressedObj).find(".shopping_center").css("width","80%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","10%");
                 // $(pressedObj).animate({marginLeft:"-132px"}, 500); // 左滑
                 lastLeftObj && lastLeftObj != pressedObj &&
-                $(lastLeftObj).find(".shopping_center").css("width","90%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","10%");
+                $(pressedObj).find(".shopping_center").css("width","90%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","10%");
                     // $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
                 lastLeftObj = pressedObj; // 记录上一个左滑的对象
             } else if (diffX > 100) {
               if (pressedObj == lastLeftObj) {
-             $(lastLeftObj).find(".shopping_center").css("width","90%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","0");
+             $(pressedObj).find(".shopping_center").css("width","90%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","0");
                 // $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
                 lastLeftObj = null; // 清空上一个左滑的对象
               }
