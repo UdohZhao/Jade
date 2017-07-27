@@ -7,7 +7,9 @@ class shopCart extends model{
     ＠param wuid 微信用户id
      * */
     public function selShopcar($wuid){
-        return $this->select($this->table,['[>]goods'=>['gid'=>'id']]);
+        /*return $this->select($this->table,['[>]goods'=>['gid'=>'id']]
+                ,['shop_cart.specification','shop_cart.quantity',
+                '']);*/
     }
 
 }
