@@ -15,15 +15,18 @@ class goods extends model{
     @param id 商品id值
      * */
     public function selDetail($id){
-        $sql="SELECT 
-        id,cname,cover_path,keywords,
-        specification,market_price,
-        promotion_price,details,inventory,
-        ctime,gtype,type FROM goods  
-        WHERE id=$id
-         ";
-        $info = $this->query($sql)->fetch();
+        $info = $this->get($this->table,['id','cname','cover_path','keywords',
+            'specification','market_price',
+            'promotion_price','details','inventory',
+            'ctime','gtype','type'],['id'=>$id]);
         $info['cover_path']=unserialize($info['cover_path']);
+        $info['specification']=unserialize($info['specification']);
+        $string='';
+        foreach($info['specification'] as $v){
+            $string.=$v.",";
+        }
+        $string=rtrim($string,',');//去掉最右边的逗号 ','
+        $info['specification']=$string;
         return $info;
     }
     /*商品评价
