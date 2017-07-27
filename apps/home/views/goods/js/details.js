@@ -26,4 +26,36 @@ $(function(){
 			$("#input_number").val(jian);
 		}
 	})
+
+	$('#addtocart').click(function(){
+			//规格,数量
+		var spec = $('#picker').val();
+		var num = $('#input_number').val();
+		if(!spec){
+			$.toast.prototype.defaults.duration=1000
+			$.toast('请选择规格','cancel');
+			return false;
+		}else{
+
+			$.ajax({
+				url:'/goods/add_shopcar',
+				data:{'gid':goodsId,
+						'quantity':num,
+							'specification':spec},
+				dataType:'json',
+				type:'post',
+				success:function(re){
+					$.toast.prototype.defaults.duration=1000
+					if(re.status==true){
+						$.toast(re.msg,function(){
+							window.location.href='/shopCart/index';
+						})
+					}else{
+						$.toast(re.msg,'cancel')
+					}
+				}
+			})
+		}
+
+	})
 })

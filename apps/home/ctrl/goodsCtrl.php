@@ -5,8 +5,9 @@ use apps\home\model\goods;
 
 class goodsCtrl extends baseCtrl{
   // 构造方法
+    public $wuid;
   public function _auto(){
-
+    $this->wuid=$_SESSION['userinfo']['wuid'];
   }
 
   // 商品详细页面
@@ -58,5 +59,17 @@ class goodsCtrl extends baseCtrl{
     }
   }
 
+  //加入购物车
+    public function add_shopcar(){
+        $_POST['ctime']=time();
+        $_POST['wuid']=$this->wuid;
+        //加入购物车
+        $model = new goods();
+        if($model->addCar($_POST)){
+            echo json_encode(array('msg'=>'成功加入购物车','status'=>true));
+        }else{
+            echo json_encode(array('msg'=>'操作失败','status'=>false));
+        }
+    }
 
 }

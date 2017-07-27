@@ -39,4 +39,9 @@ class goods extends model{
         WHERE e.gid=$id";
         return $this->query($sql)->fetchAll();
     }
+
+    //加入购物车
+    public function addCar($data){
+        return $this->insert('shop_cart',$data);
+    }
 }
