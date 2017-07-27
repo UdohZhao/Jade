@@ -35,6 +35,10 @@
   background-color: #f8f8f8;
   padding: 10px 15px;
   height: 120px;
+  margin-bottom: 5px;
+}
+.shopping_list:nth-last-child{
+  margin-bottom: 0;
 }
 .left_img{
   width: 30%;
@@ -49,6 +53,7 @@
   padding-bottom: 20px;
   position: relative;
   height: 100%;
+  padding-top: 10px;
 }
 .left_img img{
   width: 100%;
@@ -70,6 +75,7 @@
   float: right;
   margin-right: 15px;
   color: #aaa;
+  position: relative;
 }
 .specification{
   color: #999;
@@ -91,7 +97,7 @@
 .number_chioce{
   width: 100px;
   padding: 2px 7px;
-  background-color: #f8f8f8;
+  background-color: #fff;
   border-radius: 4px;
   text-align: left;
 }

@@ -39,7 +39,20 @@
     <div class="right_content">
       <p>{{value.cname}}</p>
       <p class="specification">规格：{{value.specification}}</p>
-      <p class="money">￥<span class="each_money">{{value.promotion_price}}</span><i>x<span class="each_number">{{value.quantity}}</span></i></p>
+      <p class="money">
+        ￥
+        <span class="each_money">{{value.promotion_price}}</span>
+        <i class="number_chioce">
+          <svg class="icon categorie-icon jian" aria-hidden="true">
+              <use xlink:href="#icon-jian-copy"></use>
+          </svg>
+          <svg class="icon categorie-icon jia" aria-hidden="true">
+              <use xlink:href="#icon-jia"></use>
+          </svg>
+          <input id="input_number" readonly="readonly" type="number" name="" value="1">
+        </i>
+        <!-- <i>x<span class="each_number">{{value.quantity}}</span></i> -->
+      </p>
     </div>
     <div style="clear: both;"></div>
   </div>
@@ -47,7 +60,7 @@
   <div class="col-sm-12 col-xs-12">
     <div class="row">
       <div class="weui-cells">
-        <div class="weui-cell">
+        <!-- <div class="weui-cell">
           <div class="weui-cell__bd">
             <p class="free_freight">商品数量</p>
           </div>
@@ -62,7 +75,7 @@
               <input id="input_number" readonly="readonly" type="number" name="" value="1">
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="weui-cell">
           <div class="weui-cell__bd">
             <p class="free_freight">配送方式</p>
