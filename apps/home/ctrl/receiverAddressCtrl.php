@@ -26,5 +26,14 @@ class receiverAddressCtrl extends baseCtrl{
       die;
     }
   }
+  // 地址列表
+  public function addresslist(){
+    // Get
+    if (IS_GET === true) {
+      // display
+      $this->display('receiverAddress','addresslist.html');
+      die;
+    }
+  }
 
 }
