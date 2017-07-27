@@ -17,16 +17,7 @@ $(function(){
         }
         addMoney();
     })
-    //滚动加载
-    var loading = false;  //状态标记
-    $(document.body).infinite().on("infinite", function() {
-      if(loading) return;
-      loading = true;
-      setTimeout(function() {
-        $("#list").append("<p> 我是新加载的内容 </p>");
-        loading = false;
-      }, 1500);   //模拟延迟
-    });
+
 
     //滑动删除
     // 获取所有行，对每一行设置监听
@@ -167,4 +158,25 @@ function addMoney(){
 addMoney();
 $(".shopping_left input").click(function(){
     addMoney();
+})
+
+$(function(){
+    $('#payForCar').click(function(){
+        var spid = document.getElementsByName("ids");
+        var spid_val = '';
+        for(k in spid) {
+            if(spid[k].checked){
+                spid_val+=spid[k].value+',';
+            }
+                //spid_val.push(spid[k].value) ;  加入数组的方法
+        }
+        //去掉最后一个逗号
+        spid_val = spid_val.substr(0, spid_val.length - 1);
+        if(spid_val == ''){
+            $.toast('未选择任何商品','forbidden');
+            return false;
+        }else{
+           $(this).attr('href','/goods/confirmOrder?goodId='+spid_val)
+        }
+    })
 })

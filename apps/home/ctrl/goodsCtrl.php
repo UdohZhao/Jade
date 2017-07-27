@@ -49,11 +49,21 @@ class goodsCtrl extends baseCtrl{
     }
   }
 
-  // 订单确认
+  // 订单确认    //结算购物车时展示选择的商品
   public function confirmOrder(){
     // Get
+      $model=new goods();
     if (IS_GET === true) {
       // display
+        //购物车id
+        $id=isset($_GET['goodId'])?$_GET['goodId']:'';
+        $id=explode(',',$id);
+        if($id){
+        $this->assign('shopCart',$model->shopDetail($id));
+            $this->assign('myAddr',$model->myAddr($this->wuid));
+        }else{
+            echo 'fail';
+        }
       $this->display('goods','confirmOrder.html');
       die;
     }

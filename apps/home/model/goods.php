@@ -44,4 +44,27 @@ class goods extends model{
     public function addCar($data){
         return $this->insert('shop_cart',$data);
     }
+
+     //购物车选择的商品展示
+        /*@param id 购物车id字符串
+         * */
+    public function shopDetail($id){
+        $info = $this->select('shop_cart',['[>]goods'=>['gid'=>'id']]
+            ,['goods.id','shop_cart.id(spid)','shop_cart.specification','shop_cart.quantity','cname',
+                'cover_path','promotion_price'],
+            ['shop_cart.id'=>$id,'ORDER'=>['shop_cart.ctime'=>'DESC']]);
+        foreach($info as $k=>$v){
+            $info[$k]['cover_path']=unserialize($v['cover_path']);
+        }
+        return $info;
+    }
+
+        /*查询默认收货地址
+        @param wuid 当前 微信用户
+        status=1 默认地址
+         * */
+        public function myAddr($wuid){
+            return $this->get('receiver_address',['id','consignee','contact_number',
+                'address'],['status'=>1]);
+        }
 }

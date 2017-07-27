@@ -8,8 +8,9 @@ class shopCart extends model{
      * */
     public function selShopcar($wuid){
        $info = $this->select($this->table,['[>]goods'=>['gid'=>'id']]
-                ,['shop_cart.specification','shop_cart.quantity','cname',
-                'cover_path','promotion_price'],['shop_cart.wuid'=>$wuid]);
+                ,['goods.id','shop_cart.id(spid)','shop_cart.specification','shop_cart.quantity','cname',
+                'cover_path','promotion_price'],
+           ['shop_cart.wuid'=>$wuid,'ORDER'=>['shop_cart.ctime'=>'DESC']]);
         foreach($info as $k=>$v){
             $info[$k]['cover_path']=unserialize($v['cover_path']);
         }
