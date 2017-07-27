@@ -1,0 +1,32 @@
+.bigBox{
+	background-color: #ededed;
+}
+.addresslist{
+	background-color: #fff;
+	padding: 10px 15px;
+	border-top: 1px solid #f8f8f8;
+}
+.addresslist p{
+	margin-bottom: 10px;
+}
+.addresslist p.address_detail{
+	margin-bottom: 0;
+	font-size: 14px;
+}
+.addresslist p.address_detail span{
+	float: none;
+	color: #fe5600;
+}
+.addresslist p span{
+	float: right;
+}
+.management{
+	text-align: right;
+	padding: 10px 15px;
+	background-color: #fff;
+}
+.management a{
+	text-decoration: none;
+	color: #000;
+	font-size: 14px;
+}
