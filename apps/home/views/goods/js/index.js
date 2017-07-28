@@ -42,7 +42,7 @@ $(function () {
                         result
                         += ''
                         + '    <div class="col-sm-6 col-xs-6 product_list">'
-                        + '      <a href="__APP__/Productdetails/index?type='+needData[index].type+'" class="product_content">'
+                        + '      <a href="/Productdetails/index?type='+needData[index].type+'" class="product_content">'
                         + '        <img src="'+needData[index].cover_path[0]+'">'
                         + '        <div class="product_title_bcg"></div>'
                         + '        <div class="product_title">'
