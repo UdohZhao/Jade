@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block content %}
-<form id="address_save" action="/receiverAddress/add" method="post">
+<form onsubmit="return aa()" name="address_save" id="address_save" action="/receiverAddress/add" method="post">
 <div class="row addressMsgs">
   <div class="weui-cells weui-cells_form">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">收货人</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" value="{{addrDetail.consignee}}" name="consignee" placeholder="请输入收货人姓名">
+        <input class="weui-input name_people" type="text" value="{{addrDetail.consignee}}" name="consignee" placeholder="请输入收货人姓名">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="tel" value="{{addrDetail.contact_number}}" name="contact_number" placeholder="请输入手机号码">
+        <input class="weui-input people_phone" type="tel" value="{{addrDetail.contact_number}}" name="contact_number" placeholder="请输入手机号码">
       </div>
     </div>
     <div class="weui-cell">
@@ -29,7 +29,7 @@
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">详细地址</label></div>
       <div class="weui-cell__bd">
-        <input id='city-picker' class="weui-input" type="text" value="{{addrDetail.address[1]}}" name="address[]" placeholder="如街道，楼层，门牌号等">
+        <input id='city-picker' class="weui-input people_address" type="text" value="{{addrDetail.address[1]}}" name="address[]" placeholder="如街道，楼层，门牌号等">
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
   </div>
 </div>
 <div class="row saveBtn">
-  <button type="sumbit" class="weui-btn weui-btn_primary btn-save">保存</buttpn>
+  <input type="submit" value="保存" class="weui-btn weui-btn_primary btn-save"/>
 </div>
 </form>
 {% endblock %}
@@ -58,7 +58,29 @@
     $('#s11').attr('checked','checked')
   }
   if('{{addrDetail.id}}'){
-    $('#address_save').attr('action','/receiverAddress/update?id={{addrDetail.id}}')
+      $('#address_save').attr('action','/receiverAddress/update?id={{addrDetail.id}}')
+    }
+  function aa(){
+    var name=$(".name_people").val();
+    var phone=$(".people_phone").val();
+    var area=$("#start").val();
+    var address=$(".people_address").val();
+    var names=name.replace(/\s/g, "");
+    var phones=phone.replace(/\s/g, "");
+    var addresss=address.replace(/\s/g, "");
+    if(names==""){
+      $.toast("名字不能为空","cancel");
+      return false;
+    }else if(phones==""){
+      $.toast("电话不能为空","cancel");
+      return false;
+    }else if(area==""){
+      $.toast("地区不能为空","cancel");
+      return false;
+    }else if(addresss==""){
+      $.toast("详细地址不能为空","cancel");
+      return false;
+    }
   }
 </script>
 {% endblock %}
