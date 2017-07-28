@@ -14,6 +14,7 @@ $(function(){
 		all_money+=eachall;
 		$(".all_money").html(all_money/100);
 		$(".allmoney_bottom").html(all_money/100);
+		//a+','+b
 	}
 	$(".jia").click(function(){
 		var input_number=$(this).siblings(".input_number").val();
@@ -66,4 +67,18 @@ $(function(){
 			$(".allmoney_bottom").html(fall/100);
 		}
 	});
+	$(".upbutton").click(function(){
+		var arr=[];
+		var product=$(".shopping_list");
+		for(i=0;i<product.length;i++){
+			var productid=$(product[i]).find(".productid").val();//商品id
+			var cover=$(product[i]).find(".left_img img").attr("src");//封面地址
+			var name=$(product[i]).find(".product_name").html();//商品名称
+			var specification=$(product[i]).find(".specification span").html();//商品规格
+			var unitprice=$(product[i]).find(".each_money").html();//单价
+			var number=$(product[i]).find(".input_number").val();//数量
+			arr.push(productid+','+cover+','+name+','+specification+','+unitprice+','+number);
+			console.log(arr)
+		}
+	})
 })

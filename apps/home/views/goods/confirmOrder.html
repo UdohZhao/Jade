@@ -37,8 +37,9 @@
       <img src="{{value.cover_path[0]}}">
     </div>
     <div class="right_content">
-      <p>{{value.cname}}</p>
-      <p class="specification">规格：{{value.specification}}</p>
+      <p class="product_name">{{value.cname}}</p>
+      <input class="productid" type="hidden" value="{{value.id}}" />
+      <p class="specification">规格：<span>{{value.specification}}</span></p>
       <p class="money">
         ￥
         <span class="each_money">{{value.promotion_price}}</span>
@@ -102,7 +103,7 @@
   </div>
 </div>
 <div class="row bottom_msg">
-  <p>合计：￥<span class="allmoney_bottom"></span><a>提交订单</a></p>
+  <p>合计：￥<span class="allmoney_bottom"></span><a class="upbutton">提交订单</a></p>
 </div>
 {% endblock %}
 {% block footer %}
