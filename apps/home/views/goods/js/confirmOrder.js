@@ -15,7 +15,7 @@ $(function(){
 		$(".all_money").html(all_money/100);
 		$(".allmoney_bottom").html(all_money/100);
 	}
-	$(".jia").click(function(){  
+	$(".jia").click(function(){
 		var input_number=$(this).siblings(".input_number").val();
 		var input_numberInt=parseInt(input_number);
 		var jia=input_numberInt+1;
@@ -29,14 +29,17 @@ $(function(){
 		};
 		var eachmoney=$(this).parents(".number_chioce").siblings(".each_money").html();
 		var zhengshu=Math.round(eachmoney*100);
-		var eachall=zhengshu*eachInt;
-		all_money+=eachall;
-		$(".all_money").html(all_money/100);
-		$(".allmoney_bottom").html(all_money/100);
+		var allm=$(".all_money").html();
+		var allmInt=Math.round(allm*100);
+		var fall=allmInt+zhengshu;
+		console.log(eachmoney);
+		console.log(zhengshu/100);
+		console.log(allmInt/100);
+		console.log(fall/100);
+		$(".all_money").html(fall/100);
+		$(".allmoney_bottom").html(fall/100);
 	  })
 	$(".jian").click(function(){
-		var eachmoney=$(this).parents(".number_chioce").siblings(".each_money").html();
-		var zhengshu=Math.round(eachmoney*100);
 		var input_number=$(this).siblings(".input_number").val();
 		var input_numberInt=parseInt(input_number);
 		if(input_numberInt==1){
@@ -47,11 +50,6 @@ $(function(){
 				var eachInt=parseInt(each);
 				all+=eachInt;
 				$(".pro_num").html(all);
-				var eachall=zhengshu*eachInt;
-				all_money+=eachall;
-				console.log(eachmoney);
-				$(".all_money").html(all_money/100);
-				$(".allmoney_bottom").html(all_money/100);
 			};
 		}else{
 			var jian=input_numberInt-1;
@@ -63,11 +61,13 @@ $(function(){
 				all+=eachInt;
 				$(".pro_num").html(all);
 			};
+			var eachmoney=$(this).parents(".number_chioce").siblings(".each_money").html();
 			var zhengshu=Math.round(eachmoney*100);
-			var eachall=zhengshu*eachInt;
-			all_money+=eachall;
-			$(".all_money").html(all_money/100);
-			$(".allmoney_bottom").html(all_money/100);
+			var allm=$(".all_money").html();
+			var allmInt=Math.round(allm*100);
+			var fall=allmInt-zhengshu;
+			$(".all_money").html(fall/100);
+			$(".allmoney_bottom").html(fall/100);
 		}
 	});
 })
