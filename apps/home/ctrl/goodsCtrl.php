@@ -87,8 +87,8 @@ class goodsCtrl extends baseCtrl{
     //追加数据
     public function moreData(){
         $model=new goods();
-        $page=$_POST['page'];
         $type=$_POST['type'];
+        $page=intval($_POST['page'])+1;
         echo json_encode($model->moreGood($page,$type));
     }
 }
