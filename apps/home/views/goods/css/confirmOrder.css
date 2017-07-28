@@ -34,14 +34,13 @@
   padding: 10px 0;
   background-color: #f8f8f8;
   padding: 10px 15px;
-  height: 120px;
   margin-bottom: 5px;
 }
 .shopping_list:nth-last-child{
   margin-bottom: 0;
 }
 .left_img{
-  width: 30%;
+  width: 25%;
   height: 100%;
   float: left;
 }
@@ -52,7 +51,6 @@
   height: 100%;
   padding-bottom: 20px;
   position: relative;
-  height: 100%;
   padding-top: 10px;
 }
 .left_img img{
@@ -67,19 +65,17 @@
   font-size: 14px;
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   left: 10px;
 }
 .right_content .money i{
   font-style: normal;
   float: right;
-  margin-right: 15px;
   color: #aaa;
   position: relative;
 }
 .specification{
   color: #999;
-  margin:10px 0;
 }
 .product_number{
   position: relative;
@@ -148,4 +144,5 @@ i{
 }
 .right_input input{
   width:100%;
+  outline:none;
 }

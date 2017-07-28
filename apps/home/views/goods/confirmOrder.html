@@ -37,8 +37,9 @@
       <img src="{{value.cover_path[0]}}">
     </div>
     <div class="right_content">
-      <p>{{value.cname}}</p>
-      <p class="specification">规格：{{value.specification}}</p>
+      <p class="product_name">{{value.cname}}</p>
+      <input class="productid" type="hidden" value="{{value.id}}" />
+      <p class="specification">规格：<span>{{value.specification}}</span></p>
       <p class="money">
         ￥
         <span class="each_money">{{value.promotion_price}}</span>
@@ -49,7 +50,7 @@
           <svg class="icon categorie-icon jia" aria-hidden="true">
               <use xlink:href="#icon-jia"></use>
           </svg>
-          <input class="input_number" readonly="readonly" type="number" name="" value="1">
+          <input class="input_number" readonly="readonly" type="number" name="" value="{{value.quantity}}">
         </i>
         <!-- <i>x<span class="each_number">{{value.quantity}}</span></i> -->
       </p>
@@ -102,7 +103,7 @@
   </div>
 </div>
 <div class="row bottom_msg">
-  <p>合计：￥<span class="allmoney_bottom"></span><a>提交订单</a></p>
+  <p>合计：￥<span class="allmoney_bottom"></span><a class="upbutton">提交订单</a></p>
 </div>
 {% endblock %}
 {% block footer %}
