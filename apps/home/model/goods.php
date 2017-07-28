@@ -64,7 +64,9 @@ class goods extends model{
         status=1 默认地址
          * */
         public function myAddr($wuid){
-            return $this->get('receiver_address',['id','consignee','contact_number',
+            $info = $this->get('receiver_address',['id','consignee','contact_number',
                 'address'],['status'=>1]);
+            $info['address']= implode(' ',unserialize($info['address']));
+            return $info;
         }
 }
