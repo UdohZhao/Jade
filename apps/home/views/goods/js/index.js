@@ -3,7 +3,7 @@ $(function () {
     var itemIndex = 0;
 
     var tabLoadEndArray = [false, false, false];
-    var tabLenghtArray = [28, 15, 47];
+    var tabLenghtArray = '';
     var tabScroolTopArray = [0, 0, 0];
 
     // dropload
@@ -16,6 +16,11 @@ $(function () {
             domNoData: '<div class="dropload-noData">我是有底线的</div>'
         },
         loadDownFn: function (me) {
+            //调用函数
+            var needData = newData();
+            //alert(needData[0].coverimg_path)
+            tabLenghtArray = needData.length;//总长度
+            page++;
             setTimeout(function () {
                 if (tabLoadEndArray[itemIndex]) {
                     me.resetload();
@@ -37,35 +42,11 @@ $(function () {
                         result
                         += ''
                         + '    <div class="col-sm-6 col-xs-6 product_list">'
-                        + '      <a href="__APP__/Productdetails/index" class="product_content">'
-                        + '        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">'
+                        + '      <a href="__APP__/Productdetails/index?type='+needData[index].type+'" class="product_content">'
+                        + '        <img src="'+newData[index].cover_path[0]+'">'
                         + '        <div class="product_title_bcg"></div>'
                         + '        <div class="product_title">'
-                        + '           <span>和田碧玉手镯</span> '
-                        + '        </div> '
-                        + '      </a> '
-                        + '     </div> ';
-                    } else if (itemIndex == 1) {
-                        result
-                        += ''
-                        + '    <div class="col-sm-6 col-xs-6 product_list">'
-                        + '      <a href="__APP__/Productdetails/index" class="product_content">'
-                        + '        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">'
-                        + '        <div class="product_title_bcg"></div>'
-                        + '        <div class="product_title">'
-                        + '           <span>和田碧玉手镯</span> '
-                        + '        </div> '
-                        + '      </a> '
-                        + '     </div> ';
-                    } else if (itemIndex == 2) {
-                        result
-                        += ''
-                        + '    <div class="col-sm-6 col-xs-6 product_list">'
-                        + '      <a href="__APP__/Productdetails/index" class="product_content">'
-                        + '        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">'
-                        + '        <div class="product_title_bcg"></div>'
-                        + '        <div class="product_title">'
-                        + '           <span>和田碧玉手镯</span> '
+                        + '           <span>'+newData[index].cname+'</span> '
                         + '        </div> '
                         + '      </a> '
                         + '     </div> ';
