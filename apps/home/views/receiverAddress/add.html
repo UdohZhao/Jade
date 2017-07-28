@@ -54,6 +54,16 @@
 {% block footer %}
 <script src="/apps/home/views/receiverAddress/js/add.js"></script>
 <script>
+window.onbeforeunload  = function(){
+  var n = window.event.screenX - window.screenLeft;
+  var b = n > document.documentElement.scrollWidth - 20;
+  if (!(b && window.event.clientY < 0 || window.event.altKey)) {
+     //window.event.returnValue = "真的要刷新页面么？";
+      //这里放置我想执行缓存的代码
+      console.log("11");
+
+ }
+}
   if('{{addrDetail.status}}'== 1){
     $('#s11').attr('checked','checked')
   }
