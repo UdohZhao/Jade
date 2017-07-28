@@ -32,6 +32,7 @@ $(function () {
                         tabLoadEndArray[itemIndex] = true;
                         break;
                     }
+                    /* newData[index].cover_path[0]*/
                     if (itemIndex == 0) {
                         result
                         += ''

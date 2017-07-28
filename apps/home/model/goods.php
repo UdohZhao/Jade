@@ -69,4 +69,23 @@ class goods extends model{
             $info['address']= implode(' ',unserialize($info['address']));
             return $info;
         }
+
+        /*直接购买商品,返回商品信息
+        @param id 商品id
+         * */
+        public function shopGood($id){
+            $info = $this->get($this->table,['id','cname','cover_path','specification','promotion_price'],['id'=>$id]);
+            $info['cover_path']=unserialize($info['cover_path']);
+            return $info;
+        }
+
+
+    //追加商品数据
+    public function moreGood($page,$type){
+        $info = $this->select($this->table,['id','cname','cover_path'],['ORDER'=>['id'=>'DESC'],'LIMIT'=>[$page*10,10],'type'=>$type,'status'=>0]);
+        foreach($info as $k=>$v){
+            $info[$k]['cover_path']=unserialize($v['cover_path']);
+        }
+        return $info;
+    }
 }

@@ -58,4 +58,19 @@ $(function(){
 		}
 
 	})
+
+	//点击立即购买
+	$('#buynow').click(function(){
+		var spec = $('#picker').val();
+		var num = $('#input_number').val();
+		if(!spec){
+			$.toast.prototype.defaults.duration=1000
+			$.toast('请选择规格','cancel');
+			return false;
+		}
+		//记录选择的商品数量;
+		sessionStorage.setItem('goodsNum',num);
+		//记录选择的规格
+		sessionStorage.setItem('goodsSpec',spec);
+	})
 })
