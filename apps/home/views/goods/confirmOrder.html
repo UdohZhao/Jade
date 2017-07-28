@@ -13,10 +13,14 @@
             <use xlink:href="#icon-shouhuodizhi"></use>
         </svg>
       </div>
+      {% if myAddr %}
       <div class="weui-cell__bd" style="padding-left: 10px;">
         <p class="peopleName">收货人：{{myAddr.consignee}}<span class="phoneNum">{{myAddr.contact_number}}</span></p>
         <p class="addressdetails">收货地址：{{myAddr.address}}</p>
       </div>
+      {% else %}
+      <p class="peopleName">请设置默认地址</p>
+      {% endif %}
       <div class="weui-cell__ft">
       </div>
     </a>
