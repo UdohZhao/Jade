@@ -144,5 +144,9 @@
 <script>
   $('#spec').html(sessionStorage.getItem('goodsSpec'))
   $('#good_num').val(sessionStorage.getItem('goodsNum'))
+    var phoneNum='';
+   if("{{myAddr.contact_number}}"){
+       phoneNum="{{myAddr.contact_number}}";
+   }
 </script>
 {% endblock %}

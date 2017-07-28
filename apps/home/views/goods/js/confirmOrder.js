@@ -70,7 +70,12 @@ $(function(){
 	var left_imgh=$(".left_img").eq(0).height();
 	$(".right_content").css("height",left_imgh);
 	$(".upbutton").click(function(){
-		var arr=[];
+		if(phoneNum==''){
+			$.toast('请设置默认地址','forbidden');
+			return false;
+		}
+		var arr=new Array();
+		var AllArray=new Array();
 		var product=$(".shopping_list");
 		for(i=0;i<product.length;i++){
 			var productid=$(product[i]).find(".productid").val();//商品id
@@ -79,8 +84,15 @@ $(function(){
 			var specification=$(product[i]).find(".specification span").html();//商品规格
 			var unitprice=$(product[i]).find(".each_money").html();//单价
 			var number=$(product[i]).find(".input_number").val();//数量
-			arr.push(productid+','+cover+','+name+','+specification+','+unitprice+','+number);
-			console.log(arr)
+			//arr.push(productid+','+cover+','+name+','+specification+','+unitprice+','+number);
+			arr['productid']=productid;
+			arr['cover']=cover;
+			arr['name']=name;
+			arr['specification']=specification;
+			arr['unitprice']=unitprice;
+			arr['number']=number;
+			AllArray.push(arr);
 		}
+		console.log(AllArray)
 	})
 })
