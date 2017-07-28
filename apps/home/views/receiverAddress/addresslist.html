@@ -9,17 +9,15 @@
   <div class="col-sm-12 col-xs-12 management">
     <a href="../receiverAddress/index">地址管理</a>
   </div>
+  {% for value in addrList %}
   <div class="col-sm-12 col-xs-12 addresslist">
-    <p>某某某<span>18875027595</span></p>
-    <p class="address_detail"><span>[默认地址]</span>重庆市九龙坡区袁家岗小时代5层</p>
+    <p>{{value.consignee}}<span>{{value.contact_number}}</span></p>
+    <p class="address_detail">
+      {% if value.status == 1 %}
+      <span>[默认地址]</span>
+      {% endif %}
+      {{value.address}}</p>
   </div>
-  <div class="col-sm-12 col-xs-12 addresslist">
-    <p>某某某<span>18875027595</span></p>
-    <p class="address_detail"><span></span>重庆市九龙坡区袁家岗小时代5层</p>
-  </div>
-  <div class="col-sm-12 col-xs-12 addresslist">
-    <p>某某某<span>18875027595</span></p>
-    <p class="address_detail"><span></span>重庆市九龙坡区袁家岗小时代5层</p>
-  </div>
+  {% endfor %}
 </div>
 {% endblock %}

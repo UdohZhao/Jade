@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    {% for value in addrInfo %}
 <div class="row order_details">
   <div class="weui-cells">
     <a href="javascript:;" class="weui-cell receipt_address">
@@ -12,29 +13,39 @@
       </div>
       <div class="weui-cell__bd">
         <p class="receipt_people">
-          赵四
-          <span>18423031898</span>
+          {{value.consignee}}
+          <span>{{value.contact_number}}</span>
         </p>
-        <span class="address_details">重庆市九龙坡区袁家岗小时代5层</span>
+        <span class="address_details">{{value.address}}</span>
       </div>
     </a>
+
     <div class="weui-cell address_bottom">
       <div class="weui-cell__bd">
+          {% if value.status == 1 %}
           <div class="tick tick_active">
             <svg class="icon categorie-icon" aria-hidden="true">
                   <use xlink:href="#icon-gou-copy"></use>
               </svg>
           </div>
           <span class="address_default address_default_active">默认地址</span>
+          {% else %}
+          <div class="tick">
+              <svg class="icon categorie-icon" aria-hidden="true">
+                  <use xlink:href="#icon-gou-copy"></use>
+              </svg>
+          </div>
+          <span class="address_default">默认地址</span>
+          {% endif %}
       </div>
       <div class="weui-cell__ft">
-        <a href="/receiverAddress/add" class="address_edit">
+        <a href="/receiverAddress/add?id={{value.id}}" class="address_edit">
             <svg class="icon categorie-icon" aria-hidden="true">
                   <use xlink:href="#icon-bianji"></use>
               </svg>
               <span>编辑</span>
             </a>
-            <a class="address_delete">
+            <a class="address_delete" href="/receiverAddress/delAddr?id={{value.id}}">
             <svg class="icon categorie-icon" aria-hidden="true">
                 <use xlink:href="#icon-shanchu-copy"></use>
               </svg>
@@ -44,7 +55,8 @@
     </div>
   </div>
 </div>
-<div class="row order_details">
+    {% endfor %}
+<!--<div class="row order_details">
   <div class="weui-cells">
     <a href="javascript:;" class="weui-cell receipt_address">
       <div class="weui-cell__hd">
@@ -121,7 +133,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 <a href="/receiverAddress/add" class="row addAddress">
   添加新地址
 </a>
