@@ -56,13 +56,16 @@ class goodsCtrl extends baseCtrl{
     if (IS_GET === true) {
       // display
         //购物车id
-        $id=isset($_GET['goodId'])?$_GET['goodId']:'';
-        $id=explode(',',$id);
+        $this->assign('myAddr',$model->myAddr($this->wuid));
+        $id=isset($_GET['shopCarId'])?$_GET['shopCarId']:'';
         if($id){
-        $this->assign('shopCart',$model->shopDetail($id));
-            $this->assign('myAddr',$model->myAddr($this->wuid));
-        }else{
-            echo 'fail';
+            $id=explode(',',$id);
+          $this->assign('shopCart',$model->shopDetail($id));
+        }
+        //直接购买商品
+        $goodId=isset($_GET['goodId'])?$_GET['goodId']:'';
+        if($goodId){
+            $this->assign('oneGoodInfo',$model->shopGood($goodId));
         }
       $this->display('goods','confirmOrder.html');
       die;
@@ -81,5 +84,11 @@ class goodsCtrl extends baseCtrl{
             echo json_encode(array('msg'=>'操作失败','status'=>false));
         }
     }
-
+    //追加数据
+    public function moreData(){
+        $model=new goods();
+        $page=$_POST['page'];
+        $type=$_POST['type'];
+        echo json_encode($model->moreGood($page,$type));
+    }
 }

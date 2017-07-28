@@ -31,6 +31,7 @@
       昆明玉投商贸
     </p>
   </div>
+  {% if shopCart %}
   {% for value in shopCart %}
   <div class="col-sm-12 col-xs-12 shopping_list">
     <div class="left_img">
@@ -58,6 +59,34 @@
     <div style="clear: both;"></div>
   </div>
   {% endfor %}
+
+  {% else %}
+  <div class="col-sm-12 col-xs-12 shopping_list">
+    <div class="left_img">
+      <img src="{{oneGoodInfo.cover_path[0]}}">
+    </div>
+    <div class="right_content">
+      <p class="product_name">{{oneGoodInfo.cname}}</p>
+      <input class="productid" type="hidden" value="{{oneGoodInfo.id}}" />
+      <p class="specification">规格：<span id="spec"></span></p>
+      <p class="money">
+        ￥
+        <span class="each_money">{{oneGoodInfo.promotion_price}}</span>
+        <i class="number_chioce">
+          <svg class="icon categorie-icon jian" aria-hidden="true">
+            <use xlink:href="#icon-jian-copy"></use>
+          </svg>
+          <svg class="icon categorie-icon jia" aria-hidden="true">
+            <use xlink:href="#icon-jia"></use>
+          </svg>
+          <input class="input_number" id="good_num" readonly="readonly" type="number" name="" value="">
+        </i>
+        <!-- <i>x<span class="each_number">{{value.quantity}}</span></i> -->
+      </p>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+  {% endif %}
   <div class="col-sm-12 col-xs-12">
     <div class="row">
       <div class="weui-cells">
@@ -108,4 +137,8 @@
 {% endblock %}
 {% block footer %}
 <script src="/apps/home/views/goods/js/confirmOrder.js"></script>
+<script>
+  $('#spec').html(sessionStorage.getItem('goodsSpec'))
+  $('#good_num').val(sessionStorage.getItem('goodsNum'))
+</script>
 {% endblock %}

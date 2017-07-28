@@ -176,7 +176,28 @@ $(function(){
             $.toast('未选择任何商品','forbidden');
             return false;
         }else{
-           $(this).attr('href','/goods/confirmOrder?goodId='+spid_val)
+           $(this).attr('href','/goods/confirmOrder?shopCarId='+spid_val)
         }
+    })
+
+    //删除
+    $('.shopping_right').click(function(){
+        //购物车id
+        var obj= $(this);
+        var carId = $(this).attr('avg')
+        $.ajax({
+            url:'/shopCart/delCar',
+            data:'carId='+carId,
+            dataType:'json',
+            type:'post',
+            success:function(re){
+                if(re.status==true){
+                    alert(re.status)
+                    obj.parent().css('display','none')
+                }else{
+                    $.toast('稍后再试','cancel');
+                }
+            }
+        })
     })
 })

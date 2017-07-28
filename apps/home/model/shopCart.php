@@ -17,4 +17,8 @@ class shopCart extends model{
         return $info;
     }
 
+    //删除购物车  @param id   购物车id
+    public function delCar($id){
+         return $this->delete($this->table,['id'=>$id]);
+    }
 }

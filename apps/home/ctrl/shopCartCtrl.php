@@ -1,6 +1,7 @@
 <?php
 namespace apps\home\ctrl;
 use apps\home\model\demoModel;
+use apps\home\model\news;
 use apps\home\model\shopCart;
 
 class shopCartCtrl extends baseCtrl{
@@ -22,4 +23,17 @@ class shopCartCtrl extends baseCtrl{
     }
   }
 
+  //删除购物车
+  public function delCar(){
+      //购物车id
+      $id=isset($_POST['carId'])?$_POST['carId']:'';
+      if($id){
+            $model=new shopCart();
+          if($model->delCar($id)){
+              echo json_encode(array('status'=>true));
+          }else{
+              echo json_encode(array('status'=>false));
+          }
+      }
+  }
 }
