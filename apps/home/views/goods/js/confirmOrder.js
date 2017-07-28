@@ -67,6 +67,8 @@ $(function(){
 			$(".allmoney_bottom").html(fall/100);
 		}
 	});
+	var left_imgh=$(".left_img").eq(0).height();
+	$(".right_content").css("height",left_imgh);
 	$(".upbutton").click(function(){
 		var arr=[];
 		var product=$(".shopping_list");
