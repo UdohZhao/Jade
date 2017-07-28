@@ -32,10 +32,6 @@ $(function(){
 		var allm=$(".all_money").html();
 		var allmInt=Math.round(allm*100);
 		var fall=allmInt+zhengshu;
-		console.log(eachmoney);
-		console.log(zhengshu/100);
-		console.log(allmInt/100);
-		console.log(fall/100);
 		$(".all_money").html(fall/100);
 		$(".allmoney_bottom").html(fall/100);
 	  })
