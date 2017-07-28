@@ -148,4 +148,5 @@ i{
 }
 .right_input input{
   width:100%;
+  outline:none;
 }
