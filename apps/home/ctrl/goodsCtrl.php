@@ -55,8 +55,13 @@ class goodsCtrl extends baseCtrl{
       $model=new goods();
     if (IS_GET === true) {
       // display
+        //收货地址
+        if($model->myAddr($this->wuid)){
+            $this->assign('myAddr',$model->myAddr($this->wuid));
+        }else{
+            $this->assign('myAddr','');
+        }
         //购物车id
-        $this->assign('myAddr',$model->myAddr($this->wuid));
         $id=isset($_GET['shopCarId'])?$_GET['shopCarId']:'';
         if($id){
             $id=explode(',',$id);
