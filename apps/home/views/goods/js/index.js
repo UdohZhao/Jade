@@ -19,7 +19,7 @@ $(function () {
             //调用函数
             var needData = newData();
             //alert(needData[0].coverimg_path)
-            tabLenghtArray = needData.length;//总长度
+            tabLenghtArray = [needData.length];//总长度
             page++;
             setTimeout(function () {
                 if (tabLoadEndArray[itemIndex]) {
@@ -37,16 +37,16 @@ $(function () {
                         tabLoadEndArray[itemIndex] = true;
                         break;
                     }
-                    /* newData[index].cover_path[0]*/
+                    /* needData[index].cover_path[0]*/
                     if (itemIndex == 0) {
                         result
                         += ''
                         + '    <div class="col-sm-6 col-xs-6 product_list">'
                         + '      <a href="__APP__/Productdetails/index?type='+needData[index].type+'" class="product_content">'
-                        + '        <img src="'+newData[index].cover_path[0]+'">'
+                        + '        <img src="'+needData[index].cover_path[0]+'">'
                         + '        <div class="product_title_bcg"></div>'
                         + '        <div class="product_title">'
-                        + '           <span>'+newData[index].cname+'</span> '
+                        + '           <span>'+needData[index].cname+'</span> '
                         + '        </div> '
                         + '      </a> '
                         + '     </div> ';
