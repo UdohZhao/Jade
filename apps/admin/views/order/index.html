@@ -1,0 +1,100 @@
+{% extends "layouts.html" %}
+{% block content%}
+
+<!-- Page -->
+<div class="page animsition">
+    <div class="page-header">
+        <h1 class="page-title"># 订单管理</h1>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ 订单列表</h3>
+            </div>
+            <form action="/admin/order/index" method="post">
+                <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+                    <input type="text" class="form-control" name="search" placeholder="请输入订单号">
+                    <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+                </div>
+            </form>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>收货人姓名</th>
+                        <th>联系电话</th>
+                        <th>总金额</th>
+                        <th>下单时间</th>
+                        <th>收货地址</th>
+                        <th>订单状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if orderInfo %}
+                    {% for k,v in orderInfo %}
+                    <tr>
+                        <td>
+                            {{ v.serial_number }}
+                        </td>
+                        <td>{{ v.consignee }}</td>
+                        <td>{{ v.contact_number }}</td>
+                        <td>{{ v.total_price }}</td>
+                        <td>{{v.dtime|date('Y-m-d H:i')}}</td>
+                        <td>{{ v.address }}</td>
+                        {% if v.type == 0 and v.status == 0 %}
+                            <td>【待付款】</td>
+                        {% elseif  v.status == 1 %}
+                        <td>【已取消订单】</td>
+                        {% elseif  v.status == 2 %}
+                        <td>【订单超时】</td>
+                        {% elseif  v.type == 1 %}
+                        <td>【待发货】</td>
+                        {% elseif  v.type == 2 %}
+                        <td>【待收货】</td>
+                        {% elseif  v.status == 3 %}
+                        <td>【申请退款中】</td>
+                        {% elseif  v.status == 4 %}
+                        <td>【退款失败】</td>
+                        {% elseif  v.status == 5 %}
+                        <td> 【退款成功】</td>
+                        {% elseif  v.type == 3 %}
+                        <td>【待评价】</td>
+                        {% elseif  v.type == 4 %}
+                        <td>【售后】</td>
+                        {% endif  %}
+                        <td>
+                            <a href="/admin/order/detail?id={{v.id}}"> <button type="button" class="btn btn-primary btn-xs">查看详情</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">
+                            <blockquote>
+                                <p>暂无数据 :(</p>
+                            </blockquote>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+
+                {% autoescape false %}
+                {{ page }}
+                {% endautoescape %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+
+{% endblock %}
+
+{% block footer %}
+<script src="/apps/admin/views/news/js/index.js"></script>
+{% endblock %}

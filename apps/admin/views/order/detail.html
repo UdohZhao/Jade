@@ -1,0 +1,43 @@
+{% extends "layouts.html" %}
+{% block content%}
+
+<!-- Page -->
+<div class="page animsition">
+    <div class="page-header">
+        <h1 class="page-title"># 订单管理</h1>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ 订单详情</h3>
+            </div>
+            <p >订单编号---{{orderDetail.serial_number}}</p>
+            {% for key,value in orderDetail.goods_name %}
+            <a  style="text-decoration: none">
+                <div >
+                   商品示例图片---  <img width="150" height="150" src="{{orderDetail.goods_coverpath[key]}}">
+                </div>
+                <div >
+
+                    <p >商品名称---{{orderDetail.goods_name[key]}}</p>
+                    <p >规格---{{orderDetail.goods_specification[key]}}</p>
+                    <p > 单价---￥<span>{{orderDetail.goods_price[key]}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量---<i>x<span>{{orderDetail.goods_quantity[key]}}</span></i></p>
+                </div>
+            </a>
+            {% endfor %}
+            {% if orderDetail.type == 1 %}
+            <button id="send"> 发货 </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+
+{% endblock %}
+
+{% block footer %}
+<script src="/apps/admin/views/order/js/detail.js"></script>
+<script>
+    var id='{{orderDetail.id}}'
+</script>
+{% endblock %}

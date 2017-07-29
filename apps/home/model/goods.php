@@ -90,4 +90,20 @@ class goods extends model{
         }
         return $info;
     }
+
+    //确认订单
+    public function orderInfo($data,$wuid){
+        //下单时间
+        $data['dtime']=time();
+        $data['wuid']=$wuid;
+        //订单编号
+        $data['serial_number']=indent_number();
+        //操作时间
+        $data['ctime']=time();
+        //类型 ,待付款
+         $data['type']=0;
+        //状态,正常
+        $data['status']=0;
+        return $this->insert('indent',$data);
+    }
 }

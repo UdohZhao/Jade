@@ -192,7 +192,6 @@ $(function(){
             type:'post',
             success:function(re){
                 if(re.status==true){
-                    alert(re.status)
                     obj.parent().css('display','none')
                 }else{
                     $.toast('稍后再试','cancel');
