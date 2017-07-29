@@ -46,7 +46,7 @@ $(function () {
                         + '        <img src="'+needData[index].cover_path[0]+'">'
                         + '        <div class="product_title_bcg"></div>'
                         + '        <div class="product_title">'
-                        + '           <span>'+needData[index].cname+'</span> '
+                        + '           <p>'+needData[index].cname+'</p> '
                         + '        </div> '
                         + '      </a> '
                         + '     </div> ';

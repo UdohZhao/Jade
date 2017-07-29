@@ -45,11 +45,16 @@
   text-align: center;
   width: 100%;
 }
-.product_list .product_title span{
+.product_list .product_title p{
   line-height: 25px;
   color: #fff;
   font-size: 14px;
   text-align: center;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .weui-footer_fixed-bottom .icon{
   width: 33.33%;
