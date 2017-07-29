@@ -89,3 +89,10 @@ h4>span{
 #buynow{
   background-color: #e51c23;
 }
+.weui-picker-modal .picker-item.picker-selected{
+  color: #fff;
+}
+.picker-center-highlight{
+  background-color: #04BE02;
+  z-index: -1;
+}

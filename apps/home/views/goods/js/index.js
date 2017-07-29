@@ -13,7 +13,7 @@ $(function () {
             domClass: 'dropload-down',
             domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
             domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
-            domNoData: '<div class="dropload-noData">到底了</div>'
+            domNoData: '<div class="dropload-noData">到底啦</div>'
         },
         loadDownFn: function (me) {
             //调用函数
