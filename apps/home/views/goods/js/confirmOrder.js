@@ -74,25 +74,58 @@ $(function(){
 			$.toast('请设置默认地址','forbidden');
 			return false;
 		}
-		var arr=new Array();
-		var AllArray=new Array();
+		var arr=[];
 		var product=$(".shopping_list");
+		var productid='' ,cover=''  ,name=''  ,specification=''  , unitprice=''  ,number='' ;
 		for(i=0;i<product.length;i++){
-			var productid=$(product[i]).find(".productid").val();//商品id
-			var cover=$(product[i]).find(".left_img img").attr("src");//封面地址
-			var name=$(product[i]).find(".product_name").html();//商品名称
-			var specification=$(product[i]).find(".specification span").html();//商品规格
-			var unitprice=$(product[i]).find(".each_money").html();//单价
-			var number=$(product[i]).find(".input_number").val();//数量
-			//arr.push(productid+','+cover+','+name+','+specification+','+unitprice+','+number);
-			arr['productid']=productid;
-			arr['cover']=cover;
-			arr['name']=name;
-			arr['specification']=specification;
-			arr['unitprice']=unitprice;
-			arr['number']=number;
-			AllArray.push(arr);
+
+			//申明二维数组
+			//arr[i] = [];
+
+			 productid+=$(product[i]).find(".productid").val()+'<=>';//商品id
+			 cover+=$(product[i]).find(".left_img img").attr("src")+'<=>';//封面地址
+			 name+=$(product[i]).find(".product_name").html()+'<=>';//商品名称
+			 specification+=$(product[i]).find(".specification span").html()+'<=>';//商品规格
+			 unitprice+=$(product[i]).find(".each_money").html()+'<=>';//单价
+			 number+=$(product[i]).find(".input_number").val()+'<=>';//数量
+
+
+			/*arr[i]['productid']=productid;
+			arr[i]['cover']=cover;
+			arr[i]['name']=name;
+			arr[i]['specification']=specification;
+			arr[i]['unitprice']=unitprice;
+			arr[i]['number']=number;*/
 		}
-		console.log(AllArray)
+		productid = productid.substr(0,productid.length-'<=>'.length);
+		cover = cover.substr(0,cover.length-'<=>'.length);
+		name = name.substr(0,name.length-'<=>'.length);
+		specification = specification.substr(0,specification.length-'<=>'.length);
+		unitprice = unitprice.substr(0,unitprice.length-'<=>'.length);
+		number = number.substr(0,number.length-'<=>'.length);
+		arr.push(productid);
+		arr.push(cover);
+		arr.push(name);
+		arr.push(specification);
+		arr.push(unitprice);
+		arr.push(number);
+		//ajax请求数据
+		//卖家留言
+		var msg=$('#message').val();
+		// 价格合计
+		var finalMoney=parseFloat($('#allMoney').html()) ;
+		$.ajax({
+			url:'/goods/intoOrder',
+			data:{orderArr:arr,msg:msg,finalMoney:finalMoney},
+			dataType:'json',
+			type:'post',
+			success:function(re){
+				if(re.status==true){
+					$.toast('定单已生成,进入订单页面查看')
+				}else{
+					$.toast('订单提交失败,重新提交','cancel')
+				}
+			}
+		})
 	})
 })

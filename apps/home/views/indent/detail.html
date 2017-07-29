@@ -14,15 +14,18 @@
           </svg>
       </div>
       <div class="weui-cell__bd">
-        <p>等待买家付款</p>
-        <span>请于44分55秒内付款，超时订单将自动关闭</span>
+        {% if orderDetail.status == 2 %}
+        <span style="color:orangered">订单已超时,请返回商城重新下单</span>
+        {% else %}
+        <span>提示:请于半小时内付款，超时订单将自动取消</span>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
 <div class="row order_details">
   <div class="weui-cells">
-    <a href="javascript:;" class="weui-cell receipt_address">
+    <a  class="weui-cell receipt_address">
       <div class="weui-cell__hd">
       </div>
       <div class="weui-cell__bd">
@@ -30,30 +33,24 @@
           <svg class="icon categorie-icon" aria-hidden="true">
               <use xlink:href="#icon-shouye"></use>
           </svg>
-          收货人：赵四
-          <span>18423031898</span>
+          收货人：{{orderDetail.consignee}}
+          <span>{{orderDetail.contact_number}}</span>
         </p>
-        <span class="address_details">收货地址：重庆市九龙坡区袁家岗小时代5层</span>
+        <span class="address_details">收货地址：{{orderDetail.address}}</span>
       </div>
     </a>
-    <a class="weui-cell weui-cell_access order_msg" href="javascript:;">
+    {% for key,value in orderDetail.goods_name %}
+    <a class="weui-cell weui-cell_access order_msg">
       <div class="weui-cell__hd">
-        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
+        <img src="{{orderDetail.goods_coverpath[key]}}">
       </div>
       <div class="weui-cell__bd">
-        <p class="order_name">宝中皇 满绿翡翠套装 宝中皇 满绿翡翠套装</p>
-        <p class="order_money">￥<span class="each_money">29800.00</span><i class="number">x<span>2</span></i></p>
+        <p class="order_name">{{orderDetail.goods_name[key]}}</p>
+        <p class="order_name">规格:{{orderDetail.goods_specification[key]}}</p>
+        <p class="order_money">￥<span class="each_money">{{orderDetail.goods_price[key]}}</span><i class="number">x<span>{{orderDetail.goods_quantity[key]}}</span></i></p>
       </div>
     </a>
-    <a class="weui-cell weui-cell_access order_msg" href="javascript:;">
-      <div class="weui-cell__hd">
-        <img src="/apps/home/views/index/img/QQ截图20170627164651.png">
-      </div>
-      <div class="weui-cell__bd">
-        <p class="order_name">宝中皇 满绿翡翠套装 宝中皇 满绿翡翠套装</p>
-        <p class="order_money">￥<span class="each_money">29800.60</span><i class="number">x<span>1</span></i></p>
-      </div>
-    </a>
+    {% endfor %}
     <div class="weui-cell delivery">
       <div class="weui-cell__bd">
         <p>配送方式</p>
@@ -65,7 +62,7 @@
         <p>买家留言</p>
       </div>
       <div class="weui-cell__bd">
-      <input class="weui-input" type="text" placeholder="要是能重来，我要选李白" readonly="readonly">
+      <input class="weui-input" type="text" placeholder="{{orderDetail.message}}" readonly="readonly">
       </div>
     </div>
     <div class="weui-cell total">
@@ -79,8 +76,14 @@
 <div style="height: 56px;"></div>
 <div class="row go_pay">
     <div class="go_pay_msg">
-    合计：￥<span class="all_money">29800.00</span>
-    <a>去支付</a>
+    合计：￥<span class="all_money"></span>
+      {% if orderDetail.type == 0 and orderDetail.status == 0 %}
+        <a onclick="javascript:fun('{{orderDetail.id}}','pay','{{orderDetail.total_price}}')">去支付</a>
+      {% elseif orderDetail.type == 1 or orderDetail.type == 2 %}
+      <a>申请退款</a>
+      {% elseif orderDetail.type == 4 %}
+      <a>交易成功</a>
+      {% endif %}
     </div>
 </div>
 {% endblock %}

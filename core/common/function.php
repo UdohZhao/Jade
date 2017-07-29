@@ -89,3 +89,9 @@ function upFiles($file){
     return $res;
 }
 
+// 生成订单号
+function indent_number(){
+    return date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+}
+
+

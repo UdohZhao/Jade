@@ -15,3 +15,28 @@ $(function(){
     $(".all_money").eq(i).html(all_money);
   }
 })
+
+function fun(id,status,moeny){
+  $.toast.prototype.defaults.duration=2000
+  $.ajax({
+    url:'/indent/operOrder',
+    data:'id='+id+'&status='+status+'&money='+moeny,
+    dataType:'json',
+    type:'post',
+    success:function(re){
+      if(re.status==true){
+        $.toast(re.msg,function(){
+          location.reload();
+        });
+      }else{
+        $.toast(re.msg,'cancel',function(){
+          location.reload();
+        });
+      }
+
+    },
+    error:function(re){
+      alert('系统崩溃')
+    }
+  })
+}

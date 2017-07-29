@@ -1,0 +1,17 @@
+$(function(){
+    $('#send').click(function(){
+            $.ajax({
+                url:'/admin/order/send',
+                data:'id='+id,
+                dataType:'json',
+                type:'post',
+                success:function(re){
+                    if(re.status==true){
+                        alert(re.msg)
+                    }else{
+                        alert(re.msg)
+                    }
+                }
+            })
+    })
+})

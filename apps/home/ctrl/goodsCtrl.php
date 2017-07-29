@@ -96,4 +96,27 @@ class goodsCtrl extends baseCtrl{
         $page=intval($_POST['page'])+1;
         echo json_encode($model->moreGood($page,$type));
     }
+
+    //生成订单
+    public function intoOrder(){
+        //获取数组
+        $orderArr=$_POST['orderArr'];
+        $data=array();
+        $data['goods_coverpath']=serialize(explode('<=>',$orderArr[1])) ;
+        $data['goods_name']=serialize(explode('<=>',$orderArr[2])) ;
+        $data['goods_specification']=serialize(explode('<=>',$orderArr[3])) ;
+        $data['goods_price']=serialize(explode('<=>',$orderArr[4])) ;
+        $data['goods_quantity']=serialize(explode('<=>',$orderArr[5])) ;
+        $data['message']=$_POST['msg'];
+        $data['total_price']=$_POST['finalMoney'];
+        $wuid=$this->wuid;
+        $model=new goods();
+        $info=$model->orderInfo($data,$wuid);
+        if($info){
+            echo json_encode(array('status'=>true));
+        }else{
+            echo json_encode(array('status'=>false));
+        }
+
+    }
 }
