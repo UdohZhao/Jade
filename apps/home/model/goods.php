@@ -106,4 +106,9 @@ class goods extends model{
         $data['status']=0;
         return $this->insert('indent',$data);
     }
+
+    //买家给出评价  @param id 订单id
+    public function writeEstimate($id){
+
+    }
 }

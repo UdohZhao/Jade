@@ -14,7 +14,8 @@ class indentCtrl extends baseCtrl{
     if (IS_GET === true) {
       // display
         $model=new indent();
-        $this->assign('orderInfo',$model->sel($this->wuid));
+        $type=isset($_GET['type'])?$_GET['type']:'';
+        $this->assign('orderInfo',$model->sel($this->wuid,$type));
       $this->display('indent','index.html');
       die;
     }

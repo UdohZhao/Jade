@@ -18,8 +18,10 @@
 <!-- 分类start -->
 <div class="row myself_class">
   <div class="weui-grids">
-    <a href="/indent/index" class="weui-grid js_grid">
-      <span class="weui-badge" style="position: absolute;top: 6px;right: 1em;">8</span>
+    <a href="/indent/index?type=0" class="weui-grid js_grid">
+      {% if orderNum0.num %}
+      <span class="weui-badge" style="position: absolute;top: 6px;right: 1em;">{{orderNum0.num}}</span>
+      {% endif %}
       <div class="weui-grid__icon">
         <svg class="icon categorie-icon" aria-hidden="true">
             <use xlink:href="#icon-daifukuan"></use>
@@ -29,7 +31,10 @@
         待付款
       </p>
     </a>
-    <a href="/indent/index" class="weui-grid js_grid">
+    <a href="/indent/index?type=2" class="weui-grid js_grid">
+      {% if orderNum1.num %}
+      <span class="weui-badge" style="position: absolute;top: 6px;right: 1em;">{{orderNum1.num}}</span>
+      {% endif %}
       <div class="weui-grid__icon">
         <svg class="icon categorie-icon" aria-hidden="true">
             <use xlink:href="#icon-daishouhuo"></use>
@@ -39,7 +44,10 @@
         待收货
       </p>
     </a>
-    <a href="/indent/index" class="weui-grid js_grid">
+    <a href="/indent/index?type=3" class="weui-grid js_grid">
+      {% if orderNum2.num %}
+      <span class="weui-badge" style="position: absolute;top: 6px;right: 1em;">{{orderNum2.num}}</span>
+      {% endif %}
       <div class="weui-grid__icon">
         <svg class="icon categorie-icon" aria-hidden="true">
             <use xlink:href="#icon-daipingjia"></use>
@@ -49,7 +57,10 @@
         待评价
       </p>
     </a>
-    <a href="/indent/index" class="weui-grid js_grid">
+    <a href="/indent/index?type=4" class="weui-grid js_grid">
+      {% if orderNum3.num %}
+      <span class="weui-badge" style="position: absolute;top: 6px;right: 1em;">{{orderNum3.num}}</span>
+      {% endif %}
       <div class="weui-grid__icon">
         <svg class="icon categorie-icon" aria-hidden="true">
             <use xlink:href="#icon-shouhoufuwu"></use>

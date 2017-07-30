@@ -44,6 +44,12 @@ class goodsCtrl extends baseCtrl{
     // Get
     if (IS_GET === true) {
       // display
+        //订单id
+        $id=isset($_GET['id'])?$_GET['id']:'';
+        if($id){
+            $model=new goods();
+            $this->assign('estimate',$model->writeEstimate($id));
+        }
       $this->display('goods','estimate.html');
       die;
     }

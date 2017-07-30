@@ -8,6 +8,9 @@
 <!-- 订单列表start -->
 <div class="row khfxWarp">
   <div class="col-xs-12 col-sm-12 khfxPane">
+    {% if orderInfo == NULL %}
+      暂无数据
+    {% endif %}
     {% for value in orderInfo %}
        <div class="row myorder_box">
       <div class="weui-cells">

@@ -5,11 +5,16 @@ class indent extends model{
     public $table='indent';
 
     //查询该用户的订单信息  @param wuid 微信用户id
-    public  function sel($wuid){
+    public  function sel($wuid,$type=''){
+        if($type===''){
+            $where=['wuid'=>$wuid,'ORDER'=>['id'=>'DESC']];
+        }else{
+            $where=['wuid'=>$wuid,'ORDER'=>['id'=>'DESC'],'type'=>$type];
+        }
         $info = $this->select($this->table,['id','goods_coverpath','goods_name',
         'goods_specification','goods_quantity','goods_price','total_price',
         'serial_number','receiver_info','message','dtime','stime','ctime',
-        'type','status'],['wuid'=>$wuid,'ORDER'=>['id'=>'DESC']]);
+        'type','status'],$where);
         foreach($info as $k=>$v){
             $info[$k]['goods_coverpath']=unserialize($v['goods_coverpath']);
             $info[$k]['goods_name']=unserialize($v['goods_name']);
@@ -18,7 +23,7 @@ class indent extends model{
             $info[$k]['goods_price']=unserialize($v['goods_price']);
             $info[$k]['count']=count(unserialize($v['goods_name']));
             if($info[$k]['dtime']+60*30<=time() && $info[$k]['type']==0 && $info[$k]['status']==0){
-                //订单超时
+                //订单超时,半个小时
                 $this->update($this->table,array('status'=>2),['id'=>$info[$k]['id']]);
             }
         }
