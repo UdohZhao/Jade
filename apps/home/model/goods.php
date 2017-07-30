@@ -104,9 +104,17 @@ class goods extends model{
          $data['type']=0;
         //状态,正常
         $data['status']=0;
-        $re = $this->insert('indent',$data);
+        
         //订单生成后删除购物车信息  ,根据 id值删除
-        $res = $this->delete('shop_cart',['id'=>$data['productid']]);
+        if($data['shopcar_id']){
+            //通过购物车购买
+            $res = $this->delete('shop_cart',['id'=>$data['shopcar_id']]);
+            unset($data['shopcar_id']);
+        }
+        $re = $this->insert('indent',$data);
+        if($re && $res){
+            return true;
+        }
     }
 
     //买家给出评价  @param id 订单id

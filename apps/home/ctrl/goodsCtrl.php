@@ -108,7 +108,8 @@ class goodsCtrl extends baseCtrl{
         //获取数组
         $orderArr=$_POST['orderArr'];
         $data=array();
-        //商品id
+        //购物车id
+        $data['shopcar_id']=explode('<=>',$orderArr[6]) ;
         $data['goods_coverpath']=serialize(explode('<=>',$orderArr[1])) ;
         $data['goods_name']=serialize(explode('<=>',$orderArr[2])) ;
         $data['goods_specification']=serialize(explode('<=>',$orderArr[3])) ;
