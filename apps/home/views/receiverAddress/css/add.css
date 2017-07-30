@@ -76,3 +76,10 @@ h1{
 .weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before{
   color: #e51c23;
 }
+.weui-picker-modal .picker-item.picker-selected{
+  color: #fff;
+}
+.picker-center-highlight{
+  background-color: #04BE02;
+  z-index: -1;
+}

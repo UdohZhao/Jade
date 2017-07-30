@@ -10,7 +10,7 @@
     <span>账户余额：</span>
   </div>
   <div class="col-sm-12 col-xs-12 account_balance">
-    <i>￥<span class="balance_money">1750.00</span></i>
+    <i>￥<span class="balance_money" id='lastMoney'>{{moneyInfo.remaining}}</span></i>
   </div>
 </div>
 <div class="row account_chioce">
@@ -50,7 +50,7 @@
     <label class="weui-cell weui-check__label" for="x11">
       <div class="weui-cell__hd">
         <svg class="icon categorie-icon" aria-hidden="true">
-                <use xlink:href="#icon-shouye"></use>
+                <use xlink:href="#icon-weixinzhifu"></use>
             </svg>
         </div>
       <div class="weui-cell__bd">
@@ -65,11 +65,31 @@
 </div>
 <div class="row account_button">
   <div class="col-sm-12 col-xs-12">
-    <a>充值</a>
+    <a id="recharge">充值</a>
   </div>
 </div>
 {% endblock %}
 
 {% block footer %}
 <script src="/apps/home/views/account/js/index.js"></script>
+<script>
+  $('#recharge').click(function(){
+    if(money==''){
+      $.toast('请选择充值金额','forbidden');
+      return false;
+    }
+    $.ajax({
+      url:'/account/recharge',
+      data:'money='+money,
+      dataType:'json',
+      type:'post',
+      success:function(re){
+        $.toast(re.msg)
+        if(re.status==true){
+          $('#lastMoney').html(re.money);
+        }
+      }
+    })
+  })
+</script>
 {% endblock %}

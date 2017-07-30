@@ -10,7 +10,7 @@
     <a class="weui-cell weui-cell_access" href="/shop/index">
       <div class="weui-cell__hd">
       <svg class="icon categorie-icon" aria-hidden="true">
-              <use xlink:href="#icon-dianpu1"></use>
+              <use xlink:href="#icon-dianpu"></use>
           </svg>
       </div>
       <div class="weui-cell__bd">
@@ -24,126 +24,28 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-12" id="list">
+    {% for value in shopCart %}
     <div class="row shopping_list">
       <div class="shopping_left">
-        <input type="checkbox" name="ids">
+        <input type="checkbox" name="ids" value="{{value.spid}}">
       </div>
-      <div class="shopping_center">
+      <a href="/goods/detail?id={{value.id}}" class="shopping_center">
         <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
+          <img src="{{value.cover_path[0]}}">
         </div>
         <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
+          <p>{{value.cname}}</p>
+          <p class="guige">{{value.specification}}</p>
+          <p class="money">￥<span class="each_money">{{value.promotion_price}}</span><i>x<span class="each_number">{{value.quantity}}</span></i></p>
         </div>
-      </div>
-      <div class="shopping_right">
+      </a>
+      <div class="shopping_right" avg="{{value.spid}}">
         <p>删</p>
         <p>除</p>
       </div>
       <div style="clear: both;"></div>
     </div>
-    <div class="row shopping_list">
-      <div class="shopping_left">
-        <input type="checkbox" name="ids">
-      </div>
-      <div class="shopping_center">
-        <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
-        </div>
-        <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
-        </div>
-      </div>
-      <div class="shopping_right">
-        <p>删</p>
-        <p>除</p>
-      </div>
-      <div style="clear: both;"></div>
-    </div>
-    <div class="row shopping_list">
-      <div class="shopping_left">
-        <input type="checkbox" name="ids">
-      </div>
-      <div class="shopping_center">
-        <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
-        </div>
-        <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
-        </div>
-      </div>
-      <div class="shopping_right">
-        <p>删</p>
-        <p>除</p>
-      </div>
-      <div style="clear: both;"></div>
-    </div>
-    <div class="row shopping_list">
-      <div class="shopping_left">
-        <input type="checkbox" name="ids">
-      </div>
-      <div class="shopping_center">
-        <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
-        </div>
-        <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
-        </div>
-      </div>
-      <div class="shopping_right">
-        <p>删</p>
-        <p>除</p>
-      </div>
-      <div style="clear: both;"></div>
-    </div>
-    <div class="row shopping_list">
-      <div class="shopping_left">
-        <input type="checkbox" name="ids">
-      </div>
-      <div class="shopping_center">
-        <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
-        </div>
-        <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
-        </div>
-      </div>
-      <div class="shopping_right">
-        <p>删</p>
-        <p>除</p>
-      </div>
-      <div style="clear: both;"></div>
-    </div>
-    <div class="row shopping_list">
-      <div class="shopping_left">
-        <input type="checkbox" name="ids">
-      </div>
-      <div class="shopping_center">
-        <div class="left_img">
-          <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg">
-        </div>
-        <div class="right_content">
-          <p>宝中皇 满绿翡翠套装宝翡翠套装宝</p>
-          <p class="money">￥<span class="each_money">1</span><i>x<span class="each_number">1</span></i></p>
-        </div>
-      </div>
-      <div class="shopping_right">
-        <p>删</p>
-        <p>除</p>
-      </div>
-      <div style="clear: both;"></div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="weui-loadmore">
-    <i class="weui-loading"></i>
-    <span class="weui-loadmore__tips">正在加载</span>
+    {% endfor %}
   </div>
 </div>
 <div style="height: 60px;"></div>
@@ -155,7 +57,7 @@
     </div>
     <div class="bottom_right">
       <i>合计：￥<span class="all_money">0</span></i>
-      <a class="settlement">结算</a>
+      <a id="payForCar" href="" class="settlement">结算</a>
     </div>
   </div>
 </div>

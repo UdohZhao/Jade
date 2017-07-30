@@ -17,16 +17,7 @@ $(function(){
         }
         addMoney();
     })
-    //滚动加载
-    var loading = false;  //状态标记
-    $(document.body).infinite().on("infinite", function() {
-      if(loading) return;
-      loading = true;
-      setTimeout(function() {
-        $("#list").append("<p> 我是新加载的内容 </p>");
-        loading = false;
-      }, 1500);   //模拟延迟
-    });
+
 
     //滑动删除
     // 获取所有行，对每一行设置监听
@@ -80,24 +71,24 @@ $(function(){
             }
             var diffX = e.changedTouches[0].pageX - lastXForMobile;
             if (diffX < -100) {
-                $(lastLeftObj).find(".shopping_center").css("width","80%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","10%");
+                $(pressedObj).find(".shopping_center").css("width","80%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","10%");
                 // $(pressedObj).animate({marginLeft:"-132px"}, 500); // 左滑
                 lastLeftObj && lastLeftObj != pressedObj &&
-                $(lastLeftObj).find(".shopping_center").css("width","90%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","10%");
+                $(pressedObj).find(".shopping_center").css("width","90%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","10%");
                     // $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
                 lastLeftObj = pressedObj; // 记录上一个左滑的对象
             } else if (diffX > 100) {
               if (pressedObj == lastLeftObj) {
-             $(lastLeftObj).find(".shopping_center").css("width","90%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","0");
+             $(pressedObj).find(".shopping_center").css("width","90%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","0");
                 // $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
                 lastLeftObj = null; // 清空上一个左滑的对象
               }
@@ -123,23 +114,23 @@ $(function(){
             }
             var diffX = e.clientX - lastX;
             if (diffX < -100) {
-                $(lastLeftObj).find(".shopping_center").css("width","80%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","10%");
+                $(pressedObj).find(".shopping_center").css("width","80%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","10%");
                 // $(pressedObj).animate({marginLeft:"-132px"}, 500); // 左滑
                 lastLeftObj && lastLeftObj != pressedObj &&
-                $(lastLeftObj).find(".shopping_center").css("width","90%");
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","10%");
+                $(pressedObj).find(".shopping_center").css("width","90%");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","10%");
                     // $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
                 lastLeftObj = pressedObj; // 记录上一个左滑的对象
             } else if (diffX > 100) {
               if (pressedObj == lastLeftObj) {
-                var centerW=$(lastLeftObj).find(".shopping_center").width();
-                $(lastLeftObj).find(".right_content").css("width",centerW-90+'px');
-                $(lastLeftObj).find(".shopping_right").css("width","0");
+                var centerW=$(pressedObj).find(".shopping_center").width();
+                $(pressedObj).find(".right_content").css("width",centerW-90+'px');
+                $(pressedObj).find(".shopping_right").css("width","0");
                 // $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
                 lastLeftObj = null; // 清空上一个左滑的对象
               }
@@ -167,4 +158,45 @@ function addMoney(){
 addMoney();
 $(".shopping_left input").click(function(){
     addMoney();
+})
+
+$(function(){
+    $('#payForCar').click(function(){
+        var spid = document.getElementsByName("ids");
+        var spid_val = '';
+        for(k in spid) {
+            if(spid[k].checked){
+                spid_val+=spid[k].value+',';
+            }
+                //spid_val.push(spid[k].value) ;  加入数组的方法
+        }
+        //去掉最后一个逗号
+        spid_val = spid_val.substr(0, spid_val.length - 1);
+        if(spid_val == ''){
+            $.toast('未选择任何商品','forbidden');
+            return false;
+        }else{
+           $(this).attr('href','/goods/confirmOrder?shopCarId='+spid_val)
+        }
+    })
+
+    //删除
+    $('.shopping_right').click(function(){
+        //购物车id
+        var obj= $(this);
+        var carId = $(this).attr('avg')
+        $.ajax({
+            url:'/shopCart/delCar',
+            data:'carId='+carId,
+            dataType:'json',
+            type:'post',
+            success:function(re){
+                if(re.status==true){
+                    obj.parent().css('display','none')
+                }else{
+                    $.toast('稍后再试','cancel');
+                }
+            }
+        })
+    })
 })

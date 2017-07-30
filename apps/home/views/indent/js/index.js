@@ -1,5 +1,5 @@
 $(function () {
-
+/*
     var itemIndex = 0;
 
     var tabLoadEndArray = [false, false, false];
@@ -78,6 +78,31 @@ $(function () {
                 me.resetload();
             }, 500);
         }
-    });
+    });*/
+//id  订单id  ,status 需求状态
 
 });
+function fun(id,status,moeny){
+    $.toast.prototype.defaults.duration=2000
+    $.ajax({
+        url:'/indent/operOrder',
+        data:'id='+id+'&status='+status+'&money='+moeny,
+        dataType:'json',
+        type:'post',
+        success:function(re){
+            if(re.status==true){
+                $.toast(re.msg,function(){
+                    location.reload();
+                });
+            }else{
+                $.toast(re.msg,'cancel',function(){
+                    location.reload();
+                });
+            }
+
+        },
+        error:function(re){
+            alert('系统崩溃')
+        }
+    })
+}

@@ -1,0 +1,152 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/goods/css/confirmOrder.css">
+{% endblock %}
+
+{% block content %}
+<div class="row address">
+  <div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="../receiverAddress/addresslist">
+      <div class="weui-cell__hd">
+        <svg class="icon categorie-icon" aria-hidden="true">
+            <use xlink:href="#icon-shouhuodizhi"></use>
+        </svg>
+      </div>
+      {% if myAddr %}
+      <div class="weui-cell__bd" style="padding-left: 10px;">
+        <p class="peopleName">收货人：{{myAddr.consignee}}<span class="phoneNum">{{myAddr.contact_number}}</span></p>
+        <p class="addressdetails">收货地址：{{myAddr.address}}</p>
+      </div>
+      {% else %}
+      <p class="peopleName">请设置默认地址</p>
+      {% endif %}
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+  </div>
+</div>
+<div class="row product_detail">
+  <div class="col-sm-12 col-xs-12">
+    <p class="product_top">
+      <svg class="icon categorie-icon" aria-hidden="true">
+          <use xlink:href="#icon-dianpu"></use>
+      </svg>
+      昆明玉投商贸
+    </p>
+  </div>
+  {% if shopCart %}
+  {% for value in shopCart %}
+  <div class="col-sm-12 col-xs-12 shopping_list">
+    <div class="left_img">
+      <img src="{{value.cover_path[0]}}">
+    </div>
+    <div class="right_content">
+      <p class="product_name">{{value.cname}}</p>
+      <input class="productid" type="hidden" value="{{value.id}}" />
+      <p class="specification">规格：<span>{{value.specification}}</span></p>
+      <p class="money">
+        ￥
+        <span class="each_money">{{value.promotion_price}}</span>
+        <i class="number_chioce">
+          <svg class="icon categorie-icon jian" aria-hidden="true">
+              <use xlink:href="#icon-jian-copy"></use>
+          </svg>
+          <svg class="icon categorie-icon jia" aria-hidden="true">
+              <use xlink:href="#icon-jia"></use>
+          </svg>
+          <input class="input_number" readonly="readonly" type="number" name="" value="{{value.quantity}}">
+        </i>
+        <!-- <i>x<span class="each_number">{{value.quantity}}</span></i> -->
+      </p>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+  {% endfor %}
+
+  {% else %}
+  <div class="col-sm-12 col-xs-12 shopping_list">
+    <div class="left_img">
+      <img src="{{oneGoodInfo.cover_path[0]}}">
+    </div>
+    <div class="right_content">
+      <p class="product_name">{{oneGoodInfo.cname}}</p>
+      <input class="productid" type="hidden" value="{{oneGoodInfo.id}}" />
+      <p class="specification">规格：<span id="spec"></span></p>
+      <p class="money">
+        ￥
+        <span class="each_money">{{oneGoodInfo.promotion_price}}</span>
+        <i class="number_chioce">
+          <svg class="icon categorie-icon jian" aria-hidden="true">
+            <use xlink:href="#icon-jian-copy"></use>
+          </svg>
+          <svg class="icon categorie-icon jia" aria-hidden="true">
+            <use xlink:href="#icon-jia"></use>
+          </svg>
+          <input class="input_number" id="good_num" readonly="readonly" type="number" name="" value="">
+        </i>
+        <!-- <i>x<span class="each_number">{{value.quantity}}</span></i> -->
+      </p>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+  {% endif %}
+  <div class="col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="weui-cells">
+        <!-- <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">商品数量</p>
+          </div>
+          <div class="weui-cell__ft product_number">
+            <div class="number_chioce">
+              <svg class="icon categorie-icon jian" aria-hidden="true">
+                  <use xlink:href="#icon-jian-copy"></use>
+              </svg>
+              <svg class="icon categorie-icon jia" aria-hidden="true">
+                  <use xlink:href="#icon-jia"></use>
+              </svg>
+              <input id="input_number" readonly="readonly" type="number" name="" value="1">
+            </div>
+          </div>
+        </div> -->
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">配送方式</p>
+          </div>
+          <div class="weui-cell__ft">免运费</div>
+        </div>
+        <div class="weui-cell">
+          <div class="left_msg">
+            <p class="free_freight">买家留言：</p>
+          </div>
+          <div class="right_input">
+            <input class="leaveMsg" id="message" type="text" name="" placeholder="买家留言">
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+          </div>
+          <div class="weui-cell__ft">
+            共<span class="pro_num">1</span>件商品  合计：<i>￥<span class="all_money" id="allMoney"></span></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row bottom_msg">
+  <p>合计：￥<span class="allmoney_bottom"></span><a class="upbutton">提交订单</a></p>
+</div>
+{% endblock %}
+{% block footer %}
+<script src="/apps/home/views/goods/js/confirmOrder.js"></script>
+<script>
+  $('#spec').html(sessionStorage.getItem('goodsSpec'))
+  $('#good_num').val(sessionStorage.getItem('goodsNum'))
+    var phoneNum='';
+   if("{{myAddr.contact_number}}"){
+       phoneNum="{{myAddr.contact_number}}";
+   }
+</script>
+{% endblock %}

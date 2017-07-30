@@ -3,7 +3,7 @@ $(function () {
     var itemIndex = 0;
 
     var tabLoadEndArray = [false, false, false];
-    var tabLenghtArray = [28, 15, 47];
+    var tabLenghtArray = '';
     var tabScroolTopArray = [0, 0, 0];
 
     // dropload
@@ -13,9 +13,14 @@ $(function () {
             domClass: 'dropload-down',
             domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
             domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
-            domNoData: '<div class="dropload-noData">我是有底线的</div>'
+            domNoData: '<div class="dropload-noData">到底啦</div>'
         },
         loadDownFn: function (me) {
+            //调用函数
+            var needData = newData();
+            //alert(needData[0].coverimg_path)
+            tabLenghtArray = [needData.length];//总长度
+            page++;
             setTimeout(function () {
                 if (tabLoadEndArray[itemIndex]) {
                     me.resetload();
@@ -35,47 +40,13 @@ $(function () {
                     if (itemIndex == 0) {
                         result
                         += ''
-                        + '    <a href="/wechat/index.php/Newsdetails/index" class="weui-media-box weui-media-box_appmsg">'
+                        + '    <a href="/news/detail?id='+needData[index].id+'&aid='+needData[index].aid+'" class="weui-media-box weui-media-box_appmsg">'
                         + '      <div class="weui-media-box__hd">'
-                        + '        <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">'
+                        + '        <img class="weui-media-box__thumb" src="'+needData[index].coverimg_path+'">'
                         + '      </div>'
                         + '      <div class="weui-media-box__bd">'
-                        + '        <h4 class="weui-media-box__title">标题一</h4> '
-                        + '        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p> '
-                        + '      </div> '
-                        + '      <span class="weui-cell__ft"> '
-                        + '         <svg class="icon categorie-icon" aria-hidden="true">'
-                        + '           <use xlink:href="#icon-icon"></use>'
-                        + '         </svg>'
-                        + '      </span>'
-                        + '    </a>';
-                    } else if (itemIndex == 1) {
-                        result
-                        += ''
-                        + '    <a href="/wechat/index.php/Newsdetails/index" class="weui-media-box weui-media-box_appmsg">'
-                        + '      <div class="weui-media-box__hd">'
-                        + '        <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">'
-                        + '      </div>'
-                        + '      <div class="weui-media-box__bd">'
-                        + '        <h4 class="weui-media-box__title">标题一</h4> '
-                        + '        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p> '
-                        + '      </div> '
-                        + '      <span class="weui-cell__ft"> '
-                        + '         <svg class="icon categorie-icon" aria-hidden="true">'
-                        + '           <use xlink:href="#icon-icon"></use>'
-                        + '         </svg>'
-                        + '      </span>'
-                        + '    </a>';
-                    } else if (itemIndex == 2) {
-                        result
-                        += ''
-                        + '    <a href="/wechat/index.php/Newsdetails/index" class="weui-media-box weui-media-box_appmsg">'
-                        + '      <div class="weui-media-box__hd">'
-                        + '        <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">'
-                        + '      </div>'
-                        + '      <div class="weui-media-box__bd">'
-                        + '        <h4 class="weui-media-box__title">标题一</h4> '
-                        + '        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p> '
+                        + '        <h4 class="weui-media-box__title">'+needData[index].title+'</h4> '
+                        + '        <p class="weui-media-box__desc">'+needData[index].content+'</p> '
                         + '      </div> '
                         + '      <span class="weui-cell__ft"> '
                         + '         <svg class="icon categorie-icon" aria-hidden="true">'
@@ -92,3 +63,39 @@ $(function () {
     });
 
 });
+/*
+else if (itemIndex == 1) {
+    result
+        += ''
+        + '    <a href="/wechat/index.php/Newsdetails/index" class="weui-media-box weui-media-box_appmsg">'
+        + '      <div class="weui-media-box__hd">'
+        + '        <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">'
+        + '      </div>'
+        + '      <div class="weui-media-box__bd">'
+        + '        <h4 class="weui-media-box__title">标题一</h4> '
+        + '        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p> '
+        + '      </div> '
+        + '      <span class="weui-cell__ft"> '
+        + '         <svg class="icon categorie-icon" aria-hidden="true">'
+        + '           <use xlink:href="#icon-icon"></use>'
+        + '         </svg>'
+        + '      </span>'
+        + '    </a>';
+} else if (itemIndex == 2) {
+    result
+        += ''
+        + '    <a href="/wechat/index.php/Newsdetails/index" class="weui-media-box weui-media-box_appmsg">'
+        + '      <div class="weui-media-box__hd">'
+        + '        <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">'
+        + '      </div>'
+        + '      <div class="weui-media-box__bd">'
+        + '        <h4 class="weui-media-box__title">标题一</h4> '
+        + '        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p> '
+        + '      </div> '
+        + '      <span class="weui-cell__ft"> '
+        + '         <svg class="icon categorie-icon" aria-hidden="true">'
+        + '           <use xlink:href="#icon-icon"></use>'
+        + '         </svg>'
+        + '      </span>'
+        + '    </a>';
+}*/

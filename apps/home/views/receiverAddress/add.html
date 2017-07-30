@@ -5,43 +5,38 @@
 {% endblock %}
 
 {% block content %}
+<form onsubmit="return aa()" name="address_save" id="address_save" action="/receiverAddress/add" method="post">
 <div class="row addressMsgs">
   <div class="weui-cells weui-cells_form">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">收货人</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" name="cname" placeholder="请输入收货人姓名">
+        <input class="weui-input name_people" type="text" value="{{addrDetail.consignee}}" name="consignee" placeholder="请输入收货人姓名">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="tel" name="phone" placeholder="请输入手机号码">
+        <input class="weui-input people_phone" type="tel" value="{{addrDetail.contact_number}}" name="contact_number" placeholder="请输入手机号码">
       </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label for="name" class="weui-label">选择地区</label></div>
         <div class="weui-cell__bd">
-          <input class="weui-input" id="start" type="text" name="district" value="重庆 重庆市 九龙坡区">
+          <input class="weui-input" id="start" type="text" value="{{addrDetail.address[0]}}" name="address[]" placeholder="请选择地区">
         </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">详细地址</label></div>
       <div class="weui-cell__bd">
-        <input id='city-picker' class="weui-input" type="text" name="address" placeholder="如街道，楼层，门牌号等">
-      </div>
-    </div>
-    <div class="weui-cell">
-      <div class="weui-cell__hd"><label class="weui-label">邮政编码</label></div>
-      <div class="weui-cell__bd">
-        <input id='city-picker' class="weui-input" type="number" pattern="[0-9]*" name="postalcode" placeholder="邮政编码(选填)">
+        <input id='city-picker' class="weui-input people_address" type="text" value="{{addrDetail.address[1]}}" name="address[]" placeholder="如街道，楼层，门牌号等">
       </div>
     </div>
   </div>
   <div class="weui-cells weui-cells_checkbox">
     <label class="weui-cell weui-check__label" for="s11">
       <div class="weui-cell__hd">
-        <input type="checkbox" class="weui-check" name="status" id="s11" value="1">
+        <input type="checkbox"  class="weui-check" name="status" id="s11" value="1">
         <i class="weui-icon-checked"></i>
       </div>
       <div class="weui-cell__bd">
@@ -51,10 +46,51 @@
   </div>
 </div>
 <div class="row saveBtn">
-  <a href="javascript:;" class="weui-btn weui-btn_primary btn-save">保存</a>
+  <input type="submit" value="保存" class="weui-btn weui-btn_primary btn-save"/>
 </div>
+</form>
 {% endblock %}
 
 {% block footer %}
 <script src="/apps/home/views/receiverAddress/js/add.js"></script>
+<script>
+window.onbeforeunload  = function(){
+  var n = window.event.screenX - window.screenLeft;
+  var b = n > document.documentElement.scrollWidth - 20;
+  if (!(b && window.event.clientY < 0 || window.event.altKey)) {
+     //window.event.returnValue = "真的要刷新页面么？";
+      //这里放置我想执行缓存的代码
+      console.log("11");
+
+ }
+}
+  if('{{addrDetail.status}}'== 1){
+    $('#s11').attr('checked','checked')
+  }
+  if('{{addrDetail.id}}'){
+      $('#address_save').attr('action','/receiverAddress/update?id={{addrDetail.id}}')
+    }
+  function aa(){
+    var name=$(".name_people").val();
+    var phone=$(".people_phone").val();
+    var area=$("#start").val();
+    var address=$(".people_address").val();
+    var names=name.replace(/\s/g, "");
+    var phones=phone.replace(/\s/g, "");
+    var addresss=address.replace(/\s/g, "");
+    if(names==""){
+      $.toast("名字不能为空","cancel");
+      return false;
+    }else if(phones==""){
+      $.toast("电话不能为空","cancel");
+      return false;
+    }else if(area==""){
+      $.toast("地区不能为空","cancel");
+      return false;
+    }else if(addresss==""){
+      $.toast("详细地址不能为空","cancel");
+      return false;
+    }
+  }
+</script>
 {% endblock %}

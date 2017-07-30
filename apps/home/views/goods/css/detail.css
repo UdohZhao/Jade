@@ -1,3 +1,6 @@
+.bigBox{
+  padding-bottom: 50px;
+}
 .product_name span{
   line-height: 40px;
   font-weight: bolder;
@@ -26,4 +29,70 @@ h4>span{
   color: #e51c23;
   font-size: 14px;
   font-weight: bold;
+}
+.toolbar .title{
+  margin: 0;
+}
+#picker{
+  width:auto;
+  border: none;
+  text-align:right;
+  font-size: 14px;
+}
+.number_chioce{
+  width: 100px;
+  padding: 2px 7px;
+  background-color: #ccc;
+  border-radius: 4px;
+  text-align: left;
+}
+.jia{
+  float: right;
+  margin-top: 4px;
+}
+.product_number{
+  position: relative;
+}
+#input_number{
+  width: 36px;
+  position: absolute;
+  left: 50%;
+  top:0;
+  margin-left: -18px;
+  height: 100%;
+  border: none;
+  text-align: center;
+}
+#tab1{
+  padding: 10px 15px;
+}
+.bottom_button{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+.bottom_button a{
+  width:50%;
+  float: left;
+  height: 40px;
+  border: none;
+  color: #fff;
+  display: block;
+  line-height: 40px;
+  text-align: center;
+}
+#addtocart{
+  background-color: #fe5600;
+}
+#buynow{
+  background-color: #e51c23;
+}
+.weui-picker-modal .picker-item.picker-selected{
+  color: #fff;
+}
+.picker-center-highlight{
+  background-color: #04BE02;
+  z-index: -1;
 }

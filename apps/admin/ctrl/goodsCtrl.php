@@ -21,6 +21,7 @@ class goodsCtrl extends baseCtrl{
         // data
         $res = $this->db->getInfo($this->id);
         $res['cover_path'] = unserialize($res['cover_path']);
+        $res['specification'] = implode(',', unserialize($res['specification']));
         // assign
         $this->assign('data',$res);
       }
@@ -54,9 +55,9 @@ class goodsCtrl extends baseCtrl{
       $data = $this->getData($res['cover_path']);
       // id
       if ($this->id) {
-        $res = $model->save($this->id,$data);
+        $res = $this->db->save($this->id,$data);
       } else {
-        $res = $model->add($data);
+        $res = $this->db->add($data);
       }
       // res
       if ($res) {
@@ -77,6 +78,7 @@ class goodsCtrl extends baseCtrl{
     $data['keywords'] = htmlspecialchars($_POST['keywords']);
     $data['cover_path'] = serialize($coverPath);
     $data['specification'] = htmlspecialchars($_POST['specification']);
+    $data['specification']  = serialize(explode(',',$data['specification']));
     $data['market_price'] = $_POST['market_price'];
     $data['promotion_price'] = $_POST['promotion_price'];
     $data['details'] = $_POST['details'];
@@ -100,6 +102,9 @@ class goodsCtrl extends baseCtrl{
     $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
     // res
     $res = $this->db->sel($type,$search,bcsub($p->currPage,1,0),$p->subPages);
+     foreach($res as $k=>$v){
+          $res[$k]['specification'] = implode(',', unserialize($v['specification']));
+      }
     // assign
     $this->assign('type',$type);
     $this->assign('data',$res);

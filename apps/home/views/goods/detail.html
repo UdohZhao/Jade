@@ -9,15 +9,17 @@
 <div class="row">
   <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000" style="height: 200px;">
     <div class="swiper-wrapper">
+      {% for value in goodDetail.cover_path %}
       <div class="swiper-slide">
-        <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt="">
+        <img src="{{value}}" alt="">
       </div>
-      <div class="swiper-slide">
+      {% endfor %}
+      <!--<div class="swiper-slide">
         <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt="">
       </div>
       <div class="swiper-slide">
         <img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt="">
-      </div>
+      </div>-->
     </div>
     <div class="swiper-pagination"></div>
   </div>
@@ -25,16 +27,40 @@
 <!-- 轮播end -->
 <div class="row">
   <div class="col-sm-12 col-xs-12 product_name">
-    <span>宝中皇 翡翠平安扣</span>
+    <span>{{goodDetail.cname}}</span>
   </div>
   <div class="col-sm-12 col-xs-12">
     <div class="row">
       <div class="weui-cells">
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <p class="product_price">市场价：￥29800.00</p>
+            <p class="product_price">市场价：￥{{goodDetail.market_price}}</p>
           </div>
-          <div class="weui-cell__ft product_price">批发价：￥25000.00</div>
+          <div class="weui-cell__ft product_price">批发价：￥{{goodDetail.promotion_price}}</div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">商品规格</p>
+          </div>
+          <div class="weui-cell__ft">
+            <input type="text" id='picker' placeholder="请选择商品规格" />
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <p class="free_freight">商品数量</p>
+          </div>
+          <div class="weui-cell__ft product_number">
+            <div class="number_chioce">
+              <svg class="icon categorie-icon jian" aria-hidden="true">
+                  <use xlink:href="#icon-jian-copy"></use>
+              </svg>
+              <svg class="icon categorie-icon jia" aria-hidden="true">
+                  <use xlink:href="#icon-jia"></use>
+              </svg>
+              <input id="input_number" readonly="readonly" type="number" name="" value="1">
+            </div>
+          </div>
         </div>
         <div class="weui-cell">
           <div class="weui-cell__bd">
@@ -49,7 +75,7 @@
         <a class="weui-cell weui-cell_access" href="/shop/index">
           <div class="weui-cell__hd">
           <svg class="icon categorie-icon" aria-hidden="true">
-                  <use xlink:href="#icon-dianpu1"></use>
+                  <use xlink:href="#icon-dianpu"></use>
               </svg>
           </div>
           <div class="weui-cell__bd">
@@ -75,12 +101,36 @@
     </div>
     <div class="weui-tab__bd">
       <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-        商品详情内容
+
+        {% autoescape false %}
+          {{goodDetail.details}}
+        {% endautoescape %}
       </div>
       <div id="tab2" class="weui-tab__bd-item">
         <div class="weui-panel weui-panel_access">
         <div class="weui-panel__bd">
+          {% for value in estimate %}
           <a class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+              <img class="weui-media-box__thumb" src="{{value.avatar_path}}">
+            </div>
+            <div class="weui-media-box__bd">
+              <h4 class="weui-media-box__title">{{value.nickname}}
+                <span>
+                  {% if value.type==0 %}
+                  【好评】
+                  {% elseif value.type==1 %}
+                  【中评】
+                  {% else %}
+                  【差评】
+                  {% endif %}
+                </span>
+              </h4>
+              <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+            </div>
+          </a>
+          {% endfor %}
+          <!--<a class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
               <img class="weui-media-box__thumb" src="">
             </div>
@@ -97,11 +147,24 @@
               <h4 class="weui-media-box__title">评价二<span>【差评】</span></h4>
               <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
             </div>
-          </a>
+          </a>-->
         </div>
       </div>
       </div>
     </div>
   </div>
 </div>
+<div class="row bottom_button">
+  <a id="addtocart">加入购物车</a>
+  <a href="../goods/confirmOrder?goodId={{goodDetail.id}}" id="buynow">立即购买</a>
+  <div style="clear: both;"></div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="/apps/home/views/goods/js/details.js"></script>
+<script>
+var specification="{{goodDetail.specification}}";
+var goodsId="{{goodDetail.id}}";
+</script>
 {% endblock %}

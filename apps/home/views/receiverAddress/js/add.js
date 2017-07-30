@@ -10,6 +10,9 @@ $(function(){
       console.log(values, displayValues);
     }
   });
+  $(".btn-save").click(function(){
+  	$(this).css({"color":"#fff","background-color":"#e51c23"});
+  })
 
 })
 

@@ -12,14 +12,16 @@
   <div class="col-sm-12 col-xs-12">
     <div class="row">
       <div class="weui-cells">
-        <a class="weui-cell weui-cell_access" href="/article/detail">
+        {% for value in articleInfo %}
+        <a class="weui-cell weui-cell_access" href="/article/detail?id={{value.id}}">
           <div class="weui-cell__bd">
-            <p>章节1</p>
+            <p>{{value.title}}</p>
           </div>
           <div class="weui-cell__ft">
           </div>
         </a>
-        <a class="weui-cell weui-cell_access" href="/article/detail">
+        {% endfor %}
+        <!--<a class="weui-cell weui-cell_access" href="/article/detail">
           <div class="weui-cell__bd">
             <p>章节2</p>
           </div>
@@ -53,7 +55,7 @@
           </div>
           <div class="weui-cell__ft">
           </div>
-        </a>
+        </a>-->
       </div>
     </div>
   </div>

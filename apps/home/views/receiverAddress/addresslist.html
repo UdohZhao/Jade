@@ -1,0 +1,23 @@
+{% extends "layouts.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="/apps/home/views/receiverAddress/css/addresslist.css">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12 col-xs-12 management">
+    <a href="../receiverAddress/index">地址管理</a>
+  </div>
+  {% for value in addrList %}
+  <div class="col-sm-12 col-xs-12 addresslist">
+    <p>{{value.consignee}}<span>{{value.contact_number}}</span></p>
+    <p class="address_detail">
+      {% if value.status == 1 %}
+      <span>[默认地址]</span>
+      {% endif %}
+      {{value.address}}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
