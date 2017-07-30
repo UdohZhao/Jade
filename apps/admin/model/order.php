@@ -46,7 +46,8 @@ class order extends model{
 
     //发货
     public function send($id){
-        return $this->update($this->table,['type'=>2],['id'=>$id]);
+        //stime 发货时间   ctime 操作时间
+        return $this->update($this->table,['type'=>2,'stime'=>time(),'citme'=>time()],['id'=>$id]);
     }
 
 }
