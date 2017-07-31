@@ -86,4 +86,14 @@ class indent extends model{
     public function defaultAddr($wuid){
         return  $this->get('receiver_address',['address'],['AND'=>['status'=>1,'wuid'=>$wuid]]);
     }
+
+    //买家点击退款
+    public function backMoney($id){
+        $info = $this->update($this->table,['status'=>3],['id'=>$id]);
+        if($info){
+            return array('status'=>true,'msg'=>'退款申请成功,待卖家处理');
+        }else{
+            return array('status'=>false,'msg'=>'申请失败,稍后再试');
+        }
+    }
 }

@@ -50,4 +50,8 @@ class order extends model{
         return $this->update($this->table,['type'=>2,'stime'=>time(),'citme'=>time()],['id'=>$id]);
     }
 
+    //退款状态修改
+    public function backMoney($id,$status){
+        return $this->update($this->table,['status'=>$status],['id'=>$id]);
+    }
 }

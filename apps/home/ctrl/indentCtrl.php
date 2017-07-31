@@ -43,6 +43,7 @@ class indentCtrl extends baseCtrl{
           echo json_encode(array('status'=>false,'msg'=>'请设置默认地址'));
           exit;
       }
+      //订单id
       $id=$_POST['id'];
       $status=$_POST['status'];
       //支付金额
@@ -66,7 +67,10 @@ class indentCtrl extends baseCtrl{
           echo json_encode($model->hasGot($id));
           exit;
       }
-
+      if($status == 'backMoney'){
+          echo json_encode($model->backMoney($id));
+          exit;
+      }
   }
 
 }
