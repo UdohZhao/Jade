@@ -64,22 +64,43 @@
           </div>
           <div class="weui-cell__ft total_money">合计：￥{{value.total_price}}</div>
         </div>
+
+            {% if value.type == 0 and value.status == 0 %}
         <div class="weui-cell">
           <div class="weui-cell__bd">
           </div>
           <div class="weui-cell__ft">
-            {% if value.type == 0 and value.status == 0 %}
             <a class="button order_cancel" id="cancel">取消订单</a>
             <a class="button" onclick="javascript:fun('{{value.id}}','pay','{{value.total_price}}')">立即付款</a>
-            {% elseif value.type == 1 and  value.status == 0%}
-            <a class="button">发货中</a>
-            {% elseif value.type == 2 %}
-            <a class="button" onclick="javascript:fun('{{value.id}}','got','')">确认收货</a>
-            {% elseif value.type == 4 %}
-            <a class="button">交易成功</a>
-            {% endif %}
+
           </div>
         </div>
+            {% elseif value.type == 1 and  value.status == 0%}
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+          </div>
+          <div class="weui-cell__ft">
+            <a class="button">发货中</a>
+          </div>
+        </div>
+            {% elseif value.type == 2 %}
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+          </div>
+          <div class="weui-cell__ft">
+            <a class="button" onclick="javascript:fun('{{value.id}}','got','')">确认收货</a>
+          </div>
+        </div>
+            {% elseif value.type == 4 %}
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+          </div>
+          <div class="weui-cell__ft">
+            <a class="button">交易成功</a>
+          </div>
+        </div>
+            {% endif %}
+
       </div>
     </div>
     {% endfor %}
