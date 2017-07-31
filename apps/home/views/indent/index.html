@@ -47,9 +47,12 @@
             <div class="weui-cell__hd">
               <img src="{{value.goods_coverpath[key]}}">
             </div>
-            <div class="weui-cell__bd">
-              <p class="order_name">{{value.goods_name[key]}}</p>
-              <p class="order_name">规格:{{value.goods_specification[key]}}</p>
+            <div class="weui-cell__bd my_button">
+              <p class="order_name">
+                {{value.goods_name[key]}}
+              </p>
+              <!-- <button>进入评价</button> -->
+              <p class="order_guige">规格:{{value.goods_specification[key]}}</p>
               <p class="order_money">单价:￥{{value.goods_price[key]}}<span>x{{value.goods_quantity[key]}}</span></p>
             </div>
         </a>
