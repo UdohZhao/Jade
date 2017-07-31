@@ -43,10 +43,10 @@
           </div>
         </div>
         {% for key,val in value.goods_name %}
-        <a class="weui-cell weui-cell_access" href="/indent/detail?id={{value.id}}">
-            <div class="weui-cell__hd">
+        <div class="weui-cell">
+            <a href="/indent/detail?id={{value.id}}" class="weui-cell__hd">
               <img src="{{value.goods_coverpath[key]}}">
-            </div>
+            </a>
             <div class="weui-cell__bd my_button">
               <p class="order_name">
                 {{value.goods_name[key]}}
@@ -57,7 +57,7 @@
               <p class="order_guige">规格:{{value.goods_specification[key]}}</p>
               <p class="order_money">单价:￥{{value.goods_price[key]}}<span>x{{value.goods_quantity[key]}}</span></p>
             </div>
-        </a>
+        </div>
         {% endfor %}
         <div class="weui-cell">
           <div class="weui-cell__bd">
