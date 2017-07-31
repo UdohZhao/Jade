@@ -90,10 +90,8 @@
         <a onclick="javascript:fun('{{orderDetail.id}}','pay','{{orderDetail.total_price}}')">去支付</a>
       {% elseif orderDetail.status == 3 %}
       <a>申请退款中</a>
-      {% elseif (orderDetail.type == 1 or orderDetail.type == 2)  and  orderDetail.status == 0%}
+      {% elseif orderDetail.type == 4  and  orderDetail.status == 0 %}
       <a  onclick="javascript:fun('{{orderDetail.id}}','backMoney','{{orderDetail.total_price}}')">申请退款</a>
-      {% elseif orderDetail.type == 4 %}
-      <a>交易成功</a>
       {% endif %}
     </div>
 </div>

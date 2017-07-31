@@ -8,6 +8,8 @@ class indent extends model{
     public  function sel($wuid,$type=''){
         if($type===''){
             $where=['wuid'=>$wuid,'ORDER'=>['id'=>'DESC']];
+        }else if($type==4){
+            $where=['AND'=>['wuid'=>$wuid,'type'=>$type],'ORDER'=>['id'=>'DESC']];
         }else{
             $where=['AND'=>['wuid'=>$wuid,'type'=>$type,'status'=>0],'ORDER'=>['id'=>'DESC']];
         }

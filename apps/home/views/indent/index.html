@@ -52,7 +52,7 @@
                 {{value.goods_name[key]}}
               </p>
               {% if value.type == 3 and  value.status == 0 %}
-              <a class="a_button" href="/goods/estimate?goodName={{value.goods_name[key]}}">进入评价</a>
+              <a class="a_button" href="/goods/estimate?goodName={{value.goods_name[key]}}&spec={{value.goods_specification[key]}}&indentId={{value.id}}">进入评价</a>
               {% endif %}
               <p class="order_guige">规格:{{value.goods_specification[key]}}</p>
               <p class="order_money">单价:￥{{value.goods_price[key]}}<span>x{{value.goods_quantity[key]}}</span></p>
@@ -90,7 +90,7 @@
             <a class="button" onclick="javascript:fun('{{value.id}}','got','')">确认收货</a>
           </div>
         </div>
-            {% elseif value.type == 4 %}
+            {% elseif value.type == 4  and value.status == 0 %}
         <div class="weui-cell">
           <div class="weui-cell__bd">
           </div>

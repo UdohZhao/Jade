@@ -45,10 +45,14 @@ class goodsCtrl extends baseCtrl{
     if (IS_GET === true) {
       // display
         //订单id
-        $id=isset($_GET['id'])?$_GET['id']:'';
-        if($id){
+        $name=isset($_GET['goodName'])?$_GET['goodName']:'';
+        $indentId=isset($_GET['indentId'])?$_GET['indentId']:'';
+        $spec=isset($_GET['spec'])?$_GET['spec']:'';
+        if($name){
             $model=new goods();
-            $this->assign('estimate',$model->writeEstimate($id));
+            $this->assign('goodsId',$model->selId($name));
+            $this->assign('spec',$spec);
+            $this->assign('indentId',$indentId);
         }
       $this->display('goods','estimate.html');
       die;
@@ -126,5 +130,21 @@ class goodsCtrl extends baseCtrl{
             echo json_encode(array('status'=>false));
         }
 
+    }
+    //商品评价方法
+    public function saveEstimate(){
+            $model= new goods();
+        $data=array();
+        $data['gid']=$_POST['goodsid'];
+        $data['wuid']=$this->wuid;
+        $data['specification']=$_POST['spec'];
+        $data['content']=$_POST['content'];
+        $data['ctime']=time();
+        $data['type']=$_POST['radio1'];
+        $data['indentId']=$_POST['indentId'];
+        $info  = $model->writeEstimate($data);
+        if($info){
+            header('Location:/indent/index');
+        }
     }
 }
