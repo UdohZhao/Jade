@@ -47,7 +47,11 @@ class order extends model{
     //发货
     public function send($id){
         //stime 发货时间   ctime 操作时间
-        return $this->update($this->table,['type'=>2,'stime'=>time(),'citme'=>time()],['id'=>$id]);
+        $sql = "UPDATE indent SET type=2,stime=".time().",ctime=".time()." WHERE id=$id";
+        $info = $this->query($sql);
+        if($info){
+            return true;
+        }
     }
 
     //退款状态修改
