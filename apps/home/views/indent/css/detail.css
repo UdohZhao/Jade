@@ -41,6 +41,10 @@
   text-overflow:ellipsis;
   overflow:hidden;
 }
+.order_msg .order_guige{
+  color: #bbb;
+  font-size: 14px;
+}
 .order_msg .order_money{
   font-size: 14px;
   color: #e51c23;
