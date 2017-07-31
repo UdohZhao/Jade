@@ -117,8 +117,22 @@ class goods extends model{
         }
     }
 
-    //买家给出评价  @param id 订单id
-    public function writeEstimate($id){
+    //买家给出评价  @param name  商品名称
+    public function writeEstimate($data){
+        $info = $this->insert('goods_estimate',$data);
+        if($info){
+            //将订单改为售后
+            $re = $this->update('indent',['type'=>4],['id'=>$data['indentId']]);
+        }
+        if($info && $re){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
+    //根据商品名称查询商品id
+    public function selId($name){
+        return $this->get('goods',['id'],['cname'=>$name]);
     }
 }

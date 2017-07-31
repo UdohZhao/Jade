@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<form action="/goods/saveEstimate" method="post">
 <div class="row evaluation_choice">
   <div class="col-sm-12 col-xs-12">
     <div class="row evaluation_choice_border">
@@ -15,7 +16,7 @@
               <p>好评</p>
             </div>
             <div class="weui-cell__ft">
-              <input type="radio" class="weui-check" name="radio1" id="x13" value="0">
+              <input type="radio" class="weui-check" name="radio1" id="x13" value="0" checked="checked">
               <span class="weui-icon-checked"></span>
             </div>
           </label>
@@ -24,7 +25,7 @@
               <p>中评</p>
             </div>
             <div class="weui-cell__ft">
-              <input type="radio" name="radio1" value="1" class="weui-check" id="x12" checked="checked">
+              <input type="radio" name="radio1" value="1" class="weui-check" id="x12" >
               <span class="weui-icon-checked"></span>
             </div>
           </label>
@@ -33,7 +34,7 @@
               <p>差评</p>
             </div>
             <div class="weui-cell__ft">
-              <input type="radio" name="radio1" value="2" class="weui-check" id="x11" checked="checked">
+              <input type="radio" name="radio1" value="2" class="weui-check" id="x11" >
               <span class="weui-icon-checked"></span>
             </div>
           </label>
@@ -42,12 +43,15 @@
     </div>
   </div>
 </div>
+  <input type="hidden" value="{{goodsId.id}}" name="goodsid"/>
+  <input type="hidden" value="{{spec}}" name="spec"/>
+  <input type="hidden" value="{{indentId}}" name="indentId"/>
 <div class="row">
   <div class="col-sm-12 col-xs-12 evaluation_content">
     <div class="weui-cells weui-cells_form">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="weui-textarea" placeholder="请输入文本" rows="3" onKeyDown="textCounter();" onKeyUp="textCounter();"></textarea>
+          <textarea class="weui-textarea" name="content" placeholder="请输入文本" rows="3" onKeyDown="textCounter();" onKeyUp="textCounter();"></textarea>
           <div class="weui-textarea-counter"><span class="number_word">0</span>/20</div>
         </div>
       </div>
@@ -59,6 +63,7 @@
     <button id="evaluation_submit">提交评价</button>
   </div>
 </div>
+</form>
 {% endblock %}
 {% block footer %}
 <script type="text/javascript">
