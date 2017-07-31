@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<form action="/goods/saveEstimate" method="post">
+<form onsubmit="return aa()" name="address_save" id="address_save" action="/goods/saveEstimate" method="post">
 <div class="row evaluation_choice">
   <div class="col-sm-12 col-xs-12">
     <div class="row evaluation_choice_border">
@@ -60,7 +60,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12 col-xs-12">
-    <button id="evaluation_submit">提交评价</button>
+    <input id="evaluation_submit" type="submit" value="提交评价" class="weui-btn weui-btn_primary"/>
   </div>
 </div>
 </form>
@@ -77,5 +77,12 @@
          $(".number_word").html(textareaLen);
        }
     }  
+    function aa(){
+      var textarea=$(".weui-textarea").val().replace(/\s/gi,'');
+      if(textarea==""){
+        $.toast("评价内容不能为空","cancel");
+        return false;
+      }
+    }
 </script>
 {% endblock %}
