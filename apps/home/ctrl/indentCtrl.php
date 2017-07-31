@@ -14,7 +14,8 @@ class indentCtrl extends baseCtrl{
     if (IS_GET === true) {
       // display
         $model=new indent();
-        $this->assign('orderInfo',$model->sel($this->wuid));
+        $type=isset($_GET['type'])?$_GET['type']:'';
+        $this->assign('orderInfo',$model->sel($this->wuid,$type));
       $this->display('indent','index.html');
       die;
     }
@@ -42,6 +43,7 @@ class indentCtrl extends baseCtrl{
           echo json_encode(array('status'=>false,'msg'=>'请设置默认地址'));
           exit;
       }
+      //订单id
       $id=$_POST['id'];
       $status=$_POST['status'];
       //支付金额
@@ -65,7 +67,14 @@ class indentCtrl extends baseCtrl{
           echo json_encode($model->hasGot($id));
           exit;
       }
-
+      if($status == 'backMoney'){
+          echo json_encode($model->backMoney($id));
+          exit;
+      }
+      if($status=='cancel'){
+          echo json_encode($model->cancel($id));
+          exit;
+      }
   }
 
 }

@@ -55,6 +55,8 @@
                 {% else %}
                   <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},1);">冻结</button>
                 {% endif %}
+                <button type="button" class="btn btn-primary btn-xs" onclick="javascript:pay('{{ v.id }}')">打款</button>
+                <button type="button" class="btn btn-primary btn-xs" onClick="window.location.href='/admin/serviceUser/playrecord?id={{v.id}}'">打款记录</button>
               </td>
             </tr>
           {% endfor %}

@@ -43,4 +43,16 @@ class orderCtrl extends baseCtrl{
             echo json_encode(array('status'=>false,'msg'=>'稍后再试'));
         }
     }
+
+    //卖家确认退款
+    public function backMoney(){
+        $status=$_POST['status'];//退款是否成功
+        $id=$_POST['id'];//订单id
+        $model=new order();
+        if($model->backMoney($id,$status)){
+            echo json_encode(array('msg'=>'订单状态已修改,请及时退款'));
+        }else{
+            echo json_encode(array('msg'=>'退款失败,请与买家沟通'));
+        }
+    }
 }

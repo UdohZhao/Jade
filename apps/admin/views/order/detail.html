@@ -1,4 +1,7 @@
 {% extends "layouts.html" %}
+{% block header %}
+<link rel="stylesheet" href="/apps/admin/views/order/css/detail.css">
+{% endblock %}
 {% block content%}
 
 <!-- Page -->
@@ -11,23 +14,28 @@
             <div class="panel-heading">
                 <h3 class="panel-title">@ 订单详情</h3>
             </div>
-            <p >订单编号---{{orderDetail.serial_number}}</p>
-            {% for key,value in orderDetail.goods_name %}
-            <a  style="text-decoration: none">
-                <div >
-                   商品示例图片---  <img width="150" height="150" src="{{orderDetail.goods_coverpath[key]}}">
+            <div class="content_detail">
+                <p >订单编号：{{orderDetail.serial_number}}</p>
+                {% for key,value in orderDetail.goods_name %}
+                <div class="product_list">
+                    <div class="list_img">
+                       <img width="150" height="150" src="{{orderDetail.goods_coverpath[key]}}">
+                    </div>
+                    <div class="list_right">
+                        <p >{{orderDetail.goods_name[key]}}</p>
+                        <p >规格：{{orderDetail.goods_specification[key]}}</p>
+                        <p class="product_money"> ￥<span>{{orderDetail.goods_price[key]}}</span><i>x<span>{{orderDetail.goods_quantity[key]}}</span></i></p>
+                    </div>
+                    <div style="clear: both;"></div>
                 </div>
-                <div >
-
-                    <p >商品名称---{{orderDetail.goods_name[key]}}</p>
-                    <p >规格---{{orderDetail.goods_specification[key]}}</p>
-                    <p > 单价---￥<span>{{orderDetail.goods_price[key]}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量---<i>x<span>{{orderDetail.goods_quantity[key]}}</span></i></p>
-                </div>
-            </a>
-            {% endfor %}
-            {% if orderDetail.type == 1 %}
-            <button id="send"> 发货 </button>
-            {% endif %}
+                {% endfor %}
+                {% if orderDetail.type == 1 and orderDetail.status == 0 %}
+                <button class="button" id="send"> 发 货 </button>
+                {% elseif orderDetail.status == 3 %}
+                <button class="button" onclick="javascript:backMoney('{{orderDetail.id}}',5)"> 同意退款 </button>
+                <button class="button" onclick="javascript:backMoney('{{orderDetail.id}}',4)"> 拒绝退款 </button>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
@@ -39,5 +47,12 @@
 <script src="/apps/admin/views/order/js/detail.js"></script>
 <script>
     var id='{{orderDetail.id}}'
+$(function(){
+
+
+    var height=$(".product_list").height();
+    $(".list_right").css("height",height);
+})
+    
 </script>
 {% endblock %}

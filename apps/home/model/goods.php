@@ -32,12 +32,12 @@ class goods extends model{
     /*商品评价
     @param id 商品id值
      * */
-    public function estimate($id){
-        $sql="SELECT e.id,e.uid,gid,specification,content,ctime,type,u.nickname,u.avatar_path
-        FROM goods_estimate AS e
-        LEFT JOIN userinfo as u ON u.uid=e.uid
-        WHERE e.gid=$id";
-        return $this->query($sql)->fetchAll();
+    public function good_estimate($id){
+        $sql= "SELECT content,headimgurl,nickname,goods_estimate.type FROM 
+              goods_estimate LEFT JOIN  wechat_user ON wechat_user.id=goods_estimate.wuid WHERE gid=$id";
+
+       $info = $this->query($sql)->fetchAll();
+        return $info;
     }
 
     //加入购物车
@@ -104,6 +104,66 @@ class goods extends model{
          $data['type']=0;
         //状态,正常
         $data['status']=0;
-        return $this->insert('indent',$data);
+        
+        //订单生成后删除购物车信息  ,根据 id值删除
+        if($data['shopcar_id']){
+            //通过购物车购买
+            $res = $this->delete('shop_cart',['id'=>$data['shopcar_id']]);
+            unset($data['shopcar_id']);
+        }
+        $re = $this->insert('indent',$data);
+        if($re && $res){
+            return true;
+        }
     }
+
+    //买家给出评价  @param name  商品名称
+    public function writeEstimate($data){
+        $needInfo=array();
+        $needInfo['wuid']=$data['wuid'];
+        $needInfo['gid']=$data['gid'];
+        $needInfo['specification']=$data['specification'];
+        $needInfo['content']=$data['content'];
+        $needInfo['ctime']=$data['ctime'];
+        $needInfo['type']=$data['type'];
+        $info = $this->insert('goods_estimate',$needInfo);
+        if($info){
+            //将订单改为售后
+            $re = $this->update('indent',['type'=>4],['id'=>$data['indentId']]);
+        }
+        if($info && $re){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //根据商品名称查询商品id
+    public function selId($name){
+        return $this->get('goods',['id'],['cname'=>$name]);
+    }
+
+
+    //根据订单id获取商品id,规格
+     public function selIndent_info($id){
+         $info = $this->get('indent',['goods_name','goods_specification','id'],['id'=>$id]);
+
+             $goodName=unserialize($info['goods_name']);
+             $specification=unserialize($info['goods_specification']);
+         //商品id数组
+         $idArr=array();
+         foreach($goodName as $k=>$v){
+             $arr = $this->get('goods',['id'],['cname'=>$v]);
+             $idArr[$k]=$arr['id'];
+         }
+
+         $needArr=array();
+         for($i=0;$i<count($idArr);$i++){
+             $a=$idArr[$i];
+             $b=$specification[$i];
+             $needArr[$i]['gid']=$a;
+             $needArr[$i]['specification']=$b;
+         }
+         return $needArr;
+     }
 }

@@ -132,4 +132,24 @@ class serviceUserCtrl extends baseCtrl{
     }
   }
 
+  public function playrecord(){
+    // Get
+      $model=new serviceUser();
+    if (IS_GET === true) {
+        $id=isset($_GET['id'])?$_GET['id']:'';
+        if($id){
+            $this->assign('record',$model->paycord($id));
+        }
+      $this->display('serviceUser','playrecord.html');
+      die;
+    }
+  }
+
+  //打款方法
+    public function payMoney(){
+        $data=array();
+        $data['suid']=$_POST['id'];
+        $model=new serviceUser();
+        echo json_encode($model->payMoney($data['suid']));
+    }
 }

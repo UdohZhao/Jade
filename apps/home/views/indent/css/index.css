@@ -1,5 +1,6 @@
 .bigBox{
   background-color: #ededed;
+  padding-bottom: 20px;
 }
 .myorder_box .weui-cells{
   margin-top: 10px;
@@ -16,13 +17,39 @@
   margin: 0;
 }
 .myorder_box img{
-  width: 80px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 .myorder_box .order_name{
   white-space:nowrap;
   text-overflow:ellipsis;
   overflow:hidden;
+  padding-right: 100px;
+}
+.myorder_box .my_button{
+  position: relative;
+}
+.myorder_box .my_button .a_button{
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #e51c23;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+}
+.myorder_box .order_guige{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  font-size: 14px;
+  color: #999;
 }
 .myorder_box .order_money{
   font-size: 14px;

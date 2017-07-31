@@ -7,20 +7,29 @@
 {% block content %}
 <div class="row wait_time">
   <div class="weui-cells">
+        {% if orderDetail.status == 2 %}
     <div class="weui-cell">
       <div class="weui-cell__hd">
         <svg class="icon categorie-icon" aria-hidden="true">
-              <use xlink:href="#icon-shouye"></use>
+              <use style="color:orangered" xlink:href="#icon-ganhaohao"></use>
           </svg>
       </div>
       <div class="weui-cell__bd">
-        {% if orderDetail.status == 2 %}
         <span style="color:orangered">订单已超时,请返回商城重新下单</span>
-        {% else %}
-        <span>提示:请于半小时内付款，超时订单将自动取消</span>
-        {% endif %}
       </div>
     </div>
+        {% else %}
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <svg class="icon categorie-icon" aria-hidden="true">
+              <use style="color:#bbb;" xlink:href="#icon-ganhaohao"></use>
+          </svg>
+      </div>
+      <div class="weui-cell__bd">
+        <span>提示:请于半小时内付款，超时订单将自动取消</span>
+      </div>
+    </div>
+        {% endif %}
   </div>
 </div>
 <div class="row order_details">
@@ -31,7 +40,7 @@
       <div class="weui-cell__bd">
         <p class="receipt_people">
           <svg class="icon categorie-icon" aria-hidden="true">
-              <use xlink:href="#icon-shouye"></use>
+              <use xlink:href="#icon-shouhuodizhi"></use>
           </svg>
           收货人：{{orderDetail.consignee}}
           <span>{{orderDetail.contact_number}}</span>
@@ -46,7 +55,7 @@
       </div>
       <div class="weui-cell__bd">
         <p class="order_name">{{orderDetail.goods_name[key]}}</p>
-        <p class="order_name">规格:{{orderDetail.goods_specification[key]}}</p>
+        <p class="order_guige">规格:{{orderDetail.goods_specification[key]}}</p>
         <p class="order_money">￥<span class="each_money">{{orderDetail.goods_price[key]}}</span><i class="number">x<span>{{orderDetail.goods_quantity[key]}}</span></i></p>
       </div>
     </a>
@@ -79,10 +88,10 @@
     合计：￥<span class="all_money"></span>
       {% if orderDetail.type == 0 and orderDetail.status == 0 %}
         <a onclick="javascript:fun('{{orderDetail.id}}','pay','{{orderDetail.total_price}}')">去支付</a>
-      {% elseif orderDetail.type == 1 or orderDetail.type == 2 %}
-      <a>申请退款</a>
-      {% elseif orderDetail.type == 4 %}
-      <a>交易成功</a>
+      {% elseif orderDetail.status == 3 %}
+      <a>申请退款中</a>
+      {% elseif orderDetail.type == 4  and  orderDetail.status == 0 %}
+      <a  onclick="javascript:fun('{{orderDetail.id}}','backMoney','{{orderDetail.total_price}}')">申请退款</a>
       {% endif %}
     </div>
 </div>

@@ -76,7 +76,7 @@ $(function(){
 		}
 		var arr=[];
 		var product=$(".shopping_list");
-		var productid='' ,cover=''  ,name=''  ,specification=''  , unitprice=''  ,number='' ;
+		var productid='' ,cover=''  ,name=''  ,specification=''  , unitprice=''  ,number='' ,shopcar_id='' ;
 		for(i=0;i<product.length;i++){
 
 			//申明二维数组
@@ -88,6 +88,7 @@ $(function(){
 			 specification+=$(product[i]).find(".specification span").html()+'<=>';//商品规格
 			 unitprice+=$(product[i]).find(".each_money").html()+'<=>';//单价
 			 number+=$(product[i]).find(".input_number").val()+'<=>';//数量
+			 shopcar_id+=$(product[i]).find(".shopcar_id").val()+'<=>';//商品id
 
 
 			/*arr[i]['productid']=productid;
@@ -103,12 +104,14 @@ $(function(){
 		specification = specification.substr(0,specification.length-'<=>'.length);
 		unitprice = unitprice.substr(0,unitprice.length-'<=>'.length);
 		number = number.substr(0,number.length-'<=>'.length);
+		shopcar_id = shopcar_id.substr(0,shopcar_id.length-'<=>'.length);
 		arr.push(productid);
 		arr.push(cover);
 		arr.push(name);
 		arr.push(specification);
 		arr.push(unitprice);
 		arr.push(number);
+		arr.push(shopcar_id);
 		//ajax请求数据
 		//卖家留言
 		var msg=$('#message').val();

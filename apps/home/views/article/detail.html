@@ -27,14 +27,10 @@
   </div>
 </div>
 {% elseif detailInfo.needJobCode == true or  detailInfo.needMoney == true %}
-<div class="row pay_read" id="codeForRead1">
+<div class="row pay_read">
   <div class="col-sm-12 col-xs-12">
-    <a>邀请码免费阅读</a>
-  </div>
-</div>
-<div class="row pay_read" id="codeForRead2">
-  <div class="col-sm-12 col-xs-12">
-    <a>付费阅读--{{detailInfo.price}}元</a>
+    <a id="codeForRead1">邀请码免费阅读</a>
+    <a id="codeForRead2">付费阅读--{{detailInfo.price}}元</a>
   </div>
 </div>
 {% elseif detailInfo.needMoney == false %}

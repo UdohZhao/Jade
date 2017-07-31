@@ -51,16 +51,16 @@
                         <td>【已取消订单】</td>
                         {% elseif  v.status == 2 %}
                         <td>【订单超时】</td>
-                        {% elseif  v.type == 1 %}
-                        <td>【待发货】</td>
-                        {% elseif  v.type == 2 %}
-                        <td>【待收货】</td>
+                        {% elseif  v.type == 1 and v.status ==0 %}
+                        <td style="color:green">【待发货】</td>
                         {% elseif  v.status == 3 %}
-                        <td>【申请退款中】</td>
+                        <td style="color:red">【申请退款】</td>
                         {% elseif  v.status == 4 %}
                         <td>【退款失败】</td>
                         {% elseif  v.status == 5 %}
                         <td> 【退款成功】</td>
+                        {% elseif  v.type == 2 %}
+                        <td>【待收货】</td>
                         {% elseif  v.type == 3 %}
                         <td>【待评价】</td>
                         {% elseif  v.type == 4 %}

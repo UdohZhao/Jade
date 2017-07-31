@@ -18,8 +18,8 @@ class goodsCtrl extends baseCtrl{
         $id=isset($_GET['id'])?$_GET['id']:0;
         $model=new goods();
         $this->assign('goodDetail',$model->selDetail($id));
-        //商品评论
-        $this->assign('estimate',$model->estimate($id));
+        //商品评论  商品id
+        $this->assign('estimate',$model->good_estimate($id));
       $this->display('goods','detail.html');
       die;
     }
@@ -44,6 +44,16 @@ class goodsCtrl extends baseCtrl{
     // Get
     if (IS_GET === true) {
       // display
+        //订单id
+
+        $indentId=isset($_GET['indentId'])?$_GET['indentId']:'';
+       //查询订单下的商品名称
+
+        if($indentId){
+            $model=new goods();
+            $this->assign('goodsInfo',$model->selIndent_info($indentId));
+            $this->assign('indentId',$indentId);
+        }
       $this->display('goods','estimate.html');
       die;
     }
@@ -102,6 +112,8 @@ class goodsCtrl extends baseCtrl{
         //获取数组
         $orderArr=$_POST['orderArr'];
         $data=array();
+        //购物车id
+        $data['shopcar_id']=explode('<=>',$orderArr[6]) ;
         $data['goods_coverpath']=serialize(explode('<=>',$orderArr[1])) ;
         $data['goods_name']=serialize(explode('<=>',$orderArr[2])) ;
         $data['goods_specification']=serialize(explode('<=>',$orderArr[3])) ;
@@ -118,5 +130,36 @@ class goodsCtrl extends baseCtrl{
             echo json_encode(array('status'=>false));
         }
 
+    }
+    //商品评价方法
+    public function saveEstimate(){
+            $model= new goods();
+        $data=array();
+        $data['wuid']=$this->wuid;
+        $data['content']=$_POST['content'];
+        $data['ctime']=time();
+        $data['type']=$_POST['radio1'];
+        //订单id
+        $data['indentId']=$_POST['indentId'];
+        //查询该订单的商品和对应规格信息数组.二维数组
+        $needInfo=$model->selIndent_info($data['indentId']);
+        $info=array();
+        $needData=array();
+        foreach($needInfo as $k=>$v){
+            $needData[$k]['gid']=$v['gid'];
+            $needData[$k]['specification']=$v['specification'];
+            $needData[$k]['wuid']=$this->wuid;
+            $needData[$k]['content']=$_POST['content'];
+            $needData[$k]['ctime']=time();
+            $needData[$k]['type']=$_POST['radio1'];
+            $needData[$k]['indentId']=$_POST['indentId'];
+
+        }
+        foreach($needData as $Nkey=>$Nval){
+            $info[]  = $model->writeEstimate($Nval);
+        }
+        if($info){
+            header('Location:/indent/index');
+        }
     }
 }
