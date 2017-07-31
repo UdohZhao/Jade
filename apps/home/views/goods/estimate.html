@@ -42,4 +42,35 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-12 col-xs-12 evaluation_content">
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请输入文本" rows="3" onKeyDown="textCounter();" onKeyUp="textCounter();"></textarea>
+          <div class="weui-textarea-counter"><span class="number_word">0</span>/20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <button id="evaluation_submit">提交评价</button>
+  </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script type="text/javascript">
+   function textCounter() {  
+       var textarea=$(".weui-textarea").val().replace(/\s/gi,'');
+       var textareaLen=textarea.length;
+       if(textareaLen>20){
+          $(".number_word").html("20");
+          $(".weui-textarea").val(textarea.substr(0,20));
+       }else{
+         $(".number_word").html(textareaLen);
+       }
+    }  
+</script>
 {% endblock %}
