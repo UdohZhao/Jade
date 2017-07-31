@@ -7,6 +7,18 @@
 {% block content %}
 <div class="row wait_time">
   <div class="weui-cells">
+        {% if orderDetail.status == 2 %}
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <svg class="icon categorie-icon" aria-hidden="true">
+              <use style="color:orangered" xlink:href="#icon-shouye"></use>
+          </svg>
+      </div>
+      <div class="weui-cell__bd">
+        <span style="color:orangered">订单已超时,请返回商城重新下单</span>
+      </div>
+    </div>
+        {% else %}
     <div class="weui-cell">
       <div class="weui-cell__hd">
         <svg class="icon categorie-icon" aria-hidden="true">
@@ -14,13 +26,10 @@
           </svg>
       </div>
       <div class="weui-cell__bd">
-        {% if orderDetail.status == 2 %}
-        <span style="color:orangered">订单已超时,请返回商城重新下单</span>
-        {% else %}
         <span>提示:请于半小时内付款，超时订单将自动取消</span>
-        {% endif %}
       </div>
     </div>
+        {% endif %}
   </div>
 </div>
 <div class="row order_details">
