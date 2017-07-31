@@ -1,5 +1,6 @@
 .bigBox{
   background-color: #ededed;
+  padding-bottom: 20px;
 }
 .myorder_box .weui-cells{
   margin-top: 10px;
@@ -28,7 +29,7 @@
 .myorder_box .my_button{
   position: relative;
 }
-.myorder_box .my_button button{
+.myorder_box .my_button .a_button{
   position: absolute;
   right: 0;
   top: 0;
@@ -40,6 +41,8 @@
   height: 30px;
   line-height: 30px;
   width: 100px;
+  text-align: center;
+  text-decoration: none;
 }
 .myorder_box .order_guige{
   white-space:nowrap;
