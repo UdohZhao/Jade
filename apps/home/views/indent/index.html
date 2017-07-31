@@ -51,9 +51,6 @@
               <p class="order_name">
                 {{value.goods_name[key]}}
               </p>
-              {% if value.type == 3 and  value.status == 0 %}
-              <a class="a_button" href="/goods/estimate?goodName={{value.goods_name[key]}}&spec={{value.goods_specification[key]}}&indentId={{value.id}}">进入评价</a>
-              {% endif %}
               <p class="order_guige">规格:{{value.goods_specification[key]}}</p>
               <p class="order_money">单价:￥{{value.goods_price[key]}}<span>x{{value.goods_quantity[key]}}</span></p>
             </div>
@@ -98,7 +95,16 @@
             <a class="button">交易成功</a>
           </div>
         </div>
-            {% endif %}
+
+              {% elseif value.type == 3 and  value.status == 0 %}
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+          </div>
+          <div class="weui-cell__ft">
+            <a class="button" href="/goods/estimate?goodName={{value.goods_name[key]}}&spec={{value.goods_specification[key]}}&indentId={{value.id}}">进入评价</a>
+          </div>
+        </div>
+              {% endif %}
 
       </div>
     </div>
