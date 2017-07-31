@@ -132,4 +132,12 @@ class serviceUserCtrl extends baseCtrl{
     }
   }
 
+  public function playrecord(){
+    // Get
+    if (IS_GET === true) {
+      $this->display('serviceUser','playrecord.html');
+      die;
+    }
+  }
+
 }
