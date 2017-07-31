@@ -104,3 +104,16 @@ function del(id){
     }
   });
 }
+
+function pay(id){
+  $.ajax({
+    url:'/admin/serviceUser/payMoney',
+    data:'id='+id,
+    dataType:'json',
+    type:'post',
+    success:function(re){
+      alert(re.msg);
+      location.reload();
+    }
+  })
+}

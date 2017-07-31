@@ -9,7 +9,7 @@
   <div class="page-content">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">@ 打款记录{% if data %} => {{ data.cname }}{% endif %}</h3>
+        <h3 class="panel-title">@ 打款记录{% if data %} => {{ record.name }}{% endif %}</h3>
       </div>
       <div class="panel-body">
         <table class="table table-hover">
@@ -18,16 +18,20 @@
               <th>#</th>
               <th>姓名</th>
               <th>工作号</th>
-              <th>收入金额</th>
+              <th>打款金额</th>
+              <th>打款时间</th>
             </tr>
           </thead>
           <tbody>
+          {% for value in record %}
             <tr>
               <td></td>
-              <td>aa</td>
-              <td>123456</td>
-              <td>234</td>
+              <td>{{value.cname}}</td>
+              <td>{{value.jobnumber}}</td>
+              <td>{{value.money}}</td>
+              <td>{{value.ctime|date('Y-m-d H:i:s')}}</td>
             </tr>
+          {% endfor %}
             <!-- <tr>
               <td colspan="4">
                 <blockquote>
