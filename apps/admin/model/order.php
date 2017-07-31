@@ -51,6 +51,8 @@ class order extends model{
         $info = $this->query($sql);
         if($info){
             return true;
+        }else{
+            return false;
         }
     }
 
