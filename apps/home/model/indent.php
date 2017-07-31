@@ -26,7 +26,7 @@ class indent extends model{
                 //订单超时,半个小时
                 $this->update($this->table,array('status'=>2),['id'=>$info[$k]['id']]);
             }
-            if($info[$k]['dtime']+3600*24<=time()){
+            if($info[$k]['dtime']+3600*24<=time()  && $info[$k]['type']==0 && $info[$k]['status']==0){
                 //删除
                 $this->delete($this->table,['id'=>$info[$k]['id']]);
             }
