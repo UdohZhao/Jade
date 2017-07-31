@@ -18,8 +18,8 @@ class goodsCtrl extends baseCtrl{
         $id=isset($_GET['id'])?$_GET['id']:0;
         $model=new goods();
         $this->assign('goodDetail',$model->selDetail($id));
-        //商品评论
-        $this->assign('estimate',$model->estimate($id));
+        //商品评论  商品id
+        $this->assign('estimate',$model->good_estimate($id));
       $this->display('goods','detail.html');
       die;
     }
@@ -45,13 +45,13 @@ class goodsCtrl extends baseCtrl{
     if (IS_GET === true) {
       // display
         //订单id
-        $name=isset($_GET['goodName'])?$_GET['goodName']:'';
+
         $indentId=isset($_GET['indentId'])?$_GET['indentId']:'';
-        $spec=isset($_GET['spec'])?$_GET['spec']:'';
-        if($name){
+       //查询订单下的商品名称
+
+        if($indentId){
             $model=new goods();
-            $this->assign('goodsId',$model->selId($name));
-            $this->assign('spec',$spec);
+            $this->assign('goodsInfo',$model->selIndent_info($indentId));
             $this->assign('indentId',$indentId);
         }
       $this->display('goods','estimate.html');
@@ -135,14 +135,29 @@ class goodsCtrl extends baseCtrl{
     public function saveEstimate(){
             $model= new goods();
         $data=array();
-        $data['gid']=$_POST['goodsid'];
         $data['wuid']=$this->wuid;
-        $data['specification']=$_POST['spec'];
         $data['content']=$_POST['content'];
         $data['ctime']=time();
         $data['type']=$_POST['radio1'];
+        //订单id
         $data['indentId']=$_POST['indentId'];
-        $info  = $model->writeEstimate($data);
+        //查询该订单的商品和对应规格信息数组.二维数组
+        $needInfo=$model->selIndent_info($data['indentId']);
+        $info=array();
+        $needData=array();
+        foreach($needInfo as $k=>$v){
+            $needData[$k]['gid']=$v['gid'];
+            $needData[$k]['specification']=$v['specification'];
+            $needData[$k]['wuid']=$this->wuid;
+            $needData[$k]['content']=$_POST['content'];
+            $needData[$k]['ctime']=time();
+            $needData[$k]['type']=$_POST['radio1'];
+            $needData[$k]['indentId']=$_POST['indentId'];
+
+        }
+        foreach($needData as $Nkey=>$Nval){
+            $info[]  = $model->writeEstimate($Nval);
+        }
         if($info){
             header('Location:/indent/index');
         }
