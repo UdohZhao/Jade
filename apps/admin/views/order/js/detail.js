@@ -7,9 +7,11 @@ $(function(){
                 type:'post',
                 success:function(re){
                     if(re.status==true){
-                        alert(re.msg)
+                        alert(re.msg);
+                        window.location.href="/admin/order/index"
                     }else{
-                        alert(re.msg)
+                        alert(re.msg);
+                        window.location.href="/admin/order/index"
                     }
                 }
             })

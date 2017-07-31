@@ -28,14 +28,14 @@
                     </div>
                     <div style="clear: both;"></div>
                 </div>
+                {% endfor %}
+                {% if orderDetail.type == 1 and orderDetail.status == 0 %}
+                <button class="button" id="send"> 发 货 </button>
+                {% elseif orderDetail.status == 3 %}
+                <button class="button" onclick="javascript:backMoney('{{orderDetail.id}}',5)"> 同意退款 </button>
+                <button class="button" onclick="javascript:backMoney('{{orderDetail.id}}',4)"> 拒绝退款 </button>
+                {% endif %}
             </div>
-            {% endfor %}
-            {% if orderDetail.type == 1 and orderDetail.status == 0 %}
-            <button id="send"> 发货 </button>
-            {% elseif orderDetail.status == 3 %}
-            <button onclick="javascript:backMoney('{{orderDetail.id}}',5)"> 同意退款 </button>
-            <button onclick="javascript:backMoney('{{orderDetail.id}}',4)"> 拒绝退款 </button>
-            {% endif %}
         </div>
     </div>
 </div>
@@ -46,8 +46,8 @@
 {% block footer %}
 <script src="/apps/admin/views/order/js/detail.js"></script>
 <script>
-$(function(){
     var id='{{orderDetail.id}}'
+$(function(){
 
 
     var height=$(".product_list").height();
