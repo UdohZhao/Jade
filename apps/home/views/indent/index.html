@@ -51,7 +51,7 @@
               <p class="order_name">
                 {{value.goods_name[key]}}
               </p>
-              {% if value.type == 3 %}
+              {% if value.type == 3 and  value.status == 0 %}
               <a class="a_button" href="/goods/estimate?goodName={{value.goods_name[key]}}">进入评价</a>
               {% endif %}
               <p class="order_guige">规格:{{value.goods_specification[key]}}</p>
@@ -70,9 +70,8 @@
           <div class="weui-cell__bd">
           </div>
           <div class="weui-cell__ft">
-            <a class="button order_cancel" id="cancel">取消订单</a>
+            <a class="button order_cancel" id="cancel" onclick="javascript:fun('{{value.id}}','cancel','{{value.total_price}}')">取消订单</a>
             <a class="button" onclick="javascript:fun('{{value.id}}','pay','{{value.total_price}}')">立即付款</a>
-
           </div>
         </div>
             {% elseif value.type == 1 and  value.status == 0%}

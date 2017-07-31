@@ -9,7 +9,7 @@ class indent extends model{
         if($type===''){
             $where=['wuid'=>$wuid,'ORDER'=>['id'=>'DESC']];
         }else{
-            $where=['wuid'=>$wuid,'ORDER'=>['id'=>'DESC'],'type'=>$type];
+            $where=['AND'=>['wuid'=>$wuid,'type'=>$type,'status'=>0],'ORDER'=>['id'=>'DESC']];
         }
         $info = $this->select($this->table,['id','goods_coverpath','goods_name',
         'goods_specification','goods_quantity','goods_price','total_price',
@@ -98,6 +98,15 @@ class indent extends model{
             return array('status'=>true,'msg'=>'退款申请成功,待卖家处理');
         }else{
             return array('status'=>false,'msg'=>'申请失败,稍后再试');
+        }
+    }
+    //订单取消
+    public function cancel($id){
+        $info = $this->update($this->table,['status'=>1],['id'=>$id]);
+        if($info){
+            return array('status'=>true,'msg'=>'订单已取消');
+        }else{
+            return array('status'=>false,'msg'=>'稍后再试');
         }
     }
 }

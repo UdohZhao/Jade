@@ -71,6 +71,10 @@ class indentCtrl extends baseCtrl{
           echo json_encode($model->backMoney($id));
           exit;
       }
+      if($status=='cancel'){
+          echo json_encode($model->cancel($id));
+          exit;
+      }
   }
 
 }
