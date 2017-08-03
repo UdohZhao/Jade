@@ -24,4 +24,25 @@ class index extends model{
         }
         return $info;
     }
+
+    //查询热点商品图片,热点商品
+    public function selBanner(){
+        $info = $this->select('goods',['id','cover_path'],['gtype'=>1]);
+
+        foreach($info as $k=>$v){
+            $info[$k]['cover_path']=unserialize($v['cover_path'])[0];
+        }
+
+        //随机取四张图片
+        $needInfo=array();
+        if(count($info)>4){
+            //返回数组的键名称
+            $key=array_rand($info,4);
+            foreach($key as $m=>$n){
+                $needInfo[$m]['cover_path']=$info[$n]['cover_path'];
+            }
+            return $needInfo;
+        }
+        return $info;
+    }
 }
