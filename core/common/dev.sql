@@ -56,7 +56,7 @@ CREATE TABLE `catalogue`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '目录表主键id',
   `title` varchar(255) NOT NULL COMMENT '标题',
   `sort` tinyint(3) UNSIGNED NOT NULL COMMENT '排序',
-  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>毛料，1>成品',
+  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>赌石技巧，1>娱乐',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 # 文章表{id，关联目录表主键id，标题，内容，阅读定价，时间，类型（付费阅读，工作号免费阅读）}
