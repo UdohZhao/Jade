@@ -38,7 +38,7 @@ class indexCtrl extends \core\icunji{
         //最新新闻,10条
         $this->assign('newsInfo',$model->selNews());
         //查询热点商品图片
-        $this->assign('hotImg',$model->selBanner());
+        $this->assign('article_link',$model->selBanner());
       $this->display('index','index.html');
       die;
     }
