@@ -26,7 +26,7 @@ class index extends model{
     }
 
     //查询热点商品图片,热点商品
-    public function selBanner(){
+    /*public function selBanner(){
         $info = $this->select('goods',['id','cover_path'],['gtype'=>1]);
 
         foreach($info as $k=>$v){
@@ -42,6 +42,15 @@ class index extends model{
                 $needInfo[$m]['cover_path']=$info[$n]['cover_path'];
             }
             return $needInfo;
+        }
+        return $info;
+    }*/
+
+    public function selBanner(){
+        $info = $this->select('banner','*',['ORDER'=>'sort']);
+
+        foreach($info as $k=>$v){
+            $info[$k]['banner']=unserialize($v['banner'])[0];
         }
         return $info;
     }

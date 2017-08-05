@@ -12,9 +12,11 @@
           <!-- 轮播start -->
         <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
           <div class="swiper-wrapper">
-            {% for value in hotImg %}
+            {% for value in article_link %}
             <div class="swiper-slide">
-              <img src="{{value.cover_path}}" alt="">
+              <a href="/article/detail?id={{value.aid}}">
+                <img src="{{value.banner}}" alt="">
+              </a>
             </div>
             {% endfor %}
           </div>
