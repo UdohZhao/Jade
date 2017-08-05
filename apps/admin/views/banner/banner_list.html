@@ -1,4 +1,7 @@
 {% extends "layouts.html" %}
+{% block header%}
+<link rel="stylesheet" href="/apps/admin/views/banner/css/add.css">
+{% endblock %}
 {% block content%}
 
 <!-- Page -->
@@ -34,8 +37,6 @@
                         <td>
                             <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">编辑</button>
                             <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
-                            <button type="button" class="btn btn-info btn-xs" onclick="article({{ v.id }});">增添章节</button>
-                            <button type="button" class="btn btn-info btn-xs" onclick="articleIndex({{ v.id }});">章节列表</button>
                         </td>
                     </tr>
                     {% endfor %}

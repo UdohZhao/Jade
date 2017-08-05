@@ -1,0 +1,6 @@
+.panel-title{
+	display: inline-block;
+}
+.panel-title:hover{
+	text-decoration: none;
+}
