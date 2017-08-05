@@ -15,6 +15,7 @@ class bannerCtrl extends baseCtrl{
        $status = upFiles('banner');
 
         $data['aid']=intval($_POST['aid']);
+        $data['sort']=intval($_POST['sort']);
         if($status){
             $data['banner']=$status['cover_path'];
             //保存入库
