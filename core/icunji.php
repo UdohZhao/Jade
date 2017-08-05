@@ -6,6 +6,7 @@ session_start();
 define('IS_GET', isGet());
 define('IS_POST', isPost());
 define('IS_AJAX', isAjax());
+define('IS_WECHAT', isWechat());
 /**
 * 框架核心类
 */
