@@ -49,6 +49,7 @@ CREATE TABLE `industry_dynamics`(
   `coverimg_path` varchar(255) NOT NULL COMMENT '封面图片路径',
   `content` varchar(20000) NOT NULL COMMENT '内容',
   `ctime` char(10) NOT NULL COMMENT '时间',
+   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>行业动态，1>娱乐',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 # 目录表{id，标题，排序，类型（毛料，成品）}

@@ -7,6 +7,13 @@
 {% block content %}
 <div class="row homepage">
   <div class="weui-tab">
+    {% if needJobNum == 1 %}
+    <div id="addJobNum">
+     输入推荐客服工作号(选填) :<input name="jobNum" id="jobNum" type="text"/>
+      <button onclick="fun(1,this)">提交</button>
+      <button onclick="fun(2,this)">取消</button>
+    </div>
+    {% endif %}
       <div class="weui-tab__bd">
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
           <!-- 轮播start -->
@@ -35,7 +42,7 @@
               新闻
             </p>
           </a>
-          <a href="/industryDynamics/index" class="weui-grid js_grid">
+          <a href="/industryDynamics/index?type=0" class="weui-grid js_grid">
             <div class="weui-grid__icon">
               <svg class="icon categorie-icon" aria-hidden="true">
                     <use xlink:href="#icon-dongtai"></use>
@@ -55,7 +62,7 @@
               赌石技巧
             </p>
           </a>
-          <a href="/catalogue/index?type=1" class="weui-grid js_grid">
+          <a href="/industryDynamics/index?type=1" class="weui-grid js_grid">
             <div class="weui-grid__icon">
               <svg class="icon categorie-icon" aria-hidden="true">
                     <use xlink:href="#icon-chengpin"></use>
@@ -199,4 +206,25 @@
       </div>
   </div>
 </div>
+<script>
+  function fun(status,obj){
+    if(status==1){
+      //添加程序
+      var job=document.getElementById('jobNum').value;
+     $.ajax({
+       url:'/index/update_info',
+       data:'job='+job,
+       dataType:'json',
+       type:'post',
+       success:function(re){
+         alert(re.msg)
+         obj.parentNode.style.display='none'
+         location.reload();
+       }
+     })
+    }else{
+      obj.parentNode.style.display='none'
+    }
+  }
+</script>
 {% endblock %}

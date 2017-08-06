@@ -11,7 +11,11 @@
       <div class="panel-heading">
         <h3 class="panel-title">@ 行业动态列表</h3>
       </div>
-      <form action="/admin/industryDynamics/index" method="post">
+      <ul class="nav nav-pills" style="margin-left: 30px;">
+        <li role="presentation" {% if industry_type == 0 %}class="active"{% endif %}><a href="/admin/industryDynamics/index/industry_type/0">行业动态</a></li>
+        <li role="presentation" {% if industry_type == 1 %}class="active"{% endif %}><a href="/admin/industryDynamics/index/industry_type/1">娱乐</a></li>
+     </ul>
+      <form action="/admin/industryDynamics/index?industry_type={{industry_type}}" method="post">
         <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
           <input type="text" class="form-control" name="search" placeholder="请输入关键字">
           <span class="input-group-btn">

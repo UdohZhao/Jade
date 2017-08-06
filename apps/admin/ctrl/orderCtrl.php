@@ -12,18 +12,30 @@ class orderCtrl extends baseCtrl{
 
         //订单列表
     public function index(){
+        $type = isset($_GET['type']) ? $_GET['type'] : '';
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
+        $info='';
+        if($type){
+            $info=$type;
+            $this->assign('msg',$type);
+        }else if($status){
+            $info=$status;
+            $this->assign('msg',$status);
+        }
         $model=new order();
         $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
         //满足条件的记录数
-        $cou =count($model->sel($search));
+        $cou =count($model->sel($search,'','',$info));
         // 数据分页
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
         // 结果集
-        $res = $model->sel($search,bcsub($p->currPage,1,0),$p->subPages);
 
+
+        $res = $model->sel($search,bcsub($p->currPage,1,0),$p->subPages,$info);
         $this->assign('orderInfo',$res);
         $this->assign('page',$p->showPages(1));
+
         $this->display('order','index.html');
     }
 

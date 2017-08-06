@@ -123,10 +123,11 @@
 <script>
   var page=0;//定义当前初始页数
   var data='';
+  var type='{{type}}';
   function newData(){
     $.ajax({
       url:'/industryDynamics/index',
-      data:'page='+page,
+      data:'page='+page+'&type='+type,
       type:'post',
       cache:false,
       async:false,//ajax数据同步

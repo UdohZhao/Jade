@@ -32,4 +32,17 @@ class bannerCtrl extends baseCtrl{
         $this->assign('data',$model->sel_banner());
         $this->display('banner','banner_list.html');
     }
+
+    //删除banner链接
+    public function del_link(){
+        $model=new banner();
+        $id=intval($_POST['id']);
+        if($model->del($id)){
+            echo json_encode(array('status'=>true,'msg'=>'删除成功'));
+        }else{
+            echo json_encode(array('status'=>false,'msg'=>'稍后再试'));
+        }
+
+    }
+
 }

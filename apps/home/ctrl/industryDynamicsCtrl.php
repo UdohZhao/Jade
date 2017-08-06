@@ -1,6 +1,5 @@
 <?php
 namespace apps\home\ctrl;
-use apps\home\model\demoModel;
 use apps\home\model\industryDynamics;
 
 class industryDynamicsCtrl extends baseCtrl{
@@ -12,15 +11,20 @@ class industryDynamicsCtrl extends baseCtrl{
   // 行业动态页面
   public function index(){
     // Get
+
       $model=new industryDynamics();
     if (IS_GET === true) {
       // display
-        $this->assign('industryInfo',$model->sel());
+        $type=isset($_GET['type'])?$_GET['type']:'';
+
+        $this->assign('industryInfo',$model->sel($type));
+        $this->assign('type',$type);
       $this->display('industryDynamics','index.html');
       die;
     }
     $page=intval($_POST['page'])+1;
-    echo json_encode($model->moreData($page));
+      $type=isset($_POST['type'])?$_POST['type']:'';
+    echo json_encode($model->moreData($page,$type));
   }
 
   // 行业动态详细页面

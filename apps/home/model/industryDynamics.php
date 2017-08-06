@@ -3,8 +3,8 @@ namespace apps\home\model;
 use core\lib\model;
 class industryDynamics extends model{
     public $table='industry_dynamics';
-    public function sel(){
-        $info = $this->select($this->table,['id','title','coverimg_path','content','ctime'],['LIMIT'=>10]);
+    public function sel($type){
+        $info = $this->select($this->table,['id','title','coverimg_path','content','ctime'],['LIMIT'=>10,'industry_type'=>$type]);
         foreach($info as $k=>$v){
             //去掉编辑器自带的所有html标签属性
             $str = trim($v['content']);
@@ -26,8 +26,8 @@ class industryDynamics extends model{
      /*行业列表追加
      @param page自定义页数
       * */
-     function moreData($page){
-         $info = $this->select($this->table,['id','title','coverimg_path','content','ctime'],['LIMIT'=>[$page*10,10]]);
+     function moreData($page,$type){
+         $info = $this->select($this->table,['id','title','coverimg_path','content','ctime'],['LIMIT'=>[$page*10,10],'industry_type'=>$type]);
          foreach($info as $k=>$v){
              //去掉编辑器自带的所有html标签属性
              $str = trim($v['content']);

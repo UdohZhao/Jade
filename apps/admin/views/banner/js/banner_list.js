@@ -1,5 +1,14 @@
-function edit(id){
-    if(id){
-        window.location.href='/admin/banner/edit?id='+id;
-    }
+
+
+function del(id){
+    $.ajax({
+        url:'/admin/banner/del_link',
+        data:'id='+id,
+        dataType:'json',
+        type:'post',
+        success:function(re){
+            alert(re.msg);
+            location.reload();
+        }
+    })
 }

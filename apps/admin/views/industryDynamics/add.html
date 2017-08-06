@@ -20,6 +20,17 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">选择类型</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="industry_type" value="0" {% if data.industry_type == 0 %}checked="checked"{% endif %} > 赌石技巧
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="industry_type" value="1" {% if data.industry_type == 1 %}checked="checked"{% endif %}> 娱乐
+              </label>
+            </div>
+            </div>
+          <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">封面图片</label>
             <div class="col-sm-10">
               <div id="preview">

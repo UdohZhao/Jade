@@ -20,4 +20,9 @@ class banner extends model{
        }
         return $info;
     }
+
+    //删除
+    public function del($id){
+        return $this->delete('banner',['id'=>$id]);
+    }
 }

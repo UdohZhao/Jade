@@ -15,7 +15,7 @@ class industryDynamics extends model{
   }
 
   // sel
-  public function sel($search){
+  public function sel($search,$type){
     // sql
     $sql = "
         SELECT
@@ -26,6 +26,7 @@ class industryDynamics extends model{
                 1 = 1
         AND
                 title like '%$search%'
+        AND  industry_type = $type        
         ORDER BY
                 ctime DESC
     ";
@@ -56,8 +57,8 @@ class industryDynamics extends model{
   }
 
   // cou
-  public function cou(){
-    return $this->count($this->table);
+  public function cou($type){
+    return $this->count($this->table,['industry_type'=>$type]);
   }
 
 }

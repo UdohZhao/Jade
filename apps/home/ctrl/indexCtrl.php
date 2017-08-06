@@ -1,20 +1,32 @@
 <?php
 namespace apps\home\ctrl;
 use apps\home\model\index;
-class indexCtrl extends \core\icunji{
+class indexCtrl extends baseCtrl{
   // 构造方
     public $openid;
     private $db;
-  public function _initialize(){
+  public function _auto(){
       $this->db=$this->selOpenid();
-      $_GET['openid']='openid';//模拟openid
-      $this->openid=isset($_GET['openid'])?$_GET['openid']:'';
+      $this->openid=isset($_SESSION['openInfo']['openid'])?$_SESSION['openInfo']['openid']:'';
   }
 
   //引入单例化类
     private function selOpenid(){
         require "single.php";
         return $db;
+    }
+    //get用户数据
+    private function get_data(){
+        $data=array();
+        $data['openid']=$_SESSION['openInfo']['openid'];
+        $data['nickname']=$_SESSION['openInfo']['nickname'];
+        $data['sex']=$_SESSION['openInfo']['sex'];
+        $data['province']=$_SESSION['openInfo']['province'];
+        $data['city']=$_SESSION['openInfo']['city'];
+        $data['country']=$_SESSION['openInfo']['country'];
+        $data['headimgurl']=$_SESSION['openInfo']['headimgurl'];
+        $data['privilege']=json_encode($_SESSION['openInfo']['privilege']);
+        return $data;
     }
   // 昆明玉投商贸首页
   public function index(){
@@ -29,8 +41,16 @@ class indexCtrl extends \core\icunji{
           $_SESSION['userinfo']['name']=$userInfo['nickname'];
           //当前微信用户头像
           $_SESSION['userinfo']['headpath']=$userInfo['headimgurl'];
-      }
+      }else{
+          //新用户，弹出输入所关联客服用户工作号，执行增加程序
+          $this->assign('needJobNum',1);
+          $data=$this->get_data();
 
+          if($this->db->add_info($data)){
+              //重新记录SESSION
+              $this->index();
+          }
+      }
     if (IS_GET === true) {
       // display
 
@@ -44,4 +64,23 @@ class indexCtrl extends \core\icunji{
     }
   }
 
+  public function update_info(){
+      $jobNum=$_POST['job'];
+      //查询该工作号对应的id
+      $model=new index();
+      $info=$model->selJob_num($jobNum);
+      if($info['status']==1){
+          echo json_encode(array('status'=>false,'msg'=>'该工作号已被冻结'));
+      }else if($info['status']==0 && $info['id']){
+          //修改数据记录
+          $wuid=$_SESSION['userinfo']['wuid'];
+
+          if($model->update_jobNum($wuid,$info['id'])){
+              echo json_encode(array('status'=>true,'msg'=> '添加成功'));
+          }
+
+      }else{
+          echo json_encode(array('status'=>false,'msg'=>'不存在的工作号,请重填'));
+      }
+  }
 }

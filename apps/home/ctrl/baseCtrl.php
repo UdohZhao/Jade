@@ -17,6 +17,10 @@ class baseCtrl extends \core\icunji{
       $accesstoken['expires_in'] = bcadd(time(), $accesstoken['expires_in'], 0);
       $_SESSION['accesstoken'] = $accesstoken;
     }
+        $is_set=isset($_SESSION['openInfo'])?$_SESSION['openInfo']:false;
+      if(!$is_set){
+          $this->requestWecaht();
+      }
   }
 
   // 微信中控
@@ -47,10 +51,12 @@ class baseCtrl extends \core\icunji{
     // 必须使用微信浏览器打开
     if ( IS_WECHAT === true ) {
       // 获取access_token，openid
-      $res = json_decode(https_get('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat').'&code='.$_GET['code'].'&grant_type=authorization_code'),true);
+      $res = json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat').'&code='.$_GET['code'].'&grant_type=authorization_code'),true);
       // 获取用户信息
-      $res = json_decode(https_get('https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN'),true);
+      $res = json_decode(file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN'),true);
       see($res);
+        $_SESSION['openInfo']=$res;
+        header('Location:/index/index');
       die;
       // 执行数据库操作coding ...
     } else {

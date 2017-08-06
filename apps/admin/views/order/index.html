@@ -11,7 +11,12 @@
             <div class="panel-heading">
                 <h3 class="panel-title">@ 订单列表</h3>
             </div>
-            <form action="/admin/order/index" method="post">
+            <ul class="nav nav-pills" style="margin-left: 30px;">
+                <li role="presentation" {% if msg == 1 %}class="active"{% endif %}><a href="/admin/order/index/type/1">待发货</a></li>
+                <li role="presentation" {% if msg == 3 %}class="active"{% endif %}><a href="/admin/order/index/status/3">申请退款</a></li>
+                <li role="presentation" {% if msg is not defined %}class="active"{% endif %}><a href="/admin/order/index">其余订单</a></li>
+            </ul>
+            <form action="/admin/order/index{% if msg == 1 %}?type=1{% elseif msg ==3 %}?status=3{% endif %}" method="post">
                 <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
                     <input type="text" class="form-control" name="search" placeholder="请输入订单号">
                     <span class="input-group-btn">

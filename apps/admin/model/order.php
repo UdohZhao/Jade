@@ -5,14 +5,25 @@ class order extends model{
     public $table='indent';
     //查询订单方法
 
-    public function sel($search='',$currPage='',$subPages=''){
+    public function sel($search='',$currPage='',$subPages='',$info_data=''){
+        if($info_data==1){
+            $where=['serial_number[~]'=>$search,
+                'receiver_address.status'=>1,'indent.type'=>$info_data,'indent.status'=>0,'ORDER'=>['id'=>'DESC'],
+                'LIMIT'=>[$currPage,$subPages]];
+        }else if($info_data==3){
+            $where=['serial_number[~]'=>$search,
+                'receiver_address.status'=>1,'ORDER'=>['id'=>'DESC'],
+                'LIMIT'=>[$currPage,$subPages],'indent.status'=>$info_data];
+        }else{
+            $where=['serial_number[~]'=>$search,
+                'receiver_address.status'=>1,'ORDER'=>['id'=>'DESC'],
+                'LIMIT'=>[$currPage,$subPages],'indent.type[!]'=>'1','indent.status[!]'=>'3'];
+        }
         $info = $this->select($this->table,['[>]receiver_address'=>'wuid'],['indent.id','goods_coverpath','goods_name',
             'goods_specification','goods_quantity','goods_price','total_price',
             'serial_number','receiver_info','message','dtime','stime','ctime',
             'type','indent.status','consignee','contact_number','address'],
-            ['serial_number[~]'=>$search,
-            'receiver_address.status'=>1,'ORDER'=>['id'=>'DESC'],
-            'LIMIT'=>[$currPage,$subPages]]);
+            $where);
         foreach($info as $k=>$v){
             $info[$k]['goods_coverpath']=unserialize($v['goods_coverpath']);
             $info[$k]['goods_name']=unserialize($v['goods_name']);

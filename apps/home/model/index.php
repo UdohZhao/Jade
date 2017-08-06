@@ -54,4 +54,14 @@ class index extends model{
         }
         return $info;
     }
+
+    //查询工作号对应的id
+    public function selJob_num($jobNum){
+        return $this->get('service_user',['id','status'],['jobnumber'=>$jobNum]);
+    }
+
+    //修改关联的客服id
+    public function update_jobNum($wuid,$suid){
+        return $this->update('wechat_user',['suid'=>$suid],['id'=>$wuid]);
+    }
 }

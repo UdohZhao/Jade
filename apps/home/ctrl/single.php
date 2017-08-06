@@ -20,11 +20,25 @@ class db{
       public function sel($openid){
           $sql="SELECT id,suid,nickname,sex,province,city,country
                 ,headimgurl,privilege,unionid 
-              FROM wechat_user WHERE openid=$openid";
+              FROM wechat_user WHERE openid='{$openid}'";
           return mysqli_query($this->conn,$sql)->fetch_assoc();
       }
 
+    //若没有查询到，添加用户信息
+    public function add_info($data){
+        $sql="INSERT INTO wechat_user 
+        (openid,nickname,sex,province,city,country,headimgurl,privilege)
+         VALUES 
+         ('{$data['openid']}','{$data['nickname']}',{$data['sex']}
+         ,'{$data['province']}','{$data['city']}','{$data['country']}'
+         ,'{$data['headimgurl']}','{$data['privilege']}')";
+        return mysqli_query($this->conn,$sql);
+    }
 
+    //查询到了，执行更新程序
+    public function update_info(){
+
+    }
 }
 $db = db::getInstance();
 ?>

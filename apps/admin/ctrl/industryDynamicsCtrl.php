@@ -86,6 +86,7 @@ class industryDynamicsCtrl extends baseCtrl{
     $data['title'] = $_POST['title'];
     $data['content'] = $_POST['content'];
     $data['ctime'] = time();
+    $data['industry_type'] = $_POST['industry_type'];
     return $data;
   }
 
@@ -95,12 +96,15 @@ class industryDynamicsCtrl extends baseCtrl{
     $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
     // model
     $model = new industryDynamics();
-    $cou = $model->cou();
+      $industry_type=isset($_GET['industry_type']) ? $_GET['industry_type'] : '';
+
+    $cou = $model->cou($industry_type);
+      $this->assign('industry_type',$industry_type);
     // 数据分页
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
     // 结果集
-    $res = $model->sel($search,bcsub($p->currPage,1,0),$p->subPages);
+    $res = $model->sel($search,$industry_type,bcsub($p->currPage,1,0),$p->subPages);
     // assign
     $this->assign('data',$res);
     $this->assign('page',$p->showPages(1));
