@@ -60,8 +60,6 @@ class baseCtrl extends \core\icunji{
       $res = json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat').'&code='.$_GET['code'].'&grant_type=authorization_code'),true);
       // 获取用户信息
       $res = json_decode(file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN'),true);
-
-        see($res);
         if($res){
             $_SESSION['openInfo']=$res;
             header('Location:/index/index');
