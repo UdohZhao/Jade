@@ -59,11 +59,7 @@ class indent extends model{
         if($this->orderStatus($id)){
             //修改当前订单状态
             $info = $this->update($this->table,array('type'=>1),['id'=>$id]);
-            if($info){
-                return array('status'=>true,'msg'=>'支付成功,待卖家发货');
-            }
-        }else{
-            return array('status'=>false,'msg'=>'订单超时');
+           
         }
     }
     //查看订单是否超时
@@ -110,5 +106,14 @@ class indent extends model{
         }else{
             return array('status'=>false,'msg'=>'稍后再试');
         }
+    }
+
+
+
+    //查询订单商品名称
+    public function sel_name($id){
+        $info = $this->get('indent',['goods_name','serial_number'],['id'=>$id]);
+        $info['goods_name']=implode('  ',unserialize($info['goods_name']));
+        return $info;
     }
 }

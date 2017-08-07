@@ -90,6 +90,7 @@ function fun(id,status,moeny){
         dataType:'json',
         type:'post',
         success:function(re){
+            alert(re);return;
             if(re.status==true){
                 $.toast(re.msg,function(){
                     location.reload();

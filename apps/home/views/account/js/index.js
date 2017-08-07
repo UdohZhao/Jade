@@ -11,3 +11,4 @@ $(function(){
         money=parseFloat($(this).children("span").html().match(pattern)) ;
     })
 })
+
