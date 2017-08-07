@@ -8,7 +8,7 @@ class shopCartCtrl extends baseCtrl{
   // 构造方法
     public $wuid;
   public function _auto(){
-    $this->wuid=$_SESSION['userinfo']['wuid'];
+      $this->wuid=isset($_SESSION['userinfo']['wuid'])?$_SESSION['userinfo']['wuid']:'';
   }
 
   // 购物车页面

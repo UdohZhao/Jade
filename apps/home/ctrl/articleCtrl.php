@@ -6,9 +6,9 @@ class articleCtrl extends baseCtrl{
   public $wuid;
   public $suid;
   public function _auto(){
-      $this->wuid=$_SESSION['userinfo']['wuid'];
-      //该用户关联的客服用户id
-      $this->suid=$_SESSION['userinfo']['suid'];
+
+      $this->wuid=isset($_SESSION['userinfo']['wuid'])?$_SESSION['userinfo']['wuid']:'';
+      $this->suid=isset($_SESSION['userinfo']['suid'])?$_SESSION['userinfo']['suid']:'';
   }
 
   // 文章页面

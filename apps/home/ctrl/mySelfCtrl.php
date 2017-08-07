@@ -9,9 +9,10 @@ class mySelfCtrl extends baseCtrl{
     public $name;
     public $headpath;
   public function _auto(){
-    $this->wuid=$_SESSION['userinfo']['wuid'];
-    $this->name=$_SESSION['userinfo']['name'];
-    $this->headpath=$_SESSION['userinfo']['headpath'];
+
+      $this->wuid=isset($_SESSION['userinfo']['wuid'])?$_SESSION['userinfo']['wuid']:'';
+      $this->suid=isset($_SESSION['userinfo']['suid'])?$_SESSION['userinfo']['suid']:'';
+    $this->headpath=isset($_SESSION['userinfo']['headpath'])?$_SESSION['userinfo']['headpath']:'';
   }
 
   // 我的页面
