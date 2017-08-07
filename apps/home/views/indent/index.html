@@ -119,8 +119,10 @@
 <script src="/apps/home/views/indent/js/index.js"></script>
 
 <script>
+    //正则匹配取得数字部分
+    var pattern=/\d+(\.\d+)?/g;
   function api_pay(id,total_fee){
-    total_fee=parseFloat(total_fee);
+    total_fee=parseFloat(total_fee.match(pattern));
     $.ajax({
       url:'/indent/js_api',
       data:'id='+id+'&money='+total_fee,
