@@ -218,8 +218,10 @@
        type:'post',
        success:function(re){
          alert(re.msg)
-         obj.parentNode.style.display='none'
-         location.reload();
+         if(re.status==true){
+           obj.parentNode.style.display='none'
+           location.reload();
+         }
        }
      })
     }else{
