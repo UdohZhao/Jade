@@ -84,12 +84,14 @@
       dataType:'json',
       type:'post',
       success:function(re){
-        $.toast(re.msg)
-        if(re.status==true){
-          $('#lastMoney').html(re.money);
-        }
+       window.location.href='/Wechatpay/jsapi?appId='+re.appId+'' +
+               '&nonceStr='+re.nonceStr+'&package='+re.package+'' +
+               '&signType='+re.signType+'&timeStamp='+re.timeStamp+'' +
+               '&paySign='+re.paySign+'&money='+money+'' +
+               '$wuid='+re.wuid+'&suid='+re.suid;
       }
     })
   })
+
 </script>
 {% endblock %}

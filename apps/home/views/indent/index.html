@@ -68,7 +68,7 @@
           </div>
           <div class="weui-cell__ft">
             <a class="button order_cancel" id="cancel" onclick="javascript:fun('{{value.id}}','cancel','{{value.total_price}}')">取消订单</a>
-            <a class="button" onclick="javascript:fun('{{value.id}}','pay','{{value.total_price}}')">立即付款</a>
+            <a class="button" onclick="javascript:api_pay('{{value.id}}','{{value.total_price}}')">立即付款</a>
           </div>
         </div>
             {% elseif value.type == 1 and  value.status == 0%}
@@ -117,4 +117,26 @@
 {% block footer %}
 <!-- 滚动加载js -->
 <script src="/apps/home/views/indent/js/index.js"></script>
+
+<script>
+  function api_pay(id,total_fee){
+    total_fee=parseFloat(total_fee);
+    $.ajax({
+      url:'/indent/js_api',
+      data:'id='+id+'&money='+total_fee,
+      dataType:'json',
+      type:'post',
+      success:function(re){
+        if(re.status===false){
+          $.toast(re.msg,'cancel');
+        }else{
+          window.location.href='/Wechatpay/jsapi?appId='+re.appId+'' +
+                  '&nonceStr='+re.nonceStr+'&package='+re.package+'' +
+                  '&signType='+re.signType+'&timeStamp='+re.timeStamp+'' +
+                  '&paySign='+re.paySign+'&money='+total_fee;
+        }
+      }
+    })
+  }
+</script>
 {% endblock %}
