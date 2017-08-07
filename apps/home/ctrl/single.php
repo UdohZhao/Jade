@@ -27,11 +27,11 @@ class db{
     //若没有查询到，添加用户信息
     public function add_info($data){
         $sql="INSERT INTO wechat_user 
-        (openid,nickname,sex,province,city,country,headimgurl,privilege)
+        (openid,nickname,sex,province,city,country,headimgurl,privilege,unionid)
          VALUES 
          ('{$data['openid']}','{$data['nickname']}',{$data['sex']}
          ,'{$data['province']}','{$data['city']}','{$data['country']}'
-         ,'{$data['headimgurl']}','{$data['privilege']}')";
+         ,'{$data['headimgurl']}','{$data['privilege']}','{$data['unionid']}')";
         return mysqli_query($this->conn,$sql);
     }
 

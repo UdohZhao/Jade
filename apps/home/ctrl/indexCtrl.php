@@ -28,6 +28,11 @@ class indexCtrl extends baseCtrl{
             $data['country']=$_SESSION['openInfo']['country'];
             $data['headimgurl']=$_SESSION['openInfo']['headimgurl'];
             $data['privilege']=json_encode($_SESSION['openInfo']['privilege']);
+            if(isset($_SESSION['openInfo']['unionid'])){
+                $data['unionid']=$_SESSION['openInfo']['unionid'];
+            }else{
+                $data['unionid']=NULL;
+            }
             return $data;
         }
     }
