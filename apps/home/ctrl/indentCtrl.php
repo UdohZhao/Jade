@@ -6,7 +6,7 @@ class indentCtrl extends baseCtrl{
     public $wuid;
     public $openid;
   public function _auto(){
-        $this->wuid=$_SESSION['userinfo']['wuid'];
+      $this->wuid=isset($_SESSION['userinfo']['wuid'])?$_SESSION['userinfo']['wuid']:'';
       $this->openid=isset($_SESSION['openInfo']['openid'])?$_SESSION['openInfo']['openid']:'';
   }
 

@@ -7,6 +7,11 @@ class baseCtrl extends \core\icunji{
   // 构造方法
   public function _initialize(){
     // expires_in
+      // 初始化控制器
+      if(!isset($_SESSION['userinfo'])){
+          header('Location:/index/index');
+      }
+
     if ( !isset($_SESSION['accesstoken']) || $_SESSION['accesstoken']['expires_in'] < time() ) {
       $accesstoken = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat');
       // 获取access_token
@@ -18,7 +23,8 @@ class baseCtrl extends \core\icunji{
       if(!$is_set){
           $this->requestWecaht();
       }
-      // 初始化控制器
+
+
       if(method_exists($this,'_auto'))
           $this->_auto();
   }

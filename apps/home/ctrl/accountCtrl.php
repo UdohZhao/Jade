@@ -7,8 +7,8 @@ class accountCtrl extends baseCtrl{
     public $openid;
     public $suid;
   public function _auto(){
-    $this->wuid=$_SESSION['userinfo']['wuid'];
-    $this->suid=$_SESSION['userinfo']['suid'];
+    $this->wuid=isset($_SESSION['userinfo']['wuid'])?$_SESSION['userinfo']['wuid']:'';
+    $this->suid=isset($_SESSION['userinfo']['suid'])?$_SESSION['userinfo']['suid']:'';
     $this->openid=isset($_SESSION['openInfo']['openid'])?$_SESSION['openInfo']['openid']:'';
   }
 

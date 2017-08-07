@@ -5,7 +5,6 @@ use apps\home\model\indent;
 class WechatpayCtrl extends \core\icunji{
 
     public function jsapi(){
-
         $this->assign('jsApiParameters',$_GET);
         $this->display('Wechatpay','jsapi.html');
 
