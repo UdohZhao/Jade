@@ -10,10 +10,15 @@
     <span>账户余额：</span>
   </div>
   <div class="col-sm-12 col-xs-12 account_balance">
-    <i>￥<span class="balance_money" id='lastMoney'>{{moneyInfo.remaining}}</span></i>
+    <i>￥<span class="balance_money" id='lastMoney'>{% if moneyInfo.remaining %}{{ moneyInfo.remaining }}{% else %} 0.00 {% endif %}</span></i>
   </div>
 </div>
 <div class="row account_chioce">
+  <div class="col-sm-4 col-xs-4">
+    <div class="account_chioce_list">
+      ￥<span>0.01</span>
+    </div>
+  </div>
   <div class="col-sm-4 col-xs-4">
     <div class="account_chioce_list">
       ￥<span>6</span>
