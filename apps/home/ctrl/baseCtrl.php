@@ -6,9 +6,6 @@ define('TOKEN', 'bainianfc');
 class baseCtrl extends \core\icunji{
   // 构造方法
   public function _initialize(){
-    // 初始化控制器
-    if(method_exists($this,'_auto'))
-        $this->_auto();
     // expires_in
     if ( !isset($_SESSION['accesstoken']) || $_SESSION['accesstoken']['expires_in'] < time() ) {
       $accesstoken = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat');
@@ -21,6 +18,9 @@ class baseCtrl extends \core\icunji{
       if(!$is_set){
           $this->requestWecaht();
       }
+      // 初始化控制器
+      if(method_exists($this,'_auto'))
+          $this->_auto();
   }
 
   // 微信中控
@@ -54,9 +54,15 @@ class baseCtrl extends \core\icunji{
       $res = json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat').'&code='.$_GET['code'].'&grant_type=authorization_code'),true);
       // 获取用户信息
       $res = json_decode(file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'].'&lang=zh_CN'),true);
-      see($res);
-        $_SESSION['openInfo']=$res;
-        header('Location:/index/index');
+
+        see($res);
+        if($res){
+            $_SESSION['openInfo']=$res;
+            header('Location:/index/index');
+        }else{
+            $_SESSION['openInfo']='';
+        }
+
       die;
       // 执行数据库操作coding ...
     } else {

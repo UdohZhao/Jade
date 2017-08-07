@@ -6,6 +6,7 @@ class indexCtrl extends baseCtrl{
     public $openid;
     private $db;
   public function _auto(){
+
       $this->db=$this->selOpenid();
       $this->openid=isset($_SESSION['openInfo']['openid'])?$_SESSION['openInfo']['openid']:'';
   }
@@ -17,16 +18,18 @@ class indexCtrl extends baseCtrl{
     }
     //get用户数据
     private function get_data(){
-        $data=array();
-        $data['openid']=$_SESSION['openInfo']['openid'];
-        $data['nickname']=$_SESSION['openInfo']['nickname'];
-        $data['sex']=$_SESSION['openInfo']['sex'];
-        $data['province']=$_SESSION['openInfo']['province'];
-        $data['city']=$_SESSION['openInfo']['city'];
-        $data['country']=$_SESSION['openInfo']['country'];
-        $data['headimgurl']=$_SESSION['openInfo']['headimgurl'];
-        $data['privilege']=json_encode($_SESSION['openInfo']['privilege']);
-        return $data;
+        if (isset($_SESSION['openInfo'])) {
+            $data=array();
+            $data['openid']=$_SESSION['openInfo']['openid'];
+            $data['nickname']=$_SESSION['openInfo']['nickname'];
+            $data['sex']=$_SESSION['openInfo']['sex'];
+            $data['province']=$_SESSION['openInfo']['province'];
+            $data['city']=$_SESSION['openInfo']['city'];
+            $data['country']=$_SESSION['openInfo']['country'];
+            $data['headimgurl']=$_SESSION['openInfo']['headimgurl'];
+            $data['privilege']=json_encode($_SESSION['openInfo']['privilege']);
+            return $data;
+        }
     }
   // 昆明玉投商贸首页
   public function index(){
