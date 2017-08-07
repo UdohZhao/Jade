@@ -17,4 +17,6 @@ $(function(){
   }
   // 动态赋值背景高度
   $(".bigBox").css("min-height",winHeight);
+  $("#tanchu").css("height",winHeight);
+  $("#tanchu").css("width",winWidth);
 })

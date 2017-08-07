@@ -5,15 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="row homepage">
-  <div class="weui-tab">
-    {% if needJobNum == 1 %}
-    <div id="addJobNum">
-     输入推荐客服工作号(选填) :<input name="jobNum" id="jobNum" type="text"/>
-      <button onclick="fun(1,this)">提交</button>
+<div id="tanchu" style="display: none;">
+  <div id="addJobNum">
+    <p>输入推荐客服工作号(选填)：</p>
+    <div><input name="jobNum" id="jobNum" type="text"/ placeholder="请输入客服工作号"></div>
+    <div>
+      <button id="kefu_tijiao" onclick="fun(1,this)">提交</button>
       <button onclick="fun(2,this)">取消</button>
     </div>
-    {% endif %}
+  </div>
+</div>
+<div class="row homepage">
+  <div class="weui-tab">
       <div class="weui-tab__bd">
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
           <!-- 轮播start -->
@@ -112,62 +115,6 @@
                 </span>
                 </a>
                 {% endfor %}
-               <!-- <a href="/news/detail" class="weui-media-box weui-media-box_appmsg">
-                  <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">
-                  </div>
-                  <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">标题一</h4>
-                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                  </div>
-                <span class="weui-cell__ft">
-                <svg class="icon categorie-icon" aria-hidden="true">
-                        <use xlink:href="#icon-icon"></use>
-                    </svg>
-                </span>
-                </a>
-                <a href="/news/detail" class="weui-media-box weui-media-box_appmsg">
-                  <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">
-                  </div>
-                  <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">标题一</h4>
-                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                  </div>
-                <span class="weui-cell__ft">
-                <svg class="icon categorie-icon" aria-hidden="true">
-                        <use xlink:href="#icon-icon"></use>
-                    </svg>
-                </span>
-                </a>
-                <a href="/news/detail" class="weui-media-box weui-media-box_appmsg">
-                  <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">
-                  </div>
-                  <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">标题一</h4>
-                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                  </div>
-                <span class="weui-cell__ft">
-                <svg class="icon categorie-icon" aria-hidden="true">
-                        <use xlink:href="#icon-icon"></use>
-                    </svg>
-                </span>
-                </a>
-                <a href="/news/detail" class="weui-media-box weui-media-box_appmsg">
-                  <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb" src="/apps/home/views/index/img/QQ截图20170627164651.png">
-                  </div>
-                  <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">标题一</h4>
-                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                  </div>
-                <span class="weui-cell__ft">
-                <svg class="icon categorie-icon" aria-hidden="true">
-                        <use xlink:href="#icon-icon"></use>
-                    </svg>
-                </span>
-                </a>-->
               </div>
             </div>
           </div>
@@ -206,6 +153,19 @@
       </div>
   </div>
 </div>
+<div class="tanchu_button">
+  <a>推荐客服</a>
+</div>
+<script src="/vendor/components/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/apps/home/views/index.js"></script>
+{% if needJobNum == 1 %}
+<script type="text/javascript">
+  $(".tanchu_button").css("display","none");
+  setTimeout(function(){
+    $("#tanchu").css("display","block");
+  },2000)
+</script>
+{% endif %}
 <script>
   function fun(status,obj){
     if(status==1){
@@ -217,16 +177,23 @@
        dataType:'json',
        type:'post',
        success:function(re){
-         alert(re.msg)
+         $.toast(re.msg,"cancel")
          if(re.status==true){
-           obj.parentNode.style.display='none'
+           obj.parentNode.parentNode.parentNode.style.display='none'
            location.reload();
          }
        }
      })
     }else{
-      obj.parentNode.style.display='none'
+      obj.parentNode.parentNode.parentNode.style.display='none'
     }
   }
+</script>
+<script type="text/javascript">
+  $(function(){
+    $(".tanchu_button").click(function(){
+      $("#tanchu").css("display","block");
+    })
+  })
 </script>
 {% endblock %}
