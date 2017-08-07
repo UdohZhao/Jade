@@ -11,7 +11,7 @@ class mySelfCtrl extends baseCtrl{
   public function _auto(){
 
       $this->wuid=isset($_SESSION['userinfo']['wuid'])?$_SESSION['userinfo']['wuid']:'';
-      $this->suid=isset($_SESSION['userinfo']['suid'])?$_SESSION['userinfo']['suid']:'';
+      $this->name=isset($_SESSION['userinfo']['name'])?$_SESSION['userinfo']['name']:'';
     $this->headpath=isset($_SESSION['userinfo']['headpath'])?$_SESSION['userinfo']['headpath']:'';
   }
 
