@@ -39,43 +39,36 @@ class indentCtrl extends baseCtrl{
   }
 
   public function operOrder(){
+
       $model=new indent();
 
       //订单id
       $id=$_POST['id'];
       $status=$_POST['status'];
-      //支付金额
-      $money=$_POST['money'];
 
-      if($status=='pay'){
-
-          //判断是否有默认地址
-          if(!$model->defaultAddr($this->wuid)){
-              echo json_encode(array('status'=>false,'msg'=>'请设置默认地址'));
-              exit;
-          }
-          //调用支付函数  测试成功
-          $payStatus=true;
-          if($payStatus){
-              //执行数据库操作
-            echo json_encode($model->buy($id));
-              exit;
-          } else{
-              echo json_encode(array('status'=>false,'msg'=>'支付失败,稍后再试'));
-              exit;
-          }
-      }
       if($status == 'got'){
           //买家确认收货
-          echo json_encode($model->hasGot($id));
+          if($model->hasGot($id)){
+              echo json_encode(array('status'=>true,'msg'=>'感谢您的支持,评价一下吧'));
+          }else{
+              echo json_encode(array('status'=>false,'msg'=>'操作失败,稍后再试'));
+          }
           exit;
       }
       if($status == 'backMoney'){
-          echo json_encode($model->backMoney($id));
+          if($model->backMoney($id)){
+              echo json_encode(array('status'=>true,'msg'=>'退款申请成功,待卖家处理'));
+          }else{
+              echo json_encode(array('status'=>false,'msg'=>'申请失败,稍后再试'));
+          }
           exit;
       }
       if($status=='cancel'){
-          echo json_encode($model->cancel($id));
+          if($model->cancel($id)){
+              echo json_encode(array('status'=>true,'msg'=>'取消成功'));
+          }else{
+              echo json_encode(array('status'=>false,'msg'=>'稍后再试'));
+          }
           exit;
       }
   }
@@ -92,7 +85,7 @@ class indentCtrl extends baseCtrl{
         }
 
         $info= $model->sel_name(intval($_POST['id']));
-        $total_fee=bcmul(100,floatval($_POST['money']),2);//金额
+        $total_fee=bcmul(100,floatval($_POST['money']),0);//金额
         $openId=$this->openid;
         $goods=$info['goods_name'];
         $order_sn=$info['serial_number'];//订单号

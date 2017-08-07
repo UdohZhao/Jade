@@ -5,6 +5,7 @@ use apps\home\model\indent;
 class WechatpayCtrl extends \core\icunji{
 
     public function jsapi(){
+
         $this->assign('jsApiParameters',$_GET);
         $this->display('Wechatpay','jsapi.html');
 
@@ -12,7 +13,6 @@ class WechatpayCtrl extends \core\icunji{
 
     // 微信支付回调
     public function notify(){
-
         //$xml = $GLOBALS['HTTP_RAW_POST_DATA'];
         $xml = file_get_contents("php://input");
 

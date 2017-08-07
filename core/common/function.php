@@ -178,14 +178,14 @@ function wxJsapiPay($openId,$goods,$order_sn,$total_fee,$attach){
  * @param  string   $productId  商品id
  * @param  string   $attach     附加参数,我们可以选择传递一个参数,比如订单ID
  */
-function wxNativePay($goods,$order_sn,$total_fee,$productId,$attach,$controller){
+function wxNativePay($goods,$order_sn,$total_fee,$productId,$attach){
 
     include ICUNJI.'/vendor/wxpay/WxPay.Api.php';
     include ICUNJI.'/vendor/wxpay/WxPay.NativePay.php';
     include ICUNJI.'/vendor/wxpay/log.php';
 
     //初始化日志
-    $logHandler= new \CLogFileHandler("./log/".date('Ymd').'.log');
+    $logHandler= new \CLogFileHandler("./logs/".date('Ymd').'.log');
     $log = \Log::Init($logHandler, 15);
 
     $notify = new \NativePay();
@@ -200,14 +200,13 @@ function wxNativePay($goods,$order_sn,$total_fee,$productId,$attach,$controller)
     $input->SetTime_expire(date("YmdHis", time() + 600));//支付超时
     $input->SetGoods_tag("test3");
     //$input->SetNotify_url("http://".$_SERVER['HTTP_HOST']."/payment.php");  //支付回调验证地址
-    $input->SetNotify_url("http://".$_SERVER['SERVER_NAME']."/".$controller."/notify");
+    $input->SetNotify_url("http://".$_SERVER['SERVER_NAME']."/Wechatpay/notify");
     $input->SetTrade_type("NATIVE");              //支付类型
 
     $input->SetProduct_id($productId);
     $result = $notify->GetPayUrl($input);
     return $result["code_url"];
 }
-
 
 /**
  * 生成签名
@@ -237,6 +236,7 @@ function makeSign($data){
  * @param string $url 二维码链接
  */
 function QRcode($url){
+
     include ICUNJI.'/vendor/wxpay/phpqrcode/phpqrcode.php';
     $url = urldecode($url);
     // 纠错级别：L、M、Q、H
@@ -260,5 +260,4 @@ function xmlToArray($xml){
     return $val;
 
 }
-
 

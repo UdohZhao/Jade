@@ -125,6 +125,7 @@ $(function(){
 			success:function(re){
 				if(re.status==true){
 					$.toast('定单已生成,进入订单页面查看')
+					window.location.href='/mySelf/index';
 				}else{
 					$.toast('订单提交失败,重新提交','cancel')
 				}

@@ -78,9 +78,9 @@ class indent extends model{
     public function hasGot($id){
         $info = $this->update($this->table,['type'=>3],['id'=>$id]);
         if($info){
-            return array('status'=>true,'msg'=>'感谢您的支持,评价一下吧');
+            return true;
         }else{
-            return array('status'=>false,'msg'=>'操作失败,稍后再试');
+            return false;
         }
     }
 
@@ -93,18 +93,18 @@ class indent extends model{
     public function backMoney($id){
         $info = $this->update($this->table,['status'=>3],['id'=>$id]);
         if($info){
-            return array('status'=>true,'msg'=>'退款申请成功,待卖家处理');
+            return true;
         }else{
-            return array('status'=>false,'msg'=>'申请失败,稍后再试');
+            return false;
         }
     }
     //订单取消
     public function cancel($id){
         $info = $this->update($this->table,['status'=>1],['id'=>$id]);
         if($info){
-            return array('status'=>true,'msg'=>'订单已取消');
+           return true;
         }else{
-            return array('status'=>false,'msg'=>'稍后再试');
+            return false;
         }
     }
 
@@ -115,5 +115,10 @@ class indent extends model{
         $info = $this->get('indent',['goods_name','serial_number'],['id'=>$id]);
         $info['goods_name']=implode('  ',unserialize($info['goods_name']));
         return $info;
+    }
+
+    //测试添加小程序
+    public function test_fun(){
+        $this->insert('userinfo',['wuid'=>10,'remaining'=>20]);
     }
 }
