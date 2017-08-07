@@ -34,3 +34,54 @@ p{
 .swiper-container{
   height: 200px;
 }
+#tanchu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1000;
+}
+#addJobNum{
+  padding: 20px 15px;
+  background-color: #fff;
+  width: 80%;
+  margin: 35% 10%;
+  border-radius: 4px;
+}
+#addJobNum p{
+  line-height: 35px;
+}
+#addJobNum div input{
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 0 5px;
+}
+#addJobNum div button{
+  width: 48%;
+  margin: 0;
+  border-radius: 4px;
+  height: 35px;
+  border: none;
+  background-color: #ccc;
+  color: #fff;
+}
+#addJobNum div #kefu_tijiao{
+  background-color: #04BE02;
+}
+.tanchu_button{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+.tanchu_button a{
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0,0,0,.5);
+  padding: 5px 8px;
+  text-align: center;
+  border-radius: 4px;
+}
