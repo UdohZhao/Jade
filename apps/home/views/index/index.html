@@ -153,9 +153,11 @@
       </div>
   </div>
 </div>
+{% if Need_num == 1 %}
 <div class="tanchu_button">
   <a>推荐客服</a>
 </div>
+{% endif %}
 <script src="/vendor/components/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/apps/home/views/index.js"></script>
 {% if needJobNum == 1 %}
@@ -177,7 +179,7 @@
        dataType:'json',
        type:'post',
        success:function(re){
-         $.toast(re.msg,"cancel")
+         $.toast(re.msg,"text")
          if(re.status==true){
            obj.parentNode.parentNode.parentNode.style.display='none'
            location.reload();

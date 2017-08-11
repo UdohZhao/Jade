@@ -8,9 +8,8 @@ class baseCtrl extends \core\icunji{
   public function _initialize(){
     // expires_in
       // 初始化控制器
-      if(!isset($_SESSION['userinfo'])){
-          header('Location:/index/index');
-      }
+      if(method_exists($this,'_auto'))
+          $this->_auto();
 
     if ( !isset($_SESSION['accesstoken']) || $_SESSION['accesstoken']['expires_in'] < time() ) {
       $accesstoken = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.conf::get('APPID','wechat').'&secret='.conf::get('APPSECRET','wechat');
@@ -19,14 +18,14 @@ class baseCtrl extends \core\icunji{
       $accesstoken['expires_in'] = bcadd(time(), $accesstoken['expires_in'], 0);
       $_SESSION['accesstoken'] = $accesstoken;
     }
+
         $is_set=isset($_SESSION['openInfo'])?$_SESSION['openInfo']:false;
       if(!$is_set){
           $this->requestWecaht();
       }
-
-
-      if(method_exists($this,'_auto'))
-          $this->_auto();
+      /*if(!isset($_SESSION['userinfo'])){
+          header('Location:/index/index');
+      }*/
   }
 
   // 微信中控
