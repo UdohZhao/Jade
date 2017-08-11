@@ -58,7 +58,9 @@ class accountCtrl extends baseCtrl{
   //接入微信支付接口
         public function recharge(){
             //微信是分计算换为元
-            $total_fee=bcmul(100,$_POST['money'],0);//金额
+            $model=new account();
+            $wx_money=$model->is_first($this->wuid,$_POST['money']);
+            $total_fee=bcmul(100,$model->is_first($this->wuid,$_POST['money']),0);//金额
             $openId=$this->openid;
             $goods='用户充值';
             $order_sn=indent_number();//订单号
@@ -67,7 +69,8 @@ class accountCtrl extends baseCtrl{
             $jsApiParameters=json_decode($jsApiParameters,true);
             $jsApiParameters['wuid']=$this->wuid;
             $jsApiParameters['suid']=$this->suid;
+            $jsApiParameters['money']=$wx_money;
             echo json_encode($jsApiParameters);
     }
-
+    
 }

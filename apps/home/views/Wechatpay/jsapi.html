@@ -21,6 +21,7 @@
                         //alert(res.err_code+res.err_desc+res.err_msg);
                         if(res.err_msg == "get_brand_wcpay_request:ok"){
                             alert("支付成功 :)");
+                            window.location.href="http://"+window.location.host+"/account/index";
                             //window.location.href="http://m.blog.csdn.net/article/details?id=72765676";
                         }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
                             alert("您取消了支付 :(");
