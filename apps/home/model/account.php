@@ -25,7 +25,7 @@ class account extends model{
             //获取首次充值使用邀请码的优惠百分比
             $divide=$this->divide()['pay'];
             //计算实际支付的金额,原来金额数乘上优惠后的百分比
-            $payMoney=bcmul($money,bcsub(1,bcdiv($divide,100,2),2),2);
+            $payMoney=$money;
             //调用微信支付函数
             $status=true;//模拟充值成功,支付金额为实际支付金额,即$payMoney
             if($status){
