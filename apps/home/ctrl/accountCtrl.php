@@ -72,10 +72,5 @@ class accountCtrl extends baseCtrl{
             $jsApiParameters['money']=$wx_money;
             echo json_encode($jsApiParameters);
     }
-
-
-    public function test(){
-        $model=new account();
-        echo $model->is_first($this->wuid,6);
-    }
+    
 }
