@@ -99,4 +99,22 @@ class account extends model{
         return $this->get('wechat_user',['id','suid'],['openid'=>$openid]);
     }
 
+
+    //判断是否为首充并且有推荐用户
+    public function is_first($wuid,$money){
+        //查找是否为首次充值,
+        $is_charge=$this->select('pay_record',['id','money','ctime','type'],['wuid'=>$wuid]);
+        $has_service=$this->get('wechat_user',['suid'],['id'=>$wuid]);
+
+        if(!$is_charge && $has_service['suid']){
+            //则满足条件;
+            //获取首次充值使用邀请码的优惠百分比
+            $divide=$this->divide()['pay'];
+            //计算实际支付的金额,原来金额数乘上优惠后的百分比
+            $payMoney=bcmul($money,bcsub(1,bcdiv($divide,100,2),2),2);
+            return $payMoney;
+        }else{
+            return $money;
+        }
+    }
 }
