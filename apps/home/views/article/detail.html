@@ -74,17 +74,21 @@ $(function(){
       appendArticle(article.content);
       $(this).css('display','none')
     }else{
-      $.confirm({
-        title: '提示',
-        text: article.content,
-        onOK: function () {
-          //点击确认
-          window.location.href='http://'+window.location.host+'/account/index';
-        },
-        onCancel: function () {
-          $.closeModal();
-        }
+
+      // modal
+      $.modal({
+        title: "充值提醒",
+        text: "您当前余额不足，是否跳转到账户页面立即充值？",
+        buttons: [
+          { text: "确定", onClick: function(){
+            //点击确认
+            $.closeModal();
+            window.location.href='http://'+window.location.host+'/account/index';
+          } },
+          { text: "取消", className: "default", onClick: function(){ } },
+        ]
       });
+
     }
   })
   //邀请码阅读
@@ -110,16 +114,18 @@ $(function(){
       $(this).css('display','none')
       $('#codeForRead1').css('display','none')
     }else{
-      $.confirm({
-        title: '提示',
-        text: article.content,
-        onOK: function () {
-          //点击确认
-          window.location.href='http://'+window.location.host+'/account/index';
-        },
-        onCancel: function () {
-          $.closeModal();
-        }
+        // modal
+      $.modal({
+        title: "充值提醒",
+        text: "您当前余额不足，是否跳转到账户页面立即充值？",
+        buttons: [
+          { text: "确定", onClick: function(){
+            //点击确认
+            $.closeModal();
+            window.location.href='http://'+window.location.host+'/account/index';
+          } },
+          { text: "取消", className: "default", onClick: function(){ } },
+        ]
       });
     }
   })
