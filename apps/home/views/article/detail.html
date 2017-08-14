@@ -72,7 +72,9 @@ $(function(){
       appendArticle(article.content);
       $(this).css('display','none')
     }else{
-      $.toast(article.content);
+      $.alert(article.content, "提示", function() {
+        window.location.href='http://'+window.location.host+'/account/index';
+      });
     }
   })
   //邀请码阅读
