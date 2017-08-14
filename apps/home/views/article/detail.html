@@ -98,8 +98,9 @@ $(function(){
       $(this).css('display','none')
       $('#codeForRead1').css('display','none')
     }else{
-      $.toast(article.content);
-      setTimeout(function(){window.location.href='http://'+window.location.host+'/account/index';},2000);
+      $.toast(article.content,{'time':2000}, function(){
+        window.location.href='http://'+window.location.host+'/account/index';
+      })
     }
   })
 })
