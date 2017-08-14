@@ -58,7 +58,7 @@ class articleCtrl extends baseCtrl{
             echo json_encode(array('content'=>$needStr,'status'=>true));
         }else{
             //不足够支付
-            echo json_encode(array('content'=>'账户余额不足','status'=>false));
+            echo json_encode(array('content'=>'账户余额不足，是否进入账户页面','status'=>false));
         }
     }
 
