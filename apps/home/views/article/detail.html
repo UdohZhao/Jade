@@ -62,6 +62,7 @@ function payFor(needData,urlAction){
   })
   return data;
 }
+$.closeModal();
 $(function(){
   //付费阅读
   $('#payForRead').click(function(){
@@ -73,6 +74,7 @@ $(function(){
       $(this).css('display','none')
     }else{
       $.alert(article.content, "提示", function() {
+        $.closeModal();
         window.location.href='http://'+window.location.host+'/account/index';
       });
     }
@@ -87,7 +89,7 @@ $(function(){
       $(this).css('display','none')
       $('#codeForRead2').css('display','none')
     }else{
-      $.toast(article.content);
+      $.toast(article.content,"cancel");
     }
   })
   //付费
@@ -103,6 +105,7 @@ $(function(){
       /*$.toast(article.content,{'time':2000}, function(){
         window.location.href='http://'+window.location.host+'/account/index';
       })*/
+      $.closeModal();
       $.alert(article.content, "提示", function() {
         window.location.href='http://'+window.location.host+'/account/index';
       });
