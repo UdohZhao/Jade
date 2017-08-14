@@ -84,7 +84,7 @@ class articleCtrl extends baseCtrl{
             echo json_encode(array('content'=>$needStr,'status'=>true));
         }elseif($status===false){
             //不足够支付
-            echo json_encode(array('content'=>'哎呀,账户余额不足','status'=>false));
+            echo json_encode(array('content'=>'稍后再试','status'=>false));
         }elseif($status===intval(2)){
             //邀请码不能重复使用
             echo json_encode(array('content'=>'邀请码只能用一次,请付费阅读','status'=>false));
