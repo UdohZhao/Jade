@@ -98,9 +98,12 @@ $(function(){
       $(this).css('display','none')
       $('#codeForRead1').css('display','none')
     }else{
-      $.toast(article.content,{'time':2000}, function(){
+      /*$.toast(article.content,{'time':2000}, function(){
         window.location.href='http://'+window.location.host+'/account/index';
-      })
+      })*/
+      $.alert(article.content, "提示", function() {
+        window.location.href='http://'+window.location.host+'/account/index';
+      });
     }
   })
 })
