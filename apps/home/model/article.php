@@ -5,7 +5,7 @@ class article extends model{
     public $table='article';
     public function sel($id){
         // @param id 目录id值
-        $sql="SELECT id,title,content,type,price,ctime FROM $this->table WHERE cid=$id ORDER BY ctime DESC";
+        $sql="SELECT id,title,content,type,price,ctime FROM $this->table  ORDER BY ctime DESC";
         return $this->query($sql)->fetchAll();
     }
     /*文章详情

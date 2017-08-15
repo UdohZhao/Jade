@@ -20,9 +20,9 @@ class baseCtrl extends \core\icunji{
     }
 
         $is_set=isset($_SESSION['openInfo'])?$_SESSION['openInfo']:false;
-      if(!$is_set){
+      /*if(!$is_set){
           $this->requestWecaht();
-      }
+      }*/
       /*if(!isset($_SESSION['userinfo'])){
           header('Location:/index/index');
       }*/

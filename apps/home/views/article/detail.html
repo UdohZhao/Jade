@@ -85,7 +85,7 @@ $(function(){
             $.closeModal();
             window.location.href='http://'+window.location.host+'/account/index';
           } },
-          { text: "取消", className: "default", onClick: function(){ } },
+          { text: "取消", className: "default", onClick: function(){ $.closeModal();} },
         ]
       });
 
